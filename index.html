@@ -66,13 +66,18 @@
             width: 100%;
             height: 38vh;
             pointer-events: none;
+            background: linear-gradient(to top, rgba(100,130,70,0.15) 0%, transparent 60%);
         }
         .flowers-zone img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center bottom;
-            opacity: 0.55;
+        }
+        .flowers-zone .flower-layer {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
         }
 
         /* ─── Falling leaves (realistic) ─── */
@@ -683,14 +688,92 @@
     <div id="garden-bg">
       <!-- Ginkgo tree - full screen SVG -->
       <div class="ginkgo-tree">
-        <img src="images/ginkgo-bg.jpg" alt="Ginkgo Tree">
+        <img src="images/ginkgo-bg.jpg" alt="Ginkgo Tree" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0.6;">
       </div>
 
-      <!-- Flowers zone - bottom 38vh -->
+      <!-- Flowers zone - SVG only, no watermarks, lightweight -->
       <div class="flowers-zone">
-        <img src="images/flowers-bg.jpg" alt="Flowers" style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:0.5;">
-        <img src="images/flowers-bg2.jpg" alt="Flowers 2" style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.4;mix-blend-mode:multiply;">
-        <img src="images/flowers-bg3.jpg" alt="Flowers 3" style="position:absolute;bottom:0;right:0;height:85%;object-fit:contain;opacity:0.65;">
+        <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ground -->
+          <ellipse cx="400" cy="330" rx="420" ry="30" fill="#7a9a5a" opacity="0.3"/>
+          <!-- Canna (美人蕉) left side -->
+          <g transform="translate(100, 280)">
+            <path d="M0 0 Q-2 -55 2 -110" fill="none" stroke="#5a7a3a" stroke-width="4" stroke-linecap="round"/>
+            <path d="M-10 -45 Q-25 -55 -18 -38" fill="#4a7a2a" opacity="0.5"/>
+            <ellipse cx="2" cy="-115" rx="12" ry="20" fill="#e05030"/>
+            <ellipse cx="3" cy="-114" rx="8" ry="14" fill="#e87048"/>
+            <ellipse cx="3" cy="-112" rx="5" ry="8" fill="#f09060" opacity="0.6"/>
+            <circle cx="4" cy="-108" r="2.5" fill="#f0c800" opacity="0.5"/>
+          </g>
+          <g transform="translate(170, 295)">
+            <path d="M0 0 Q1 -40 -1 -85" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M8 -30 Q18 -38 12 -22" fill="#4a7a2a" opacity="0.5"/>
+            <ellipse cx="-1" cy="-90" rx="9" ry="15" fill="#d84830"/>
+            <ellipse cx="-1" cy="-89" rx="6" ry="10" fill="#e86848"/>
+            <ellipse cx="-1" cy="-88" rx="4" ry="6" fill="#f08860" opacity="0.5"/>
+          </g>
+          <g transform="translate(250, 285)">
+            <path d="M0 0 Q-1 -60 1 -120" fill="none" stroke="#5a7a3a" stroke-width="4" stroke-linecap="round"/>
+            <path d="M-10 -55 Q-25 -65 -18 -45" fill="#4a7a2a" opacity="0.5"/>
+            <path d="M10 -38 Q22 -48 16 -30" fill="#4a7a2a" opacity="0.5"/>
+            <ellipse cx="1" cy="-125" rx="13" ry="22" fill="#e05838"/>
+            <ellipse cx="1" cy="-124" rx="9" ry="15" fill="#e87048"/>
+            <ellipse cx="1" cy="-122" rx="6" ry="9" fill="#f09868" opacity="0.5"/>
+            <circle cx="1" cy="-118" r="3" fill="#f0d000" opacity="0.4"/>
+          </g>
+          <!-- Canna right side -->
+          <g transform="translate(580, 295)">
+            <path d="M0 0 Q1 -45 -1 -95" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-8 -40 Q-20 -48 -14 -32" fill="#4a7a2a" opacity="0.5"/>
+            <ellipse cx="-1" cy="-100" rx="10" ry="16" fill="#d85030"/>
+            <ellipse cx="-1" cy="-99" rx="7" ry="11" fill="#e87048"/>
+            <ellipse cx="-1" cy="-98" rx="4" ry="7" fill="#f09068" opacity="0.5"/>
+          </g>
+          <g transform="translate(660, 290)">
+            <path d="M0 0 Q-2 -50 1 -100" fill="none" stroke="#5a7a3a" stroke-width="4" stroke-linecap="round"/>
+            <path d="M9 -35 Q22 -44 16 -28" fill="#4a7a2a" opacity="0.5"/>
+            <ellipse cx="1" cy="-105" rx="11" ry="18" fill="#e06038"/>
+            <ellipse cx="1" cy="-104" rx="8" ry="12" fill="#e87850"/>
+            <ellipse cx="1" cy="-102" rx="5" ry="7" fill="#f09870" opacity="0.5"/>
+            <circle cx="1" cy="-100" r="2" fill="#f0c800" opacity="0.4"/>
+          </g>
+          <!-- Rose (月季) center area -->
+          <g transform="translate(340, 305)">
+            <path d="M0 0 Q-1 -30 1 -55" fill="none" stroke="#4a6a3a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M-7 -20 Q-16 -28 -10 -16" fill="#5a8a4a" opacity="0.4" transform="rotate(-15 -7 -20)"/>
+            <path d="M7 -32 Q16 -40 12 -28" fill="#5a8a4a" opacity="0.4" transform="rotate(20 7 -32)"/>
+            <ellipse cx="0" cy="-60" rx="15" ry="12" fill="#d08090"/>
+            <ellipse cx="-1" cy="-61" rx="11" ry="8" fill="#e0a0b0"/>
+            <path d="M-5 -64 Q0 -70 5 -64 Q0 -60 -5 -64Z" fill="#e8b8c0"/>
+            <path d="M-8 -58 Q0 -52 8 -58 Q0 -55 -8 -58Z" fill="#d890a0" opacity="0.5"/>
+          </g>
+          <g transform="translate(420, 300)">
+            <path d="M0 0 Q1 -25 0 -50" fill="none" stroke="#4a6a3a" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-5 -15 Q-12 -22 -8 -12" fill="#5a8a4a" opacity="0.4"/>
+            <ellipse cx="0" cy="-54" rx="13" ry="10" fill="#c87888"/>
+            <ellipse cx="0" cy="-55" rx="9" ry="7" fill="#d890a0"/>
+            <path d="M-4 -58 Q0 -62 4 -58 Q0 -55 -4 -58Z" fill="#e0a8b0"/>
+          </g>
+          <g transform="translate(490, 308)">
+            <path d="M0 0 Q0 -20 1 -40" fill="none" stroke="#4a6a3a" stroke-width="2" stroke-linecap="round"/>
+            <ellipse cx="0" cy="-44" rx="10" ry="8" fill="#d08090"/>
+            <ellipse cx="0" cy="-44" rx="7" ry="5" fill="#e0a0b0"/>
+          </g>
+          <g transform="translate(380, 312)">
+            <path d="M0 0 Q0 -15 1 -32" fill="none" stroke="#4a6a3a" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="0" cy="-35" rx="7" ry="6" fill="#c87888"/>
+            <ellipse cx="0" cy="-35" rx="5" ry="4" fill="#d890a0"/>
+          </g>
+          <!-- Grass tufts -->
+          <g stroke="#6a8a4a" stroke-width="2" fill="none" opacity="0.25">
+            <path d="M40 330 Q45 310 42 295"/>
+            <path d="M50 330 Q55 312 52 298"/>
+            <path d="M300 330 Q305 315 302 300"/>
+            <path d="M500 330 Q505 315 502 302"/>
+            <path d="M720 330 Q725 312 722 300"/>
+            <path d="M730 330 Q735 315 732 302"/>
+          </g>
+        </svg>
       </div>
 
       <div class="ground-grass"></div>
