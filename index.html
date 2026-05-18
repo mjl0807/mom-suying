@@ -67,9 +67,12 @@
             height: 38vh;
             pointer-events: none;
         }
-        .flowers-zone svg {
+        .flowers-zone img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+            opacity: 0.55;
         }
 
         /* ─── Falling leaves (realistic) ─── */
@@ -685,96 +688,7 @@
 
       <!-- Flowers zone - bottom 38vh -->
       <div class="flowers-zone">
-        <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="400" cy="330" rx="420" ry="30" fill="#7a9a5a" opacity="0.2"/>
-          <g transform="translate(80, 280)">
-            <path d="M0 0 Q-2 -50 2 -100" fill="none" stroke="#5a7a3a" stroke-width="4" stroke-linecap="round"/>
-            <path d="M-8 -40 Q-20 -50 -15 -35" fill="#5a8a3a" opacity="0.6"/>
-            <ellipse cx="2" cy="-105" rx="10" ry="16" fill="#e05030" opacity="0.9"/>
-            <ellipse cx="2" cy="-105" rx="7" ry="12" fill="#e86848"/>
-            <ellipse cx="2" cy="-105" rx="4" ry="7" fill="#f08050" opacity="0.6"/>
-            <circle cx="2" cy="-100" r="2" fill="#f0b800" opacity="0.5"/>
-          </g>
-          <g transform="translate(140, 290)">
-            <path d="M0 0 Q1 -40 -1 -85" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
-            <path d="M6 -30 Q15 -38 10 -25" fill="#5a8a3a" opacity="0.6"/>
-            <ellipse cx="-1" cy="-90" rx="8" ry="13" fill="#d84830" opacity="0.9"/>
-            <ellipse cx="-1" cy="-90" rx="6" ry="10" fill="#e06040"/>
-            <ellipse cx="-1" cy="-90" rx="3" ry="6" fill="#e88060" opacity="0.5"/>
-          </g>
-          <g transform="translate(200, 285)">
-            <path d="M0 0 Q-1 -55 1 -110" fill="none" stroke="#5a7a3a" stroke-width="4" stroke-linecap="round"/>
-            <path d="M-8 -50 Q-22 -60 -18 -42" fill="#5a8a3a" opacity="0.6"/>
-            <path d="M8 -35 Q18 -42 14 -28" fill="#5a8a3a" opacity="0.6"/>
-            <ellipse cx="1" cy="-115" rx="11" ry="18" fill="#e05838" opacity="0.85"/>
-            <ellipse cx="1" cy="-115" rx="8" ry="13" fill="#e87048"/>
-            <ellipse cx="1" cy="-115" rx="5" ry="8" fill="#f09060" opacity="0.5"/>
-            <circle cx="1" cy="-108" r="2.5" fill="#f0c000" opacity="0.4"/>
-          </g>
-          <g transform="translate(620, 290)">
-            <path d="M0 0 Q1 -45 -1 -95" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
-            <path d="M-6 -35 Q-16 -42 -12 -28" fill="#5a8a3a" opacity="0.6"/>
-            <ellipse cx="-1" cy="-100" rx="9" ry="14" fill="#d85030" opacity="0.9"/>
-            <ellipse cx="-1" cy="-100" rx="6" ry="10" fill="#e06848"/>
-            <ellipse cx="-1" cy="-100" rx="3" ry="6" fill="#e88860" opacity="0.5"/>
-          </g>
-          <g transform="translate(700, 295)">
-            <path d="M0 0 Q-2 -40 1 -80" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
-            <ellipse cx="1" cy="-84" rx="7" ry="12" fill="#e06038" opacity="0.9"/>
-            <ellipse cx="1" cy="-84" rx="5" ry="8" fill="#e87850"/>
-          </g>
-          <g transform="translate(540, 295)">
-            <path d="M0 0 Q1 -35 0 -75" fill="none" stroke="#5a7a3a" stroke-width="3" stroke-linecap="round"/>
-            <path d="M-5 -25 Q-14 -32 -10 -20" fill="#5a8a3a" opacity="0.6"/>
-            <ellipse cx="0" cy="-79" rx="7" ry="11" fill="#e05840" opacity="0.85"/>
-            <ellipse cx="0" cy="-79" rx="5" ry="8" fill="#e87050"/>
-          </g>
-          <g transform="translate(300, 300)">
-            <path d="M0 0 Q-1 -25 1 -50" fill="none" stroke="#4a6a3a" stroke-width="2" stroke-linecap="round"/>
-            <path d="M-6 -18 Q-14 -25 -10 -15" fill="#5a8a4a" opacity="0.5" transform="rotate(-20 -6 -18)"/>
-            <path d="M6 -30 Q14 -38 10 -26" fill="#5a8a4a" opacity="0.5" transform="rotate(20 6 -30)"/>
-            <ellipse cx="0" cy="-54" rx="12" ry="10" fill="#d08090" opacity="0.85"/>
-            <ellipse cx="0" cy="-55" rx="9" ry="7" fill="#e0a0b0"/>
-            <path d="M-4 -58 Q0 -62 4 -58 Q0 -55 -4 -58Z" fill="#e8b8c0"/>
-            <path d="M-6 -54 Q0 -50 6 -54 Q0 -52 -6 -54Z" fill="#d890a0" opacity="0.6"/>
-          </g>
-          <g transform="translate(370, 305)">
-            <path d="M0 0 Q0 -20 1 -42" fill="none" stroke="#4a6a3a" stroke-width="2" stroke-linecap="round"/>
-            <path d="M4 -18 Q10 -22 8 -14" fill="#5a8a4a" opacity="0.5"/>
-            <ellipse cx="0" cy="-46" rx="10" ry="8" fill="#c87888" opacity="0.85"/>
-            <ellipse cx="0" cy="-46" rx="7" ry="5.5" fill="#d890a0"/>
-            <path d="M-3 -48 Q0 -52 3 -48 Q0 -46 -3 -48Z" fill="#e0a8b0"/>
-          </g>
-          <g transform="translate(440, 295)">
-            <path d="M0 0 Q1 -28 0 -55" fill="none" stroke="#4a6a3a" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M8 -20 Q16 -26 12 -16" fill="#5a8a4a" opacity="0.5"/>
-            <path d="M-7 -35 Q-14 -42 -10 -30" fill="#5a8a4a" opacity="0.5"/>
-            <ellipse cx="0" cy="-59" rx="14" ry="11" fill="#d88898" opacity="0.85"/>
-            <ellipse cx="0" cy="-59" rx="10" ry="8" fill="#e0a0b0"/>
-            <path d="M-5 -62 Q0 -66 5 -62 Q0 -59 -5 -62Z" fill="#e8b8c8"/>
-            <path d="M-8 -57 Q0 -52 8 -57 Q0 -55 -8 -57Z" fill="#d898a8" opacity="0.5"/>
-          </g>
-          <g transform="translate(490, 305)">
-            <path d="M0 0 Q0 -18 1 -38" fill="none" stroke="#4a6a3a" stroke-width="2" stroke-linecap="round"/>
-            <ellipse cx="0" cy="-42" rx="8" ry="7" fill="#d08090" opacity="0.85"/>
-            <ellipse cx="0" cy="-42" rx="5.5" ry="4.5" fill="#e0a0b0"/>
-          </g>
-          <g transform="translate(340, 310)">
-            <path d="M0 0 Q1 -15 0 -32" fill="none" stroke="#4a6a3a" stroke-width="1.5" stroke-linecap="round"/>
-            <ellipse cx="0" cy="-35" rx="6" ry="5" fill="#c87888" opacity="0.8"/>
-            <ellipse cx="0" cy="-35" rx="4" ry="3.5" fill="#d890a0"/>
-          </g>
-          <g stroke="#6a8a4a" stroke-width="1.5" fill="none" opacity="0.3">
-            <path d="M30 330 Q35 310 32 295"/>
-            <path d="M40 330 Q45 315 42 300"/>
-            <path d="M100 325 Q105 310 102 298"/>
-            <path d="M260 330 Q265 315 262 302"/>
-            <path d="M520 330 Q525 318 522 305"/>
-            <path d="M580 328 Q585 312 582 300"/>
-            <path d="M680 330 Q685 316 682 302"/>
-            <path d="M750 332 Q755 318 752 305"/>
-          </g>
-        </svg>
+        <img src="images/flowers-bg.jpg" alt="Flowers">
       </div>
 
       <div class="ground-grass"></div>
