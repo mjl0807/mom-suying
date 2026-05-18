@@ -34,11 +34,156 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
 
-        /* ─── particles ─── */
-        #garden-canvas {
+        /* ─── garden background elements ─── */
+        #garden-bg {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
             pointer-events: none; z-index: 0;
+            overflow: hidden;
+        }
+        /* ─── ginkgo tree ─── */
+        .ginkgo-tree {
+            position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 1; height: 1;
+        }
+        .ginkgo-tree .trunk {
+            position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 18px; height: 280px;
+            background: linear-gradient(to top, #6b4c3b, #8d6b53);
+            border-radius: 6px 6px 0 0;
+        }
+        .ginkgo-tree .trunk::after {
+            content: ''; position: absolute; top: -60px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 60px;
+            background: #8d6b53;
+        }
+        /* Ginkgo leaves cluster */
+        .ginkgo-canopy {
+            position: absolute; bottom: 250px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 320px;
+        }
+        .ginkgo-canopy .leaf {
+            position: absolute;
+            width: 0; height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid rgba(200,180,80,0.25);
+            border-radius: 0 0 50% 50%;
+            opacity: 0.6;
+        }
+        .ginkgo-canopy .leaf:nth-child(1) { bottom: 0; left: 50%; transform: translateX(-50%) rotate(0deg); border-bottom-color: rgba(200,180,80,0.3); }
+        .ginkgo-canopy .leaf:nth-child(2) { bottom: 20px; left: 100px; transform: rotate(-25deg); border-bottom-color: rgba(210,190,70,0.25); }
+        .ginkgo-canopy .leaf:nth-child(3) { bottom: 20px; right: 100px; transform: rotate(25deg); border-bottom-color: rgba(210,190,70,0.25); }
+        .ginkgo-canopy .leaf:nth-child(4) { bottom: 60px; left: 50px; transform: rotate(-40deg); border-bottom-color: rgba(195,175,75,0.2); }
+        .ginkgo-canopy .leaf:nth-child(5) { bottom: 60px; right: 50px; transform: rotate(40deg); border-bottom-color: rgba(195,175,75,0.2); }
+        .ginkgo-canopy .leaf:nth-child(6) { bottom: 40px; left: 170px; transform: rotate(-10deg); border-bottom-color: rgba(205,185,65,0.2); }
+        .ginkgo-canopy .leaf:nth-child(7) { bottom: 40px; right: 170px; transform: rotate(10deg); border-bottom-color: rgba(205,185,65,0.2); }
+        .ginkgo-canopy .leaf:nth-child(8) { bottom: 90px; left: 120px; transform: rotate(-15deg); border-bottom-color: rgba(190,170,60,0.15); }
+        .ginkgo-canopy .leaf:nth-child(9) { bottom: 90px; right: 120px; transform: rotate(15deg); border-bottom-color: rgba(190,170,60,0.15); }
+        .ginkgo-canopy .leaf:nth-child(10) { bottom: 110px; left: 50%; transform: translateX(-50%); border-bottom-color: rgba(200,180,80,0.2); }
+
+        /* ─── flowers ─── */
+        .flower-canna { position: absolute; }
+        .flower-canna .stem {
+            width: 3px; height: 60px;
+            background: linear-gradient(to top, #5a7a3a, #7a9a5a);
+            margin: 0 auto;
+        }
+        .flower-canna .bloom {
+            width: 20px; height: 26px;
+            background: radial-gradient(ellipse at 50% 70%, #e8653a 0%, #d4522e 50%, #c04020 100%);
+            border-radius: 50% 50% 40% 40%;
+            margin: 0 auto -2px;
+            transform-origin: bottom center;
+        }
+        .flower-canna .bloom::before {
+            content: ''; position: absolute;
+            width: 10px; height: 6px;
+            background: #f0b000;
+            border-radius: 50%;
+            top: 4px; left: 50%; transform: translateX(-50%);
+            opacity: 0.6;
+        }
+
+        .flower-rose { position: absolute; }
+        .flower-rose .stem {
+            width: 2px; height: 40px;
+            background: #4a6a3a;
+            margin: 0 auto;
+        }
+        .flower-rose .thorns { position: absolute; top: 20px; left: 50%; width: 6px; height: 4px; background: #5a7a4a; border-radius: 0 50% 50% 0; transform: translateX(-100%) rotate(-10deg); }
+        .flower-rose .thorns2 { position: absolute; top: 35px; left: 50%; width: 6px; height: 4px; background: #5a7a4a; border-radius: 50% 0 0 50%; transform: translateX(0%) rotate(10deg); }
+        .flower-rose .bloom {
+            width: 22px; height: 18px;
+            background: radial-gradient(circle at 40% 35%, #f0c0c0 0%, #e080a0 40%, #c06080 80%);
+            border-radius: 50% 50% 40% 40%;
+            margin: 0 auto -2px;
+            position: relative;
+        }
+        .flower-rose .bloom::after {
+            content: ''; position: absolute;
+            width: 8px; height: 6px;
+            background: #f0d0c0;
+            border-radius: 50%;
+            top: 3px; left: 50%; transform: translateX(-50%);
+            opacity: 0.5;
+        }
+        .flower-rose .leaf {
+            position: absolute; width: 8px; height: 12px;
+            background: #5a8a4a;
+            border-radius: 50% 0 50% 0;
+            transform: rotate(-30deg);
+            top: 30px; left: -4px;
+            opacity: 0.6;
+        }
+        .flower-rose .leaf2 {
+            position: absolute; width: 8px; height: 12px;
+            background: #5a8a4a;
+            border-radius: 0 50% 0 50%;
+            transform: rotate(30deg);
+            top: 40px; right: -4px;
+            opacity: 0.6;
+        }
+
+        /* Position flowers */
+        .flower-canna.f1 { bottom: 30px; left: 8%; }
+        .flower-canna.f2 { bottom: 20px; left: 16%; transform: scale(0.85); }
+        .flower-canna.f3 { bottom: 40px; right: 12%; transform: scale(0.9); }
+        .flower-canna.f4 { bottom: 25px; right: 8%; }
+        .flower-rose.r1 { bottom: 60px; left: 4%; transform: scale(0.8); }
+        .flower-rose.r2 { bottom: 50px; left: 20%; transform: scale(0.7); }
+        .flower-rose.r3 { bottom: 55px; right: 5%; transform: scale(0.85); }
+        .flower-rose.r4 { bottom: 70px; right: 20%; transform: scale(0.7); }
+        .flower-rose.r5 { bottom: 65px; left: 12%; transform: scale(0.6); }
+        .flower-canna.f5 { bottom: 35px; left: 24%; transform: scale(0.75); }
+        .flower-canna.f6 { bottom: 45px; right: 18%; transform: scale(0.8); }
+
+        /* Falling ginkgo leaf particles */
+        .falling-leaf {
+            position: absolute;
+            width: 8px; height: 12px;
+            background: #c9b050;
+            border-radius: 50% 0 50% 0;
+            opacity: 0.4;
+            animation: falling linear infinite;
+        }
+        .falling-leaf:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 6px; height: 10px; }
+        .falling-leaf:nth-child(2) { left: 25%; animation-duration: 15s; animation-delay: 2s; width: 8px; height: 12px; }
+        .falling-leaf:nth-child(3) { left: 45%; animation-duration: 10s; animation-delay: 4s; width: 5px; height: 8px; }
+        .falling-leaf:nth-child(4) { left: 60%; animation-duration: 14s; animation-delay: 1s; width: 7px; height: 11px; }
+        .falling-leaf:nth-child(5) { left: 75%; animation-duration: 11s; animation-delay: 3s; width: 6px; height: 9px; }
+        .falling-leaf:nth-child(6) { left: 35%; animation-duration: 13s; animation-delay: 5s; width: 5px; height: 8px; }
+        .falling-leaf:nth-child(7) { left: 55%; animation-duration: 16s; animation-delay: 2.5s; width: 8px; height: 12px; }
+        .falling-leaf:nth-child(8) { left: 85%; animation-duration: 9s; animation-delay: 6s; width: 6px; height: 10px; }
+        @keyframes falling {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
         /* ─── nav ─── */
@@ -117,53 +262,88 @@
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeScale { to { opacity: 1; transform: scale(1); } }
 
-        /* ─── image-nav-grid ─── */
+        /* ─── image-nav-grid (organic layout) ─── */
         .section-nav {
             position: relative; z-index: 1;
-            padding: 20px 24px 60px;
+            padding: 30px 24px 70px;
             max-width: 1100px;
             margin: 0 auto;
         }
         .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 14px;
-            padding: 0 4px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            padding: 0;
         }
         .nav-card {
             position: relative;
-            border-radius: 16px;
-            overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 3 / 4;
             background: var(--cream);
-            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+            transition: all 0.45s cubic-bezier(0.16,1,0.3,1);
+            overflow: hidden;
+            flex-shrink: 0;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
         }
         .nav-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+            transform: translateY(-10px) scale(1.03);
+            filter: drop-shadow(0 12px 28px rgba(0,0,0,0.12));
         }
         .nav-card img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
+            display: block;
         }
-        .nav-card:hover img { transform: scale(1.07); }
+        .nav-card:hover img { transform: scale(1.08); }
         .nav-card .overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.02) 55%, transparent 70%);
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.02) 50%, transparent 65%);
             display: flex; flex-direction: column;
-            justify-content: flex-end; padding: 22px 18px;
+            justify-content: flex-end; padding: 18px 16px;
+            pointer-events: none;
         }
-        .nav-card .overlay .icon { font-size: 1.5rem; margin-bottom: 2px; }
+        .nav-card .overlay .icon { font-size: 1.3rem; margin-bottom: 2px; }
         .nav-card .overlay .label {
             font-family: var(--serif);
-            font-size: 1.05rem; letter-spacing: 2px;
+            font-size: 1rem; letter-spacing: 2px;
             color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.3);
         }
         .nav-card .overlay .hint {
-            font-size: 0.7rem; color: rgba(255,255,255,0.7);
+            font-size: 0.68rem; color: rgba(255,255,255,0.7);
             letter-spacing: 1px; margin-top: 1px;
+        }
+
+        /* Diverse shapes */
+        .nav-card:nth-child(1) {
+            width: 190px; height: 260px;
+            border-radius: 40% 20% 45% 15%;
+            margin-top: 18px;
+        }
+        .nav-card:nth-child(2) {
+            width: 210px; height: 280px;
+            border-radius: 20% 40% 15% 45%;
+            margin-top: 0;
+        }
+        .nav-card:nth-child(3) {
+            width: 175px; height: 240px;
+            border-radius: 50% 10% 35% 25%;
+            margin-top: 25px;
+        }
+        .nav-card:nth-child(4) {
+            width: 200px; height: 250px;
+            border-radius: 15% 35% 25% 45%;
+            margin-top: 8px;
+        }
+        .nav-card:nth-child(5) {
+            width: 185px; height: 270px;
+            border-radius: 30% 50% 10% 30%;
+            margin-top: 20px;
+        }
+        .nav-card:nth-child(6) {
+            width: 170px; height: 230px;
+            border-radius: 45% 15% 40% 10%;
+            margin-top: 12px;
         }
 
         /* ─── sections ─── */
@@ -574,7 +754,30 @@
 </head>
 <body>
 
-    <canvas id="garden-canvas"></canvas>
+    <div id="garden-bg">
+      <div class="ginkgo-tree">
+        <div class="ginkgo-canopy">
+          <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+          <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+        </div>
+        <div class="trunk"></div>
+      </div>
+      <div class="flower-canna f1"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-canna f2"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-canna f3"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-canna f4"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-canna f5"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-canna f6"><div class="bloom"></div><div class="stem"></div></div>
+      <div class="flower-rose r1"><div class="bloom"></div><div class="thorns"></div><div class="leaf"></div><div class="leaf2"></div><div class="stem"></div></div>
+      <div class="flower-rose r2"><div class="bloom"></div><div class="thorns"></div><div class="leaf"></div><div class="leaf2"></div><div class="stem"></div></div>
+      <div class="flower-rose r3"><div class="bloom"></div><div class="thorns"></div><div class="leaf"></div><div class="leaf2"></div><div class="stem"></div></div>
+      <div class="flower-rose r4"><div class="bloom"></div><div class="thorns"></div><div class="leaf"></div><div class="leaf2"></div><div class="stem"></div></div>
+      <div class="flower-rose r5"><div class="bloom"></div><div class="thorns"></div><div class="leaf"></div><div class="leaf2"></div><div class="stem"></div></div>
+      <div class="falling-leaf"></div><div class="falling-leaf"></div>
+      <div class="falling-leaf"></div><div class="falling-leaf"></div>
+      <div class="falling-leaf"></div><div class="falling-leaf"></div>
+      <div class="falling-leaf"></div><div class="falling-leaf"></div>
+    </div>
 
     <nav id="navbar">
         <div class="logo">Mom<span>·</span>Suying</div>
@@ -759,55 +962,7 @@
     </div>
 
     <script>
-        // ─── Particles ───
-        const canvas = document.getElementById('garden-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: -9999, y: -9999 };
-
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Petal {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + 20;
-                this.size = 4 + Math.random() * 7;
-                this.speedY = 0.3 + Math.random() * 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.rotation = Math.random() * Math.PI * 2;
-                this.rotSpeed = (Math.random() - 0.5) * 0.02;
-                this.opacity = 0.25 + Math.random() * 0.35;
-                this.hue = 70 + Math.random() * 50;
-            }
-            update() {
-                this.y -= this.speedY;
-                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
-                this.rotation += this.rotSpeed;
-                if (this.y < -30) this.reset();
-            }
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = `hsl(${this.hue}, 30%, 62%)`;
-                ctx.beginPath();
-                ctx.ellipse(0, 0, this.size * 0.5, this.size * 0.28, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-        for (let i = 0; i < 30; i++) { const p = new Petal(); p.y = Math.random() * canvas.height; particles.push(p); }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+        // ─── Particles ─── (replaced by CSS garden elements)
 
         // nav hide
         let lastScroll = 0;
