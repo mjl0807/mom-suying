@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏡 我和妈妈的小屋 · 素英</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --rose: #e0b4a4;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        /* ─── nav ─── */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 14px 36px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            background: rgba(248,245,240,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+        }
+        nav .logo {
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            color: var(--sage-d);
+            letter-spacing: 3px;
+        }
+        nav .logo span { color: var(--gold); }
+        nav .back-link {
+            text-decoration: none; color: var(--sage);
+            font-size: 0.82rem; letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        nav .back-link:hover { color: var(--sage-d); }
+
+        /* ─── main ─── */
+        .page-main {
+            padding-top: 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 80px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--sage-d);
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 4px;
+            padding-top: 30px;
+        }
+        .page-sub {
+            text-align: center;
+            color: var(--sage);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .page-divider {
+            width: 36px; height: 2px;
+            background: var(--sage);
+            margin: 10px auto 30px;
+            border-radius: 2px;
+        }
+
+        /* ─── locked state ─── */
+        .lock-box {
+            max-width: 400px;
+            margin: 60px auto;
+            background: var(--card);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(138,154,122,0.2);
+            border-radius: 14px;
+            padding: 44px 36px;
+            text-align: center;
+        }
+        .lock-box .lock-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .lock-box h3 {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .lock-box p {
+            color: var(--sage);
+            font-size: 0.85rem;
+            margin-bottom: 18px;
+        }
+        .lock-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--sage-l);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: var(--sans);
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .lock-box input:focus { border-color: var(--sage); }
+        .lock-box .btn {
+            margin-top: 12px;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 8px;
+            background: var(--sage);
+            color: #fff;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lock-box .btn:hover { background: var(--sage-d); }
+        .lock-box .error {
+            font-size: 0.8rem;
+            color: #c0392b;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+
+        /* ─── chapter list (unlocked) ─── */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toolbar .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--sans);
+        }
+        .btn-primary {
+            background: var(--sage);
+            color: #fff;
+        }
+        .btn-primary:hover { background: var(--sage-d); }
+        .btn-secondary {
+            background: var(--cream);
+            color: var(--sage-d);
+            border: 1px solid var(--sage-l);
+        }
+        .btn-secondary:hover { background: var(--sage-l); }
+        .btn-danger {
+            background: #e8c4b8;
+            color: #7a3a2a;
+        }
+        .btn-danger:hover { background: #d4a898; }
+        .btn-sm { padding: 5px 14px; font-size: 0.75rem; }
+        .toolbar .right-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .chapter-card {
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.15);
+            border-radius: 12px;
+            padding: 18px 22px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .chapter-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .chapter-card .ch-title {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            color: var(--sage-d);
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .chapter-card .ch-meta {
+            font-size: 0.75rem;
+            color: var(--sage);
+            margin-top: 2px;
+        }
+        .chapter-card .ch-preview {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+            line-height: 1.6;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .chapter-card .ch-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 6px;
+        }
+        .empty-state {
+            text-align: center;
+            color: var(--sage);
+            padding: 60px 20px;
+            border: 1px dashed var(--sage-l);
+            border-radius: 12px;
+            background: var(--card);
+        }
+        .empty-state .big-icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .empty-state p { font-size: 0.9rem; }
+
+        /* ─── editor overlay ─── */
+        .editor-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            padding: 20px;
+        }
+        .editor-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .editor-panel {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 32px;
+            width: 100%;
+            max-width: 640px;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        .editor-panel .editor-title {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .editor-panel label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--sage);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+        .editor-panel input[type="text"],
+        .editor-panel textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--sage-l);
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-family: var(--sans);
+            background: var(--bg);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .editor-panel input:focus,
+        .editor-panel textarea:focus { border-color: var(--sage); }
+        .editor-panel textarea { min-height: 200px; resize: vertical; }
+        .editor-panel .editor-btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            justify-content: flex-end;
+        }
+        .editor-panel .editor-status {
+            font-size: 0.78rem;
+            color: var(--sage-d);
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+        .editor-panel .close-x {
+            position: absolute;
+            top: 16px; right: 20px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--sage);
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+        .editor-panel .close-x:hover { color: var(--ink); }
+
+        /* ─── chapter reader modal ─── */
+        .reader-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            padding: 20px;
+        }
+        .reader-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .reader-panel {
+            background: #fcfaf7;
+            border-radius: 16px;
+            padding: 36px 40px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        .reader-panel .reader-title {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .reader-panel .reader-meta {
+            font-size: 0.78rem;
+            color: var(--sage);
+            margin-bottom: 20px;
+        }
+        .reader-panel .reader-content {
+            font-family: var(--serif);
+            font-size: 1rem;
+            line-height: 2;
+            color: #3d3d3d;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .reader-panel .reader-close {
+            position: absolute;
+            top: 16px; right: 20px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--sage);
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+        .reader-panel .reader-close:hover { color: var(--ink); }
+
+        /* ─── responsive ─── */
+        @media (max-width: 600px) {
+            nav { padding: 12px 16px; }
+            .page-main { padding-top: 70px; padding-left: 14px; padding-right: 14px; }
+            .editor-panel { padding: 20px 18px; }
+            .reader-panel { padding: 24px 20px; }
+            .lock-box { padding: 32px 20px; }
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">素英<span>.</span></div>
+        <a href="/" class="back-link">← 回到主页</a>
+    </nav>
+
+    <div class="page-main">
+        <div class="page-title">🏡 我和妈妈的小屋</div>
+        <div class="page-sub">写下想说的话，留下想留的回忆</div>
+        <div class="page-divider"></div>
+
+        <!-- Locked -->
+        <div id="hut-locked">
+            <div class="lock-box">
+                <div class="lock-icon">🔐</div>
+                <h3>请输入密码</h3>
+                <p>这是我和妈妈的秘密小屋</p>
+                <input type="password" id="hut-password" placeholder="输入密码" onkeydown="if(event.key==='Enter')unlockHut()" />
+                <button class="btn" onclick="unlockHut()">进入小屋</button>
+                <div class="error" id="hut-error"></div>
+            </div>
+        </div>
+
+        <!-- Unlocked -->
+        <div id="hut-unlocked" class="hidden">
+            <!-- toolbar -->
+            <div class="toolbar">
+                <div style="font-size:0.85rem;color:var(--sage);letter-spacing:1px;">
+                    📝 <span id="chapter-count">0</span> 个章节
+                </div>
+                <div class="right-btns">
+                    <button class="btn btn-primary btn-sm" onclick="openEditor()">✚ 新建章节</button>
+                    <button class="btn btn-secondary btn-sm" onclick="lockHut()">🔒 锁上</button>
+                </div>
+            </div>
+
+            <!-- Chapter list -->
+            <div id="chapter-list" class="chapter-list">
+                <!-- rendered by JS -->
+            </div>
+
+            <!-- Empty state -->
+            <div id="empty-state" class="empty-state hidden">
+                <div class="big-icon">🏡</div>
+                <p>小屋还空空的，新建第一个章节吧 🌱</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor overlay -->
+    <div class="editor-overlay" id="editor-overlay">
+        <div class="editor-panel">
+            <button class="close-x" onclick="closeEditor()">✕</button>
+            <div class="editor-title" id="editor-title">新建章节</div>
+
+            <label>章节标题</label>
+            <input type="text" id="editor-ch-title" placeholder="给这一章取个名字..." />
+
+            <label>正文内容</label>
+            <textarea id="editor-ch-content" placeholder="写下你想说的话…"></textarea>
+
+            <div class="editor-btns">
+                <button class="btn btn-secondary btn-sm" onclick="closeEditor()">取消</button>
+                <button class="btn btn-primary btn-sm" id="editor-save-btn" onclick="saveChapter()">保存</button>
+            </div>
+            <div class="editor-status" id="editor-status"></div>
+        </div>
+    </div>
+
+    <!-- Reader overlay -->
+    <div class="reader-overlay" id="reader-overlay">
+        <div class="reader-panel">
+            <button class="reader-close" onclick="closeReader()">✕</button>
+            <div class="reader-title" id="reader-title"></div>
+            <div class="reader-meta" id="reader-meta"></div>
+            <div class="reader-content" id="reader-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════
+        // 🏡 我和妈妈的小屋 — 密码 + 章节管理
+        // ═══════════════════════════════════════════════
+
+        // ─── 密码 ───
+        function getHutPassword() {
+            return localStorage.getItem('momsuying_hut_pw') || '';
+        }
+        function setHutPassword(pw) {
+            localStorage.setItem('momsuying_hut_pw', pw);
+        }
+        function isHutSetup() {
+            return !!localStorage.getItem('momsuying_hut_pw');
+        }
+
+        // ─── 章节数据 ───
+        function getChapters() {
+            try {
+                const raw = localStorage.getItem('momsuying_hut_chapters');
+                return raw ? JSON.parse(raw) : [];
+            } catch(e) { return []; }
+        }
+        function saveChapters(chapters) {
+            localStorage.setItem('momsuying_hut_chapters', JSON.stringify(chapters));
+        }
+
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+        }
+
+        // ─── 解锁 / 锁上 ───
+        function unlockHut() {
+            const input = document.getElementById('hut-password');
+            const err = document.getElementById('hut-error');
+            const pw = input.value.trim();
+
+            if (!pw) {
+                err.textContent = '请输入密码';
+                return;
+            }
+
+            if (!isHutSetup()) {
+                setHutPassword(pw);
+                err.textContent = '✅ 密码设置成功！欢迎进入小屋。';
+                err.style.color = 'var(--sage-d)';
+                setTimeout(() => enterHut(), 600);
+                return;
+            }
+
+            if (pw === getHutPassword()) {
+                err.textContent = '';
+                enterHut();
+            } else {
+                err.textContent = '❌ 密码错误，再试试';
+                err.style.color = '#c0392b';
+                input.value = '';
+            }
+        }
+
+        function enterHut() {
+            document.getElementById('hut-locked').classList.add('hidden');
+            document.getElementById('hut-unlocked').classList.remove('hidden');
+            document.getElementById('hut-password').value = '';
+            const err = document.getElementById('hut-error');
+            err.textContent = '';
+            err.style.color = 'var(--sage)';
+            renderChapterList();
+        }
+
+        function lockHut() {
+            document.getElementById('hut-locked').classList.remove('hidden');
+            document.getElementById('hut-unlocked').classList.add('hidden');
+            document.getElementById('hut-password').value = '';
+            document.getElementById('hut-error').textContent = '';
+            closeEditor();
+        }
+
+        // ─── 渲染章节列表 ───
+        function renderChapterList() {
+            const chapters = getChapters();
+            const list = document.getElementById('chapter-list');
+            const empty = document.getElementById('empty-state');
+            const count = document.getElementById('chapter-count');
+
+            count.textContent = chapters.length;
+
+            if (chapters.length === 0) {
+                list.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            empty.classList.add('hidden');
+
+            // 按时间倒序排列（最新的在前）
+            chapters.sort((a, b) => b.createdAt - a.createdAt);
+
+            list.innerHTML = chapters.map(ch => {
+                const date = new Date(ch.createdAt).toLocaleDateString('zh-CN');
+                const preview = (ch.content || '').slice(0, 100);
+                return `
+                    <div class="chapter-card" onclick="openReader('${ch.id}')">
+                        <div class="ch-title">${esc(ch.title || '无标题')}</div>
+                        <div class="ch-meta">${date} · ${countWords(ch.content)} 字</div>
+                        ${preview ? `<div class="ch-preview">${esc(preview)}${preview.length >= 100 ? '…' : ''}</div>` : ''}
+                        <div class="ch-actions" onclick="event.stopPropagation()">
+                            <button class="btn btn-secondary btn-sm" onclick="openEditor('${ch.id}')">✏️ 编辑</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteChapter('${ch.id}')">🗑 删除</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function countWords(text) {
+            if (!text) return 0;
+            // 粗略统计中文字数（去掉空白）
+            return text.replace(/\s/g, '').length;
+        }
+
+        function esc(s) {
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
+        }
+
+        // ─── 编辑器 ───
+        let editingId = null;
+
+        function openEditor(chapterId) {
+            editingId = chapterId || null;
+            const overlay = document.getElementById('editor-overlay');
+            const titleEl = document.getElementById('editor-title');
+            const chTitle = document.getElementById('editor-ch-title');
+            const chContent = document.getElementById('editor-ch-content');
+            const status = document.getElementById('editor-status');
+
+            status.textContent = '';
+            chTitle.value = '';
+            chContent.value = '';
+
+            if (chapterId) {
+                const chapters = getChapters();
+                const ch = chapters.find(c => c.id === chapterId);
+                if (ch) {
+                    chTitle.value = ch.title || '';
+                    chContent.value = ch.content || '';
+                    titleEl.textContent = '编辑章节';
+                } else {
+                    editingId = null;
+                    titleEl.textContent = '新建章节';
+                }
+            } else {
+                titleEl.textContent = '新建章节';
+            }
+
+            overlay.classList.add('active');
+            setTimeout(() => chTitle.focus(), 100);
+        }
+
+        function closeEditor() {
+            document.getElementById('editor-overlay').classList.remove('active');
+            editingId = null;
+        }
+
+        function saveChapter() {
+            const title = document.getElementById('editor-ch-title').value.trim();
+            const content = document.getElementById('editor-ch-content').value.trim();
+            const status = document.getElementById('editor-status');
+
+            if (!title) {
+                status.textContent = '⚠️ 请填写章节标题';
+                status.style.color = '#c0392b';
+                return;
+            }
+            if (!content) {
+                status.textContent = '⚠️ 正文内容不能为空';
+                status.style.color = '#c0392b';
+                return;
+            }
+
+            const chapters = getChapters();
+
+            if (editingId) {
+                const idx = chapters.findIndex(c => c.id === editingId);
+                if (idx !== -1) {
+                    chapters[idx].title = title;
+                    chapters[idx].content = content;
+                    chapters[idx].updatedAt = Date.now();
+                }
+            } else {
+                chapters.push({
+                    id: generateId(),
+                    title: title,
+                    content: content,
+                    createdAt: Date.now(),
+                    updatedAt: Date.now(),
+                });
+            }
+
+            saveChapters(chapters);
+            status.textContent = '✅ 已保存 ' + new Date().toLocaleString('zh-CN');
+            status.style.color = 'var(--sage-d)';
+
+            setTimeout(() => {
+                closeEditor();
+                renderChapterList();
+            }, 400);
+        }
+
+        // ─── 删除章节 ───
+        function deleteChapter(chapterId) {
+            if (!confirm('确定要删除这个章节吗？')) return;
+            let chapters = getChapters();
+            chapters = chapters.filter(c => c.id !== chapterId);
+            saveChapters(chapters);
+            renderChapterList();
+        }
+
+        // ─── 阅读器 ───
+        function openReader(chapterId) {
+            const chapters = getChapters();
+            const ch = chapters.find(c => c.id === chapterId);
+            if (!ch) return;
+
+            document.getElementById('reader-title').textContent = ch.title || '无标题';
+            document.getElementById('reader-meta').textContent = new Date(ch.createdAt).toLocaleDateString('zh-CN', {
+                year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('reader-content').textContent = ch.content || '';
+            document.getElementById('reader-overlay').classList.add('active');
+        }
+
+        function closeReader() {
+            document.getElementById('reader-overlay').classList.remove('active');
+        }
+
+        // ESC 关闭编辑器和阅读器
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEditor();
+                closeReader();
+            }
+        });
+
+        // 点击遮罩关闭
+        document.getElementById('editor-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeEditor();
+        });
+        document.getElementById('reader-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeReader();
+        });
+
+        // ─── 如果已设置密码，自动显示锁定界面 ───
+        // 已有密码就直接显示锁定界面，不需要额外操作
+        console.log('🏡 小屋已加载');
+    </script>
+</body>
+</html>
