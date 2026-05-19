@@ -1065,7 +1065,7 @@
         // 曲目列表——音频文件放在 audio/ 目录下
         // 龙龙发给你文件后，把文件名和显示名填在这里
         const TRACKS = [
-            { file: 'audio/何炅 - 思念的距离.mp3', name: '何炅 — 思念的距离 🎵' },
+            { file: 'audio/he-jiong-si-nian-de-ju-li.mp3', name: '何炅 — 思念的距离 🎵' },
         ];
 
         function initAudioPlayer() {
@@ -1079,6 +1079,20 @@
             audioEl.preload = 'auto';
             audioEl.loop = false;
             audioEl.addEventListener('ended', nextTrack);
+
+            // 首次用户交互时播放（绕开浏览器自动播放策略）
+            const startPlay = function() {
+                audioEl.play().then(() => {
+                    audioPlayBtn.textContent = '⏸';
+                    isPlaying = true;
+                }).catch(() => {});
+                document.removeEventListener('click', startPlay);
+                document.removeEventListener('touchstart', startPlay);
+                document.removeEventListener('scroll', startPlay);
+            };
+            document.addEventListener('click', startPlay);
+            document.addEventListener('touchstart', startPlay);
+
             loadTrack(0);
         }
 
@@ -1128,7 +1142,6 @@
             }
         }
 
-        // 音频播放器初始化
         initAudioPlayer();
 
         console.log('🌱 Mom Suying · 永远怀念');
