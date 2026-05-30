@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新蒜上市 · 妈妈的厨房 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.9;
+            padding-bottom: 60px;
+        }
+        /* Top bar */
+        .top-bar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 16px 24px;
+            background: rgba(248,245,240,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-bar a {
+            text-decoration: none; color: var(--sage-d);
+            font-size: 0.85rem; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title {
+            font-family: var(--serif);
+            font-size: 1rem; color: var(--sage); margin-left: auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 680px; margin: 0 auto; padding: 20px 24px 40px;
+        }
+
+        /* Hero icon */
+        .hero-icon {
+            text-align: center; font-size: 4rem; margin: 24px 0 12px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: 2rem; font-weight: 600;
+            color: var(--sage-d); text-align: center;
+            letter-spacing: 4px; margin-bottom: 4px;
+        }
+        .subtitle {
+            text-align: center; color: var(--sage);
+            font-size: 0.9rem; letter-spacing: 3px;
+            margin-bottom: 32px; font-weight: 300;
+        }
+        .divider {
+            width: 40px; height: 2px;
+            background: var(--sage);
+            margin: 16px auto 28px;
+            border-radius: 2px;
+        }
+
+        /* Article text */
+        .article {
+            font-family: var(--serif);
+            font-size: 1.02rem; line-height: 2;
+            color: #3d3d3d;
+        }
+        .article h2 {
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--sage-d);
+            margin: 32px 0 12px;
+            letter-spacing: 2px;
+        }
+        .article h2 .emoji { margin-right: 6px; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article ul {
+            margin: 12px 0 20px; padding-left: 1.2em;
+            list-style: none;
+        }
+        .article ul li {
+            margin-bottom: 10px; padding-left: 1.5em;
+            position: relative;
+            text-indent: 0;
+        }
+        .article ul li::before {
+            content: '🧄';
+            position: absolute; left: -0.2em; top: -1px;
+            font-size: 0.85rem;
+        }
+
+        /* Tip box */
+        .tip-box {
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.2);
+            border-radius: 12px;
+            padding: 20px 22px; margin: 24px 0;
+        }
+        .tip-box .tip-title {
+            font-weight: 600; color: var(--sage-d);
+            font-size: 0.9rem; letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .tip-box p {
+            text-indent: 0;
+            font-size: 0.93rem; line-height: 1.8;
+            color: #555;
+        }
+
+        /* Recipe cards */
+        .recipe-card {
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.15);
+            border-radius: 14px;
+            padding: 22px 20px;
+            margin: 16px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .recipe-card h3 {
+            font-family: var(--serif);
+            font-size: 1.05rem; color: var(--sage-d);
+            margin-bottom: 6px; letter-spacing: 1px;
+        }
+        .recipe-card p {
+            text-indent: 0;
+            font-size: 0.92rem; line-height: 1.8;
+            color: #555;
+        }
+        .recipe-card .steps {
+            margin-top: 8px; padding: 0;
+        }
+        .recipe-card .steps li {
+            list-style: none; padding: 4px 0 4px 1.6em;
+            position: relative;
+            font-size: 0.9rem; line-height: 1.7; color: #555;
+        }
+        .recipe-card .steps li::before {
+            content: '•';
+            position: absolute; left: 0.5em;
+            color: var(--sage);
+            font-weight: bold;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.68rem; padding: 2px 10px;
+            border-radius: 20px; background: var(--sage-l);
+            color: #fff; letter-spacing: 1px;
+            margin-right: 4px;
+        }
+
+        /* Footer */
+        .back-link {
+            display: block; text-align: center;
+            margin-top: 40px; padding-top: 24px;
+            border-top: 1px solid rgba(138,154,122,0.12);
+        }
+        .back-link a {
+            color: var(--sage-d); text-decoration: none;
+            font-size: 0.9rem; letter-spacing: 2px;
+        }
+        .back-link a:hover { color: var(--sage); }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.5rem; }
+            .container { padding: 16px 16px 30px; }
+            .article { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🧑‍🍳</span>
+    <span class="title">妈妈的厨房</span>
+</div>
+
+<div class="container">
+    <div class="hero-icon">🧄</div>
+    <h1>新蒜上市</h1>
+    <p class="subtitle">每年5月到6月，属于蒜香的好时节</p>
+    <div class="divider"></div>
+
+    <div class="article">
+
+        <p>
+            每年的五月中旬到六月底，菜市场里就会出现一批白生生、皮薄汁多的新蒜。
+            这时候的蒜还带着泥土的气息，没有经过晾晒风干，水分足、辣味轻，
+            咬一口脆甜脆甜的，跟老蒜完全不一样。
+         </p>
+         <p>
+            妈妈说，新蒜最好的吃法就是生吃。剥两瓣，白嫩嫩的，蘸一点酱油就粥吃，
+            或者拍碎了拌凉菜，那股蒜香清清爽爽，不会像老蒜那样呛得冲鼻子。
+            每次新蒜上市的季节，妈妈的厨房里就飘着那种特有的、让人安心的蒜香。
+         </p>
+
+        <h2><span class="emoji">🛒</span> 怎么挑新蒜</h2>
+        <ul>
+            <li><strong>看外表：</strong>外皮白净、没有霉斑，蒜瓣饱满鼓鼓的，捏着紧实</li>
+            <li><strong>闻味道：</strong>淡淡的蒜香，不刺鼻，没有酸臭味</li>
+            <li><strong>掐水分：</strong>指甲轻轻一掐能出水，说明新鲜</li>
+            <li><strong>哪里买：</strong>盒马、叮咚买菜、菜市场、社区团购都能买到，5-6月大量上市</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 保存小贴士</div>
+            <p>
+                新蒜水分大，不耐放。买回来最好放在阴凉通风处，一周内吃完。
+                如果想多存一些，可以剥干净后泡在醋里做糖蒜，或者切碎用油封起来放冰箱，做菜的时候直接挖一勺。
+            </p>
+        </div>
+
+        <h2><span class="emoji">🍳</span> 新蒜的拿手做法</h2>
+
+        <div class="recipe-card">
+            <h3>🥗 糖醋新蒜</h3>
+            <p>最简单的做法，保留了新蒜最鲜嫩的口感。下粥神器。</p>
+            <ul class="steps">
+                <li>新蒜剥皮，洗净沥干</li>
+                <li>用盐腌30分钟，杀出水分</li>
+                <li>米醋 + 白糖按 3:1 调匀，烧开后放凉</li>
+                <li>把蒜放进干净的玻璃瓶，倒入糖醋汁没过蒜瓣</li>
+                <li>冰箱冷藏3天后就能吃，一周后味道最好</li>
+            </ul>
+        </div>
+
+        <div class="recipe-card">
+            <h3>🥬 蒜蓉青菜</h3>
+            <p>新蒜拍碎，热油爆香，绿叶菜下锅翻炒几下就出锅。</p>
+            <ul class="steps">
+                <li>新蒜3-4瓣拍碎切末</li>
+                <li>油热后下蒜末，小火炒出香味（不要炒糊）</li>
+                <li>放洗好的青菜（菠菜/油菜/空心菜/生菜都可以）</li>
+                <li>大火快炒，加盐调味，30秒出锅</li>
+            </ul>
+            <p style="margin-top:10px;text-indent:0;font-size:0.88rem;color:var(--sage);">✨ 妈妈的小窍门：新蒜不用切太碎，拍一下就行，吃起来有颗粒感更香</p>
+        </div>
+
+        <div class="recipe-card">
+            <h3>🍜 蒜香拌面</h3>
+            <p>炎热的夏天，一碗凉拌面，蒜香十足才过瘾。</p>
+            <ul class="steps">
+                <li>新蒜捣成蒜泥，加少许盐和香油调匀</li>
+                <li>面条煮熟过凉水，沥干</li>
+                <li>蒜泥 + 生抽 + 香醋 + 辣椒油（可选）调成酱汁</li>
+                <li>浇在面上，撒上葱花和黄瓜丝，拌匀开吃</li>
+            </ul>
+        </div>
+
+        <div class="recipe-card">
+            <h3>🫓 蒜香烤饼 / 蒜香面包</h3>
+            <p>新蒜做蒜香黄油，抹在面包或饼上烤一烤，满屋飘香。</p>
+            <ul class="steps">
+                <li>新蒜切碎末，黄油室温软化</li>
+                <li>蒜末 + 黄油 + 少许盐 + 欧芹碎（可选）拌匀</li>
+                <li>抹在切开的法棍/馒头片/手抓饼上</li>
+                <li>烤箱180°C烤5-8分钟，或者平底锅煎到两面金黄</li>
+            </ul>
+        </div>
+
+        <div class="recipe-card">
+            <h3>🦐 蒜蓉蒸虾 / 蒜蓉蒸茄子</h3>
+            <p>新蒜做蒜蓉酱，蒸什么都好吃。</p>
+            <ul class="steps">
+                <li>新蒜多瓣切碎末，小米辣切圈（不吃辣可不放）</li>
+                <li>热油泼在蒜末上，加生抽、蚝油、糖调成蒜蓉酱</li>
+                <li>虾开背去虾线，或者茄子切段</li>
+                <li>铺上蒜蓉酱，上锅蒸8-10分钟</li>
+                <li>出锅撒葱花，再泼一勺热油</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🧄 妈妈的话</div>
+            <p>
+                "新蒜下来了，多吃点蒜，杀菌消毒，身体好。"
+                每年这个时候妈妈都会念叨这句话，
+                然后变着花样做各种蒜香味的菜。
+                现在每次闻到新蒜的味道，就好像又看到妈妈在厨房里忙活的样子。
+            </p>
+        </div>
+
+        <h2><span class="emoji">🌿</span> 新蒜的更多吃法</h2>
+        <ul>
+            <li><strong>蒜香排骨：</strong>新蒜末 + 生抽 + 料酒 + 蜂蜜腌排骨，烤或炸都香</li>
+            <li><strong>蒜蓉粉丝蒸扇贝：</strong>夜市经典，新蒜蓉铺在扇贝上，蒸出来蒜香浓郁</li>
+            <li><strong>蒜泥白肉：</strong>五花肉煮好切薄片，蘸新蒜泥调的酱汁，肥而不腻</li>
+            <li><strong>腌糖蒜：</strong>新蒜整颗泡糖醋汁，一个月后就是酸甜脆爽的糖蒜</li>
+            <li><strong>蒜薹炒腊肉：</strong>新蒜连蒜薹一起买，蒜薹嫩、腊肉香，绝配下饭菜</li>
+        </ul>
+    </div>
+
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+
+</body>
+</html>
