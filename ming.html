@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>☯️ 妈妈的命 · 素英</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --rose: #e0b4a4;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        /* ─── nav ─── */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 14px 36px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            background: rgba(248,245,240,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+        }
+        nav .logo {
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            color: var(--sage-d);
+            letter-spacing: 3px;
+        }
+        nav .logo span { color: var(--gold); }
+        nav .back-link {
+            text-decoration: none; color: var(--sage);
+            font-size: 0.82rem; letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        nav .back-link:hover { color: var(--sage-d); }
+
+        /* ─── main ─── */
+        .page-main {
+            padding-top: 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 80px;
+        }
+        .page-title {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--sage-d);
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 4px;
+            padding-top: 30px;
+        }
+        .page-sub {
+            text-align: center;
+            color: var(--sage);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        .page-divider {
+            width: 36px; height: 2px;
+            background: var(--sage);
+            margin: 10px auto 30px;
+            border-radius: 2px;
+        }
+
+        /* ─── card ─── */
+        .ming-card {
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.15);
+            border-radius: 14px;
+            padding: 28px 30px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.2s;
+        }
+        .ming-card:hover { box-shadow: var(--shadow); }
+        .ming-card h3 {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ming-card .meta-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            background: var(--sage-l);
+            color: var(--sage-d);
+            letter-spacing: 1px;
+        }
+        .ming-card p {
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 8px;
+        }
+        .ming-card p:last-child { margin-bottom: 0; }
+
+        /* ─── 八字盘 ─── */
+        .bazi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            text-align: center;
+            margin: 16px 0;
+            font-family: var(--serif);
+        }
+        .bazi-cell {
+            background: rgba(201,169,110,0.08);
+            border: 1px solid rgba(201,169,110,0.2);
+            border-radius: 10px;
+            padding: 10px 6px;
+        }
+        .bazi-cell .ganzi {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+        }
+        .bazi-cell .label {
+            font-size: 0.7rem;
+            color: var(--sage);
+            margin-top: 2px;
+            letter-spacing: 1px;
+            font-family: var(--sans);
+        }
+        .bazi-cell .sub {
+            font-size: 0.72rem;
+            color: #888;
+            margin-top: 2px;
+            font-family: var(--sans);
+        }
+
+        /* ─── 五行 ─── */
+        .wuxing-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .wuxing-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .wx-wood { background: #d5e8c4; color: #4a6a2a; }
+        .wx-fire { background: #f5d0c0; color: #9a4030; }
+        .wx-earth { background: #ede0c8; color: #7a6a40; }
+        .wx-metal { background: #e0dfd8; color: #5a5a50; }
+        .wx-water { background: #c8dae8; color: #30507a; }
+
+        /* ─── 十神表 ─── */
+        .shen-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0;
+        }
+        .shen-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 12px;
+            background: rgba(138,154,122,0.06);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .shen-item .key { color: #777; letter-spacing: 1px; }
+        .shen-item .val { color: var(--sage-d); font-weight: 500; }
+
+        /* ─── responsive ─── */
+        @media (max-width: 600px) {
+            nav { padding: 12px 16px; }
+            .page-main { padding-top: 70px; padding-left: 14px; padding-right: 14px; }
+            .ming-card { padding: 20px 16px; }
+            .bazi-grid { gap: 4px; }
+            .bazi-cell { padding: 8px 4px; }
+            .shen-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">素英<span>.</span></div>
+        <a href="/" class="back-link">← 回到主页</a>
+    </nav>
+
+    <div class="page-main">
+        <div class="page-title">☯️ 妈妈的命</div>
+        <div class="page-sub">农历甲午年六月廿五 · 公历1954年7月24日</div>
+        <div class="page-divider"></div>
+
+        <!-- ═══ 八字排盘 ═══ -->
+        <div class="ming-card">
+            <h3>📜 八字排盘</h3>
+            <div class="bazi-grid">
+                <div class="bazi-cell">
+                    <div class="ganzi">甲</div>
+                    <div class="label">年干</div>
+                    <div class="sub">正财</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">辛</div>
+                    <div class="label">月干</div>
+                    <div class="sub">比肩</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">辛</div>
+                    <div class="label">日干</div>
+                    <div class="sub">日主</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">戊</div>
+                    <div class="label">时干</div>
+                    <div class="sub">正印</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">午</div>
+                    <div class="label">年支</div>
+                    <div class="sub">七杀 · 偏印</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">未</div>
+                    <div class="label">月支</div>
+                    <div class="sub">偏印 · 七杀 · 偏财</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">巳</div>
+                    <div class="label">日支</div>
+                    <div class="sub">正官 · 劫财 · 正印</div>
+                </div>
+                <div class="bazi-cell">
+                    <div class="ganzi">子</div>
+                    <div class="label">时支</div>
+                    <div class="sub">食神</div>
+                </div>
+            </div>
+            <p style="text-align:center;margin-top:10px;">
+                <span class="meta-tag">甲午·沙中金</span>
+                <span class="meta-tag" style="margin-left:6px;">辛未·路旁土</span>
+                <span class="meta-tag" style="margin-left:6px;">辛巳·白蜡金</span>
+                <span class="meta-tag" style="margin-left:6px;">戊子·霹雳火</span>
+            </p>
+            <p style="text-align:center;margin-top:6px;">
+                <span class="meta-tag">生肖马</span>
+                <span class="meta-tag" style="margin-left:6px;">日主辛金</span>
+                <span class="meta-tag" style="margin-left:6px;">狮子座</span>
+            </p>
+        </div>
+
+        <!-- ═══ 命运概述 ═══ -->
+        <div class="ming-card">
+            <h3>🌿 命运概述</h3>
+            <p>农历甲午年六月廿五，公历1954年7月24日，甲午马年辛未月辛巳日。日主<strong>辛金</strong>，生于未月（六月），未为土旺之月，土生金，日主得月令之生，命局根基深厚。辛金如珠玉，细腻、坚韧、有光泽，一生虽经历风霜，却始终不失其本真之美。</p>
+            <p>年柱<strong>甲午</strong>：甲木为正财，午火藏七杀、偏印。财生杀，早年家境由盛转衰，生于地主之家却逢土改，家道中落。但甲木正财透干，一生始终靠自己的双手创造财富，不依赖他人。</p>
+            <p>月柱<strong>辛未</strong>：辛金比肩帮身，未土印星生身。月柱比肩意味着有兄弟姐妹帮扶，土金相生，为人重情重义，对家人倾尽所有。未中藏偏印，心思细腻，手巧能干——正应了妈妈那手好针线活儿。</p>
+            <p>日柱<strong>辛巳</strong>：辛金逢巳火，巳中藏丙火正官、戊土正印、庚金劫财。日坐正官，一生正直善良，守本分。巳火炼金，意味着人生需要经历磨砺才能绽放光彩——从农村到城市，从困苦到安稳，正如金经火炼而愈显其质。</p>
+            <p>时柱<strong>戊子</strong>：戊土正印透出，子水为食神。印星护身，晚年安稳，子水食神滋润全局，子未相穿却也生出智慧和豁达。食神主福气和口福，妈妈做得一手好菜，烧得一手好菜，正是食神入命的体现。</p>
+        </div>
+
+        <!-- ═══ 五行分析 ═══ -->
+        <div class="ming-card">
+            <h3>🔥 五行平衡</h3>
+            <div class="wuxing-row">
+                <span class="wuxing-tag wx-wood">木</span>
+                <span class="wuxing-tag wx-fire">火</span>
+                <span class="wuxing-tag wx-earth">土</span>
+                <span class="wuxing-tag wx-metal">金</span>
+                <span class="wuxing-tag wx-water">水</span>
+            </div>
+            <p>八字中<strong>木火土金水五行俱全</strong>，这是一个非常难得的格局。<strong>木火</strong>在年柱相生（甲午），<strong>金土</strong>在月柱相生（辛未），<strong>金火</strong>在日柱相克又相成（辛巳），<strong>土水</strong>在时柱相克（戊子）。五行流转，一气呵成。</p>
+            <p>日主辛金旺于未月，需要<strong>火来炼、水来洗</strong>方能成器。八字中巳火炼金、子水润金，正是恰到好处。所谓"辛金得火乃成器皿，遇水方显光泽"，妈妈一生经过生活的磨炼，却始终保持着内心的坚韧与善良，正是八字成就的品格。</p>
+        </div>
+
+        <!-- ═══ 一生的命理轨迹 ═══ -->
+        <div class="ming-card">
+            <h3>📅 命理轨迹</h3>
+            <p><strong>早年（金运）</strong>：生于辛未月，月柱比肩帮身，兄弟姐妹众多，少年虽逢土改家变，但有手足相伴。辛金日主，少年即显露勤劳坚韧之性，针线女红样样精通。</p>
+            <p><strong>青年（火运）</strong>：日坐巳火，丙火正官，青年时期远走他乡，正是"火炼真金"之始。在工厂、在家庭，勤勤恳恳，凭一双手撑起一片天。</p>
+            <p><strong>中年（土运）</strong>：未月土旺，正印生身。中年时期安定下来，相夫教子，把全部的爱与精力倾注在家庭中。印星为用神，子女成才，家庭和睦。</p>
+            <p><strong>晚年（水运）</strong>：时柱戊子，子水食神为福星。晚年享儿孙福，做饭、养花、旅行——子水食神正对应了妈妈的厨房、花园和旅行。食神也主心态豁达，经历了人生的风雨，晚年愈发从容与温暖。</p>
+        </div>
+
+        <!-- ═══ 美好品格 ═══ -->
+        <div class="ming-card">
+            <h3>💛 命格之美</h3>
+            <p>辛金如珠玉，至坚至纯。妈妈的身上有辛金最美好的品格：</p>
+            <p>✨ <strong>坚韧</strong> — 甲午年生，马年之命。马者，驰骋千里而不息。从河北农村走到城市，南南北北，从未停下脚步。</p>
+            <p>✨ <strong>勤劳</strong> — 日主辛金得土生，"手巧"二字是辛金最好的注脚——针线、烹饪、种花，双手所及之处，皆是美好。</p>
+            <p>✨ <strong>善良</strong> — 日坐正官（丙火），一生正直善良，助人为乐，从不亏欠任何人。</p>
+            <p>✨ <strong>爱家人</strong> — 月柱比肩（辛金）帮身，未土印星生我，一辈子把家人放在心头第一位。</p>
+            <p>✨ <strong>热爱生活</strong> — 时柱食神（子水），福气之所在。做饭、养花、旅行、喂小鸡——每一个日常，都是她在用心热爱这个世界。</p>
+        </div>
+
+        <!-- ═══ 结束语 ═══ -->
+        <div class="ming-card" style="text-align:center;">
+            <p style="font-family:var(--serif);font-size:1.05rem;color:var(--sage-d);letter-spacing:2px;">
+                ️  命理是天地给予的一副牌<br/>
+                而妈妈，把这一生打得极好
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        console.log('☯️ 妈妈的命 · 已加载');
+    </script>
+</body>
+</html>

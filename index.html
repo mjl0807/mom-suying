@@ -595,6 +595,47 @@
             font-size: 0.95rem;
         }
 
+        /* ─── 命里卡片网格 ─── */
+        .mingli-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .mingli-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 24px 20px;
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.18);
+            border-radius: 14px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        a.mingli-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .mingli-icon {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+        .mingli-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--sage-d);
+            letter-spacing: 2px;
+        }
+        .mingli-desc {
+            font-size: 0.8rem;
+            color: var(--sage);
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+
         /* ─── 小屋 module ─── */
         /* hut styles moved to hut.html */
 
@@ -761,9 +802,17 @@
         <div class="section-divider reveal"></div>
         <p class="section-sub reveal">— 缘分有深有浅，思念没有尽头 —</p>
         <div class="mingli-content reveal" id="mingli-content">
-            <div class="story-empty">
-                🌱 命里注定的母子情缘。<br/>
-                龙龙，把你觉得命中注定的故事告诉我，我来写在这里。
+            <div class="mingli-grid">
+                <a href="/ming.html" class="mingli-card">
+                    <span class="mingli-icon">📜</span>
+                    <span class="mingli-title">妈妈的命</span>
+                    <span class="mingli-desc">八字命理 · 甲午年辛未月辛巳日</span>
+                </a>
+                <div class="mingli-card" style="border:1px dashed var(--sage-l);background:transparent;cursor:default;">
+                    <span class="mingli-icon">🌱</span>
+                    <span class="mingli-title">命里的故事</span>
+                    <span class="mingli-desc">龙龙，把你觉得命中注定的故事告诉我，我来写在这里。</span>
+                </div>
             </div>
         </div>
     </section>
@@ -901,7 +950,7 @@
         // ─── Nav Cards ───
         const navSections = [
             { id: 'story', icon: '📖', label: '她的故事', hint: '关于妈妈的一切', img: 'images/mom-story.jpg', link: '/story.html' },
-            { id: 'mingli', icon: '☯️', label: '命里', hint: '缘分的印记', img: 'images/mom-mingli.jpg' },
+            { id: 'mingli', icon: '☯️', label: '命里', hint: '缘分的印记', img: 'images/mom-mingli.jpg', link: '/ming.html' },
             { id: 'cooking', icon: '🧑‍🍳', label: '妈妈的厨房', hint: '烹饪 · 家的味道 · 新蒜上市', img: 'images/mom-cooking.jpg' },
             { id: 'travel', icon: '✈️', label: '妈妈的旅行', hint: '走过的路，看过的风景', img: 'images/mom-travel.jpg' },
             { id: 'plants', icon: '🌿', label: '妈妈的花园', hint: '植物 · 花开四季', img: 'images/mom-plants.jpg' },
