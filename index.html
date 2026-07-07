@@ -639,29 +639,22 @@
         /* ─── 小屋 module ─── */
         /* hut styles moved to hut.html */
 
-        /* ─── 妈妈的餐桌 (八碟八碗) ─── */
+                /* ─── 妈妈的餐桌 (红木圆桌 + 转盘) ─── */
         .table-wrapper {
             position: relative;
-            max-width: 720px;
+            max-width: 620px;
             margin: 0 auto;
-            padding: 50px 30px 20px;
+            padding: 40px 30px 20px;
         }
-        .table-cloth {
-            position: absolute;
-            bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 92%; height: 200px;
-            background: radial-gradient(ellipse at 50% 0%, #d4bfa0 0%, #c4ac88 60%, #b89c78 100%);
-            border-radius: 50% 50% 30% 30% / 100% 100% 20% 20%;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
+        /* 桌面 — 正圆红木 */
         .table-top {
             position: relative;
             z-index: 2;
             width: 100%;
-            height: 280px;
-            background: linear-gradient(160deg, #c9a96e 0%, #b8925c 30%, #a0784a 60%, #b8925c 100%);
-            border-radius: 50% 50% 45% 45% / 80% 80% 60% 60%;
-            box-shadow: inset 0 4px 20px rgba(255,255,255,0.2), 0 6px 24px rgba(0,0,0,0.15);
+            aspect-ratio: 1;
+            background: radial-gradient(ellipse at 50% 40%, #b87333 0%, #8b4513 40%, #5c2e0a 80%, #4a2208 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 -8px 30px rgba(0,0,0,0.3), inset 0 4px 20px rgba(255,200,120,0.12), 0 8px 40px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -670,18 +663,49 @@
         .table-top::before {
             content: '';
             position: absolute;
-            top: 4px; left: 6%; right: 6%;
-            height: 30px;
-            background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 70%);
+            top: 3%; left: 8%; right: 8%;
+            height: 35%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255,210,140,0.18) 0%, rgba(255,180,80,0.06) 50%, transparent 80%);
             border-radius: 50%;
             pointer-events: none;
         }
-        .table-dishes {
+        .table-top::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,200,120,0.1);
+            pointer-events: none;
+        }
+        .lazy-susan {
+            position: relative;
+            z-index: 3;
+            width: 58%;
+            aspect-ratio: 1;
+            background: radial-gradient(ellipse at 50% 40%, #d4c4a8 0%, #c0b098 40%, #a89880 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 -4px 16px rgba(0,0,0,0.12), inset 0 3px 10px rgba(255,255,255,0.25), 0 0 0 3px rgba(180,140,80,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotate-slow 30s linear infinite;
+            cursor: grab;
+        }
+        .lazy-susan:hover { animation-play-state: paused; }
+        .lazy-susan::after {
+            content: '';
+            position: absolute;
+            width: 10px; height: 10px;
+            background: radial-gradient(circle, #c8b898, #a08860);
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0,0,0,0.15);
+            z-index: 5;
+        }
+        @keyframes rotate-slow { to { transform: rotate(360deg); } }
+        .turntable-dishes {
             position: relative;
             width: 100%; height: 100%;
         }
-
-        /* 碟/碗通用 */
         .dish-item {
             position: absolute;
             cursor: pointer;
@@ -689,14 +713,12 @@
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
         }
         .dish-item:hover {
-            transform: scale(1.18) translateY(-4px);
+            transform: scale(1.25) translateY(-4px);
             filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));
             z-index: 10;
         }
-
-        /* 碟子 (浅浅的圆盘) */
         .dish-item.plate .dish-inner {
-            width: 70px; height: 70px;
+            width: 48px; height: 48px;
             background: linear-gradient(145deg, #f5f0e8, #e8e0d0);
             border-radius: 50%;
             display: flex;
@@ -709,15 +731,13 @@
         .dish-item.plate .dish-inner::after {
             content: '';
             position: absolute;
-            width: 54px; height: 54px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             border: 1px solid rgba(180,160,130,0.12);
             pointer-events: none;
         }
-
-        /* 碗 (深口) */
         .dish-item.bowl .dish-inner {
-            width: 64px; height: 56px;
+            width: 44px; height: 38px;
             background: linear-gradient(150deg, #d8ccbc, #c8b8a0, #bcac90);
             border-radius: 50% 50% 45% 45% / 35% 35% 45% 45%;
             display: flex;
@@ -730,136 +750,106 @@
         .dish-item.bowl .dish-inner::before {
             content: '';
             position: absolute;
-            top: 2px;
-            width: 40px; height: 18px;
+            top: 1px;
+            width: 28px; height: 10px;
             background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.2), transparent);
             border-radius: 50%;
             pointer-events: none;
         }
-
-        .dish-inner {
-            position: relative;
-            overflow: hidden;
+        .dish-inner { position: relative; overflow: hidden; }
+        .dish-emoji { font-size: 1rem; line-height: 1; position: relative; z-index: 1; }
+        .dish-label { display: none; font-size: 0.5rem; color: #666; margin-top: 1px; position: relative; z-index: 1; }
+        .dish-item:hover .dish-label { display: block; }
+        .rt-1 { top: 2%; left: 38%; }
+        .rt-2 { top: 17%; right: 8%; }
+        .rt-3 { top: 48%; right: 2%; }
+        .rt-4 { bottom: 12%; right: 14%; }
+        .rt-5 { bottom: 2%; left: 38%; }
+        .rt-6 { bottom: 12%; left: 10%; }
+        .rt-7 { top: 48%; left: 2%; }
+        .rt-8 { top: 17%; left: 8%; }
+        .outer-setting {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
         }
-        .dish-emoji {
-            font-size: 1.3rem;
-            line-height: 1;
-            position: relative;
-            z-index: 1;
+        .place-setting {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            opacity: 0.6;
         }
-        .dish-label {
-            display: none;
-            font-size: 0.65rem;
-            color: #666;
-            letter-spacing: 0.5px;
-            margin-top: 1px;
-            position: relative;
-            z-index: 1;
+        .place-setting .bowl-icon {
+            width: 22px; height: 16px;
+            background: radial-gradient(ellipse at 50% 20%, #fff 0%, #f0ede5 50%, #e0d8cc 100%);
+            border-radius: 50% 50% 45% 45% / 50% 50% 40% 40%;
+            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.05);
+            border: 1px solid rgba(180,160,130,0.2);
         }
-        .dish-item:hover .dish-label {
-            display: block;
+        .place-setting .chopstick-set {
+            display: flex;
+            gap: 1px;
+            margin-top: 4px;
         }
-
-        /* 八碟八碗定位 (在椭圆桌面上) */
-        .dish-pos-1 { top: 6%; left: 14%; }     /* 饺子 碟 */
-        .dish-pos-2 { top: 8%; right: 16%; }    /* 好汤 碗 */
-        .dish-pos-3 { top: 30%; left: 5%; }      /* 时蔬 碟 */
-        .dish-pos-4 { top: 28%; right: 6%; }     /* 拿手菜 碗 */
-        .dish-pos-5 { top: 54%; left: 12%; }     /* 烙盒子 碟 */
-        .dish-pos-6 { top: 50%; right: 12%; }    /* 新蒜 碟 */
-        .dish-pos-7 { top: 70%; left: 28%; }     /* 凉拌 碟 */
-        .dish-pos-8 { top: 64%; right: 28%; }    /* 米饭 碗 */
-
-        /* 桌腿 */
+        .place-setting .chopstick-set .stick {
+            width: 2px; height: 22px;
+            background: linear-gradient(to bottom, #c8a060, #a08040);
+            border-radius: 1px;
+        }
+        .place-setting .chopstick-set .stick:first-child { transform: rotate(8deg); }
+        .place-setting .chopstick-set .stick:last-child { transform: rotate(-4deg); margin-left: -1px; }
+        .ps-1 { top: -6%; left: 42%; }
+        .ps-2 { top: 3%; right: 6%; }
+        .ps-3 { top: 32%; right: -4%; }
+        .ps-4 { top: 60%; right: 2%; }
+        .ps-5 { bottom: -4%; left: 42%; }
+        .ps-6 { bottom: 2%; left: 3%; }
+        .ps-7 { top: 60%; left: 0%; }
+        .ps-8 { top: 32%; left: -4%; }
         .table-legs {
             position: relative;
             z-index: 1;
             display: flex;
-            justify-content: space-between;
-            width: 60%;
-            margin: 0 auto;
+            justify-content: center;
+            gap: 40%;
+            width: 70%;
+            margin: -6px auto 0;
         }
         .leg {
-            width: 10px;
-            height: 65px;
-            background: linear-gradient(to right, #8a7050, #a08060, #8a7050);
+            width: 12px;
+            height: 55px;
+            background: linear-gradient(to right, #5c2e0a, #8b5a2a, #5c2e0a);
             border-radius: 0 0 4px 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .leg-l { margin-left: 10%; }
-        .leg-r { margin-right: 10%; }
-
-        /* 菜品弹窗 */
-        .dishes-modal {
-            position: fixed; inset: 0;
-            z-index: 999;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.35s ease;
-        }
-        .dishes-modal.active { opacity: 1; pointer-events: auto; }
-        .dishes-modal .dm-overlay {
-            position: absolute; inset: 0;
-            background: rgba(0,0,0,0.45);
-        }
-        .dishes-modal .dm-card {
-            position: relative;
-            background: #fff;
-            border-radius: 16px;
-            padding: 32px 28px 28px;
-            max-width: 340px;
-            width: 88%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-        }
-        .dishes-modal.active .dm-card { transform: scale(1); }
-        .dishes-modal .dm-close {
-            position: absolute; top: 10px; right: 16px;
-            font-size: 1.5rem;
-            color: #999;
-            cursor: pointer;
-            line-height: 1;
-            transition: color 0.2s;
-        }
-        .dishes-modal .dm-close:hover { color: #333; }
-        .dishes-modal .dm-emoji {
-            font-size: 3rem;
-            margin-bottom: 8px;
-        }
-        .dishes-modal .dm-name {
-            font-family: var(--serif);
-            font-size: 1.2rem;
-            color: var(--sage-d);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .dishes-modal .dm-desc {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.8;
-        }
-
         @media (max-width: 480px) {
-            .dish-item.plate .dish-inner { width: 54px; height: 54px; }
-            .dish-item.bowl .dish-inner { width: 48px; height: 42px; }
-            .dish-emoji { font-size: 1rem; }
-            .dish-pos-1 { top: 10%; left: 8%; }
-            .dish-pos-2 { top: 12%; right: 8%; }
-            .dish-pos-3 { top: 32%; left: 2%; }
-            .dish-pos-4 { top: 30%; right: 2%; }
-            .dish-pos-5 { top: 52%; left: 6%; }
-            .dish-pos-6 { top: 50%; right: 8%; }
-            .dish-pos-7 { top: 64%; left: 20%; }
-            .dish-pos-8 { top: 60%; right: 22%; }
+            .table-wrapper { max-width: 380px; padding: 30px 16px 10px; }
+            .lazy-susan { width: 56%; }
+            .dish-item.plate .dish-inner { width: 38px; height: 38px; }
+            .dish-item.bowl .dish-inner { width: 34px; height: 30px; }
+            .dish-emoji { font-size: 0.8rem; }
+            .place-setting .bowl-icon { width: 18px; height: 12px; }
+            .place-setting .chopstick-set .stick { width: 1.5px; height: 18px; }
+            .rt-1 { top: 0%; left: 36%; }
+            .rt-2 { top: 18%; right: 6%; }
+            .rt-3 { top: 48%; right: 0%; }
+            .rt-4 { bottom: 10%; right: 12%; }
+            .rt-5 { bottom: 0%; left: 36%; }
+            .rt-6 { bottom: 10%; left: 8%; }
+            .rt-7 { top: 48%; left: 0%; }
+            .rt-8 { top: 18%; left: 6%; }
+            .ps-1 { top: -5%; left: 40%; }
+            .ps-2 { top: 2%; right: 3%; }
+            .ps-3 { top: 30%; right: -3%; }
+            .ps-4 { top: 60%; right: 0%; }
+            .ps-5 { bottom: -3%; left: 40%; }
+            .ps-6 { bottom: 2%; left: 2%; }
+            .ps-7 { top: 60%; left: -2%; }
+            .ps-8 { top: 30%; left: -3%; }
         }
-
-        /* ─── reveal ─── */
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* ─── responsive ─── */
+/* ─── responsive ─── */
         @media (max-width: 640px) {
             nav { padding: 12px 16px; flex-wrap: wrap; gap: 6px; }
             nav ul { gap: 10px; }
@@ -1033,7 +1023,7 @@
         </div>
     </section>
 
-    <section id="cooking" style="max-width:800px;padding:60px 24px 40px;">
+    <section id="cooking" style="max-width:680px;padding:60px 24px 40px;">
         <h2 class="section-title reveal"><span class="emoji">🍽️</span> 妈妈的餐桌</h2>
         <div class="section-divider reveal"></div>
         <p class="section-sub reveal">— 八碟八碗，都是妈妈的味道 —</p>
@@ -1219,24 +1209,37 @@
         const tableScene = document.getElementById('table-scene');
         const tableHTML = `
             <div class="table-wrapper">
-                <div class="table-cloth"></div>
                 <div class="table-top">
-                    <div class="table-dishes">
-                        ${dishes.map((d,i) => {
-                            const isBowl = d.type === '碗';
-                            const posClass = `dish-pos-${i+1}`;
-                            return `<div class="dish-item ${posClass} ${isBowl?'bowl':'plate'}" data-id="${d.id}">
-                                <div class="dish-inner">
-                                    <span class="dish-emoji">${d.emoji}</span>
-                                    <span class="dish-label">${d.name}</span>
+                    <div class="lazy-susan">
+                        <div class="turntable-dishes">
+                            ${dishes.map((d,i) => {
+                                const isBowl = d.type === '碗';
+                                const posClass = `rt-${i+1}`;
+                                return `<div class="dish-item ${posClass} ${isBowl?'bowl':'plate'}" data-id="${d.id}">
+                                    <div class="dish-inner">
+                                        <span class="dish-emoji">${d.emoji}</span>
+                                        <span class="dish-label">${d.name}</span>
+                                    </div>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                    <!-- 外围：八副碗筷 -->
+                    <div class="outer-setting">
+                        ${[1,2,3,4,5,6,7,8].map(i => `
+                            <div class="place-setting ps-${i}">
+                                <div class="bowl-icon"></div>
+                                <div class="chopstick-set">
+                                    <div class="stick"></div>
+                                    <div class="stick"></div>
                                 </div>
-                            </div>`;
-                        }).join('')}
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
                 <div class="table-legs">
-                    <div class="leg leg-l"></div>
-                    <div class="leg leg-r"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
                 </div>
             </div>
         `;
