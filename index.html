@@ -281,6 +281,16 @@
             border-radius: 35% 25% 50% 10%;
             margin-top: 15px;
         }
+        .nav-card:nth-child(8) {
+            width: 175px; height: 240px;
+            border-radius: 40% 20% 30% 45%;
+            margin-top: 22px;
+        }
+        .nav-card:nth-child(9) {
+            width: 185px; height: 250px;
+            border-radius: 25% 40% 35% 15%;
+            margin-top: 10px;
+        }
 
         /* ─── sections ─── */
         section {
@@ -642,7 +652,7 @@
                 /* ─── 妈妈的餐桌 (红木圆桌 + 转盘) ─── */
         .table-wrapper {
             position: relative;
-            max-width: 620px;
+            max-width: 560px;
             margin: 0 auto;
             padding: 40px 30px 20px;
         }
@@ -774,46 +784,47 @@
         .rt-6 { bottom: 10%; left: 10%; }
         .rt-7 { top: 42%; left: 2%; }
         .rt-8 { top: 14%; left: 8%; }
-        .outer-setting {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
+        /* 碗筷分布 — 沿圆桌边缘外围，正确中式摆放 */
         .place-setting {
             position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1px;
-            opacity: 0.6;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
         }
         .place-setting .bowl-icon {
-            width: 26px; height: 18px;
-            background: radial-gradient(ellipse at 50% 20%, #fff 0%, #f0ede5 50%, #e0d8cc 100%);
-            border-radius: 50% 50% 45% 45% / 50% 50% 40% 40%;
-            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.05);
-            border: 1px solid rgba(180,160,130,0.2);
+            width: 28px; height: 20px;
+            background: radial-gradient(ellipse at 50% 30%, #fff 0%, #f5f0e8 50%, #e8e0d0 100%);
+            border-radius: 50% 50% 45% 45% / 55% 55% 35% 35%;
+            box-shadow: inset 0 -2px 6px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.08);
+            border: 1px solid rgba(180,160,130,0.25);
         }
         .place-setting .chopstick-set {
             display: flex;
-            gap: 1px;
-            margin-top: 4px;
+            gap: 2px;
+            margin-top: 3px;
+            transform: rotate(-10deg);
         }
         .place-setting .chopstick-set .stick {
-            width: 2.5px; height: 26px;
-            background: linear-gradient(to bottom, #c8a060, #a08040);
+            width: 2.5px; height: 28px;
+            background: linear-gradient(to bottom, #d4b070, #c09850, #a08040);
             border-radius: 1px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
-        .place-setting .chopstick-set .stick:first-child { transform: rotate(8deg); }
-        .place-setting .chopstick-set .stick:last-child { transform: rotate(-4deg); margin-left: -1px; }
-        .ps-1 { top: -2%; left: 44%; }
-        .ps-2 { top: 6%; right: 8%; }
-        .ps-3 { top: 34%; right: 0%; }
-        .ps-4 { top: 60%; right: 6%; }
-        .ps-5 { bottom: 0%; left: 44%; }
-        .ps-6 { bottom: 5%; left: 6%; }
-        .ps-7 { top: 60%; left: 4%; }
-        .ps-8 { top: 34%; left: 0%; }
+        .place-setting .chopstick-set .stick:nth-child(2) {
+            margin-left: 2px;
+        }
+        /* 八副碗筷沿桌边环形分布 (relative to table-top, not turntable) */
+        .ps-1 { top: 4%; left: 50%; }        /* 上 */
+        .ps-2 { top: 12%; left: 78%; }       /* 右上 */
+        .ps-3 { top: 38%; left: 92%; }       /* 右中上 */
+        .ps-4 { top: 64%; left: 82%; }       /* 右中下 */
+        .ps-5 { top: 96%; left: 50%; }       /* 下 */
+        .ps-6 { top: 64%; left: 18%; }       /* 左中下 */
+        .ps-7 { top: 38%; left: 8%; }        /* 左中上 */
+        .ps-8 { top: 12%; left: 22%; }       /* 左上 */
         .table-legs {
             position: relative;
             z-index: 1;
@@ -831,7 +842,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         @media (max-width: 480px) {
-            .table-wrapper { max-width: 380px; padding: 30px 16px 10px; }
+            .table-wrapper { max-width: 350px; padding: 30px 16px 10px; }
             .lazy-susan { width: 68%; }
             .dish-item.plate .dish-inner { width: 56px; height: 56px; }
             .dish-item.bowl .dish-inner { width: 52px; height: 44px; }
@@ -846,14 +857,14 @@
             .rt-6 { bottom: 8%; left: 8%; }
             .rt-7 { top: 42%; left: 0%; }
             .rt-8 { top: 14%; left: 4%; }
-            .ps-1 { top: -2%; left: 40%; }
-            .ps-2 { top: 4%; right: 6%; }
-            .ps-3 { top: 32%; right: 2%; }
-            .ps-4 { top: 60%; right: 4%; }
-            .ps-5 { bottom: 0%; left: 40%; }
-            .ps-6 { bottom: 4%; left: 4%; }
-            .ps-7 { top: 60%; left: 2%; }
-            .ps-8 { top: 32%; left: 2%; }
+            .ps-1 { top: 3%; left: 50%; }
+            .ps-2 { top: 10%; left: 80%; }
+            .ps-3 { top: 36%; left: 94%; }
+            .ps-4 { top: 62%; left: 84%; }
+            .ps-5 { top: 97%; left: 50%; }
+            .ps-6 { top: 62%; left: 16%; }
+            .ps-7 { top: 36%; left: 6%; }
+            .ps-8 { top: 10%; left: 20%; }
         }
 /* ─── responsive ─── */
         @media (max-width: 640px) {
@@ -1029,7 +1040,7 @@
         </div>
     </section>
 
-    <section id="cooking" style="max-width:680px;padding:60px 24px 40px;">
+    <section id="cooking" style="max-width:620px;padding:60px 24px 40px;">
         <h2 class="section-title reveal"><span class="emoji">🍽️</span> 妈妈的餐桌</h2>
         <div class="section-divider reveal"></div>
         <p class="section-sub reveal">— 八碟八碗，都是妈妈的味道 —</p>
