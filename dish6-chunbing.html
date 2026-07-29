@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的春饼 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a; --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c; --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7); --shadow: 0 8px 32px rgba(0,0,0,0.06); --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", system-ui, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.9; padding-bottom: 60px; }
+        .top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: rgba(248,245,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138,154,122,0.12); position: sticky; top: 0; z-index: 100; }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .article ul li::before { content: '🥞'; position: absolute; left: -0.2em; top: -1px; font-size: 0.85rem; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🥞</span>
+    <span class="title">妈妈的厨房 · 春饼</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🥞</div>
+    <h1>妈妈的春饼</h1>
+    <p class="subtitle">立春吃春饼，一卷一个春天</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            立春的时候，妈妈总会烙一摞春饼。饼薄薄的、软软的，卷上炒合菜或者酱肉丝，一咬满口香。妈妈烙的春饼薄得透光，但怎么卷都不会破，一张饼能卷下半盘菜。
+        </p>
+
+        <h2><span class="emoji">👩‍🍳</span> 烙春饼（两种方法）</h2>
+        <div class="recipe-card">
+            <h3>🥞 传统烫面春饼</h3>
+            <ul class="steps">
+                <li>面粉 300g，加少许盐</li>
+                <li>开水烫面，边倒边搅成絮状</li>
+                <li>稍微晾凉后揉成光滑面团</li>
+                <li>盖湿布醒20分钟</li>
+                <li>搓长条，切成小剂子，按扁</li>
+                <li>每个剂子擀成薄薄的圆片（越薄越好）</li>
+                <li>平底锅不放油，中小火，放入饼皮</li>
+                <li>起泡后翻面，两面有金黄色斑点就熟了</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥞 蒸春饼（一次蒸一摞）</h3>
+            <ul class="steps">
+                <li>同上和面醒面</li>
+                <li>擀好一张饼皮，表面刷一层薄油</li>
+                <li>再叠上一张擀好的饼皮，再刷油</li>
+                <li>如此重复叠8-10张</li>
+                <li>用手轻轻按压整摞饼皮，擀开一些</li>
+                <li>上锅蒸10分钟</li>
+                <li>出锅后趁热一张张揭开</li>
+            </ul>
+            <p style="margin-top:8px;text-indent:0;font-size:0.85rem;color:var(--sage);">✨ 蒸的春饼更软，适合卷菜；烙的春饼更香</p>
+        </div>
+
+        <h2><span class="emoji">🥬</span> 卷饼的菜</h2>
+        <div class="recipe-card">
+            <h3>🥗 炒合菜</h3>
+            <p>春饼的灵魂搭配。</p>
+            <ul class="steps">
+                <li>粉丝泡软剪短，鸡蛋炒散</li>
+                <li>豆芽、韭菜洗净准备</li>
+                <li>热油先炒豆芽，下粉丝和鸡蛋</li>
+                <li>加生抽、盐调味，最后下韭菜快炒</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥩 京酱肉丝</h3>
+            <ul class="steps">
+                <li>猪里脊切丝，加料酒、蛋清、淀粉腌10分钟</li>
+                <li>甜面酱加糖和水调匀</li>
+                <li>热油滑炒肉丝变色盛出</li>
+                <li>锅中倒酱汁炒香，放回肉丝翻炒均匀</li>
+                <li>撒上葱丝，卷在饼里吃</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥒 其他卷菜推荐</h3>
+            <ul class="steps">
+                <li>黄瓜丝、葱丝、香菜</li>
+                <li>酱肘子切片</li>
+                <li>烤鸭丝</li>
+                <li>土豆丝炒青椒</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 烫面做的春饼更软，凉了也不硬。<br>
+                ② 擀饼皮时多撒干粉防粘，但不要太多。<br>
+                ③ 叠蒸法一次做一摞，省时省力。<br>
+                ④ 卷饼时先把菜铺在饼的下半部分，底部折上去，左右折，再往上卷，菜就不会漏。<br>
+                <br>
+                <span style="color:var(--sage);">妈妈的话："立春吃春饼，一年都顺当。"</span>
+            </p>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>

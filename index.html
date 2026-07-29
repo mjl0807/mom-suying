@@ -1207,14 +1207,14 @@
 
         // ─── 妈妈的餐桌 (八碟八碗) ───
         const dishes = [
-            { id:'dish1', emoji:'🥟', name:'妈妈的饺子', desc:'薄皮大馅，白嫩嫩的月光。妈妈手一捏就是一个月牙，咬开是整个人间的暖。', type:'碟' },
-            { id:'dish2', emoji:'🍲', name:'一锅好汤', desc:'慢炖的老火汤，药材和肉香在瓦罐里唱了半天的歌。妈妈总说："好好喝汤，身体就好了。"', type:'碗' },
-            { id:'dish3', emoji:'🥬', name:'素炒时蔬', desc:'灶台上的青菜，妈妈炒得脆嫩碧绿。蒜香轻轻一炸，菜叶卷起边儿，是春天最朴素的模样。', type:'碟' },
-            { id:'dish4', emoji:'🍳', name:'妈妈的拿手菜', desc:'酱油色的浓汁，收在肉块上黏黏亮亮。妈妈在灶台前挥挥铲子，一盘菜就活了。', type:'碗' },
-            { id:'dish5', emoji:'🥘', name:'河北烙盒子', desc:'馅大皮薄，咬一口满嘴香。妈妈最拿手的中式面点，同事们吃了都说好。', type:'碟' },
-            { id:'dish6', emoji:'🧄', name:'新蒜上市', desc:'每年5月中旬到6月底，新蒜脆嫩带甜、皮薄好剥。妈妈最爱的蒜香季节。', type:'碟', link:'garlic.html' },
-            { id:'dish7', emoji:'🥗', name:'凉拌小菜', desc:'黄瓜拍一拍，蒜末撒一撒，醋和香油淋上去。简单清爽，妈妈夏天最爱做的开胃菜。', type:'碟' },
-            { id:'dish8', emoji:'🍚', name:'白米饭', desc:'妈妈蒸的米饭，米粒颗颗分明，软硬刚好。就着菜吃，能多吃一碗。', type:'碗' },
+            { id:'dish1', emoji:'🥘', name:'妈妈的拿手菜', desc:'蒜苔炒肉、红烧茄子、芹菜炒肉、红烧肉、扒肉条……妈妈的拿手菜，一盘菜就活了。', type:'碗', link:'dish1-signature.html' },
+            { id:'dish2', emoji:'🧄', name:'腊八蒜', desc:'翠绿翠绿的，酸脆可口。配饺子绝了。', type:'碟', link:'dish2-laba.html' },
+            { id:'dish3', emoji:'🥟', name:'饺子', desc:'薄皮大馅，白嫩嫩的月光。妈妈手一捏就是一个月牙。', type:'碟', link:'dish3-jiaozi.html' },
+            { id:'dish4', emoji:'🥘', name:'烙盒子', desc:'馅大皮薄，咬一口满嘴香。妈妈最拿手的中式面点。', type:'碟', link:'dish4-hezi.html' },
+            { id:'dish5', emoji:'🍜', name:'手擀面', desc:'筋道爽滑，面条里揉进了妈妈的手劲儿。', type:'碗', link:'dish5-mian.html' },
+            { id:'dish6', emoji:'🥞', name:'春饼', desc:'立春吃春饼，一卷一个春天。薄得透光，怎么卷都不破。', type:'碟', link:'dish6-chunbing.html' },
+            { id:'dish7', emoji:'🥮', name:'中式糕点', desc:'甜甜蜜蜜，是小时候最盼的味道。绿豆糕、酥皮点心……', type:'碟', link:'dish7-gaodian.html' },
+            { id:'dish8', emoji:'🐑', name:'炖羊肉', desc:'冬天的一碗热羊肉，暖到骨头里。妈妈炖的羊肉没有膻味。', type:'碗', link:'dish8-yangrou.html' },
         ];
 
         const dishesModal = document.createElement('div');
@@ -1262,17 +1262,13 @@
         `;
         tableScene.innerHTML = tableHTML;
 
-        // 菜品点击
+        // 菜品点击 — 跳转到子页面
         document.querySelectorAll('.dish-item').forEach(el => {
             el.addEventListener('click', () => {
                 const id = el.dataset.id;
                 const d = dishes.find(x => x.id === id);
                 if (!d) return;
-                if (d.link) { window.open(d.link, '_blank'); return; }
-                dishesModal.querySelector('.dm-emoji').textContent = d.emoji;
-                dishesModal.querySelector('.dm-name').textContent = d.name;
-                dishesModal.querySelector('.dm-desc').textContent = d.desc;
-                dishesModal.classList.add('active');
+                if (d.link) { window.location.href = d.link; return; }
             });
         });
 

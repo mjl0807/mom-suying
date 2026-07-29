@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的烙盒子 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a; --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c; --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7); --shadow: 0 8px 32px rgba(0,0,0,0.06); --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", system-ui, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.9; padding-bottom: 60px; }
+        .top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: rgba(248,245,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138,154,122,0.12); position: sticky; top: 0; z-index: 100; }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🥘</span>
+    <span class="title">妈妈的厨房 · 烙盒子</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🥘</div>
+    <h1>妈妈的烙盒子</h1>
+    <p class="subtitle">馅大皮薄，咬一口满嘴香</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            河北烙盒子，妈妈最拿手的中式面点。韭菜盒子、茴香盒子、白菜盒子……皮薄馅大，两面金黄，同事们吃了都说好。每次妈妈烙盒子，整个厨房都飘着韭菜和面香混合的味道。
+        </p>
+
+        <h2><span class="emoji">👩‍🍳</span> 和面（烫面法）</h2>
+        <div class="recipe-card">
+            <h3>🌾 烫面面团</h3>
+            <ul class="steps">
+                <li>面粉 500g</li>
+                <li>一半用开水烫面，一半用凉水和面</li>
+                <li>揉成光滑面团，盖湿布醒20分钟</li>
+            </ul>
+            <p style="margin-top:8px;text-indent:0;font-size:0.85rem;color:var(--sage);">✨ 烫面做的盒子皮更软，放凉了也不硬</p>
+        </div>
+
+        <h2><span class="emoji">🥬</span> 多款馅料</h2>
+        <div class="recipe-card">
+            <h3>🥬 韭菜鸡蛋盒子</h3>
+            <p>最经典的韭菜盒子，妈妈做的最好吃。</p>
+            <ul class="steps">
+                <li>韭菜洗净沥干切碎</li>
+                <li>鸡蛋炒熟炒散，晾凉</li>
+                <li>韭菜加香油拌匀锁住水分</li>
+                <li>加鸡蛋碎、虾皮、盐、少许姜末拌匀</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🌿 茴香猪肉盒子</h3>
+            <p>茴香的独特香气，北方人最懂的美味。</p>
+            <ul class="steps">
+                <li>茴香洗净沥干切碎</li>
+                <li>猪肉馅加姜末、生抽、盐搅上劲</li>
+                <li>茴香拌入肉馅，加香油调匀</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥩 白菜猪肉盒子</h3>
+            <p>冬天的白菜最甜，做盒子正好。</p>
+            <ul class="steps">
+                <li>白菜切碎，盐腌后挤干水分</li>
+                <li>猪肉馅加姜末、葱花、生抽搅匀</li>
+                <li>拌入白菜碎，加香油调匀</li>
+            </ul>
+        </div>
+
+        <h2><span class="emoji">🍳</span> 包法与烙法</h2>
+        <div class="recipe-card">
+            <h3>✋ 包盒子</h3>
+            <ul class="steps">
+                <li>面团分成剂子，擀成圆形薄皮（比饺子皮大一圈）</li>
+                <li>半边放馅，对折成半圆形</li>
+                <li>捏紧边缘，再捏一圈花边（既好看又防漏）</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🔥 烙盒子</h3>
+            <ul class="steps">
+                <li>平底锅倒少许油，中小火</li>
+                <li>放入盒子，盖盖焖2分钟</li>
+                <li>底部金黄后翻面，再盖盖焖2分钟</li>
+                <li>两面都金黄鼓起来就熟了</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 烙盒子要用中小火，火大了皮糊了馅还没熟。<br>
+                ② 盖盖焖烙，利用蒸汽帮助馅料熟透。<br>
+                ③ 韭菜馅要现包现烙，放久了会出水。<br>
+                ④ 烙好的盒子竖着放凉，皮才不回软。<br>
+                <br>
+                <span style="color:var(--sage);">妈妈的话："盒子烙得两面金黄，馅大皮薄才好吃。"</span>
+            </p>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>

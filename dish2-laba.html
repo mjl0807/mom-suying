@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>腊八蒜 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a;
+            --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c;
+            --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans); background: var(--bg);
+            color: var(--ink); line-height: 1.9; padding-bottom: 60px;
+        }
+        .top-bar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 16px 24px; background: rgba(248,245,240,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .article ul li::before { content: '🧄'; position: absolute; left: -0.2em; top: -1px; font-size: 0.85rem; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🧄</span>
+    <span class="title">妈妈的厨房 · 腊八蒜</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🧄</div>
+    <h1>腊八蒜</h1>
+    <p class="subtitle">翠绿翠绿的，酸脆可口</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            腊八蒜是北方冬天的传统。腊月初八这天，把蒜瓣泡在醋里，到了除夕打开，蒜瓣已经变得翠绿翠绿的，像翡翠一样好看。妈妈说，腊八蒜配饺子，绝了。
+        </p>
+        <p>
+            新蒜上市的季节，妈妈也会做腊八蒜。新蒜水分足、辣味轻，泡出来的腊八蒜更加脆嫩。
+        </p>
+        
+        <h2><span class="emoji">🛒</span> 所需食材</h2>
+        <ul>
+            <li>新蒜或紫皮蒜 500g</li>
+            <li>米醋或陈醋 适量（以没过蒜瓣为准）</li>
+            <li>白糖 1小勺（可选，提鲜）</li>
+            <li>密封玻璃罐 1个</li>
+        </ul>
+
+        <h2><span class="emoji">👩‍🍳</span> 做法步骤</h2>
+        <div class="recipe-card">
+            <h3>🧄 传统腊八蒜</h3>
+            <ul class="steps">
+                <li>蒜瓣剥皮，洗净晾干（绝对不能有水）</li>
+                <li>切掉蒜瓣根部的小硬蒂，这样醋更容易进去，变绿更快</li>
+                <li>把蒜瓣放进干净无水的密封罐</li>
+                <li>倒入米醋或陈醋，完全没过蒜瓣</li>
+                <li>加一小勺白糖，盖上盖子摇匀</li>
+                <li>放在阴凉处（不用放冰箱），约10-15天开始变绿</li>
+                <li>20天左右完全变绿，就可以吃了</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>⚡ 快速变绿法</h3>
+            <ul class="steps">
+                <li>同上步骤，蒜瓣剥好去蒂</li>
+                <li>白天放在阳光下晒，晚上放回阴凉处</li>
+                <li>温差变化加速蒜瓣变绿，约3-5天就能变绿</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 所有器具和蒜瓣必须无油无水，否则会变质。<br>
+                ② 紫皮蒜比白皮蒜泡出来更香，颜色也更翠绿。<br>
+                ③ 腊八蒜的醋也别倒，拌凉菜、蘸饺子都绝了。<br>
+                ④ 如果泡出来不绿，别急——放暖和一点的地方，再等几天就好了。
+            </p>
+        </div>
+
+        <h2><span class="emoji">🍴</span> 怎么吃</h2>
+        <ul>
+            <li>配饺子——腊八蒜和饺子是绝配</li>
+            <li>配面条——醋泡蒜拌面，酸爽开胃</li>
+            <li>配炒菜——切碎炒菜，别有风味</li>
+            <li>直接吃——脆脆酸酸的，当小菜吃</li>
+        </ul>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的饺子 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a; --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c; --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7); --shadow: 0 8px 32px rgba(0,0,0,0.06); --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", system-ui, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.9; padding-bottom: 60px; }
+        .top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: rgba(248,245,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138,154,122,0.12); position: sticky; top: 0; z-index: 100; }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .article ul li::before { content: '🥟'; position: absolute; left: -0.2em; top: -1px; font-size: 0.85rem; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🥟</span>
+    <span class="title">妈妈的厨房 · 饺子</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🥟</div>
+    <h1>妈妈的饺子</h1>
+    <p class="subtitle">薄皮大馅，白嫩嫩的月光</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            妈妈的饺子，皮薄馅大，一捏就是一个月牙。小时候最盼的就是妈妈包饺子的日子，满屋子的面香和馅香，咬一口，是整个人间的暖。
+        </p>
+        
+        <h2><span class="emoji">🥟</span> 饺子馅（多款）</h2>
+        <div class="recipe-card">
+            <h3>🥩 猪肉白菜馅</h3>
+            <p>最经典的饺子馅，妈妈做的最拿手。</p>
+            <ul class="steps">
+                <li>五花肉剁成肉馅（三肥七瘦最好）</li>
+                <li>白菜切碎，撒少许盐腌出水分，挤干</li>
+                <li>肉馅加姜末、葱花、生抽、老抽、盐、香油朝一个方向搅上劲</li>
+                <li>拌入白菜碎，搅拌均匀</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥬 韭菜鸡蛋馅</h3>
+            <p>春天的韭菜最鲜，妈妈总说"三月韭菜赛人参"。</p>
+            <ul class="steps">
+                <li>韭菜洗净沥干，切碎</li>
+                <li>鸡蛋炒散晾凉</li>
+                <li>韭菜加香油拌匀（防止出水）</li>
+                <li>加鸡蛋碎、虾皮、盐、少许姜末拌匀</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🐟 鲅鱼馅</h3>
+            <p>沿海特色，妈妈偶尔会包，鲜美多汁。</p>
+            <ul class="steps">
+                <li>鲅鱼去骨取肉，剁成鱼蓉</li>
+                <li>鱼蓉加姜水、料酒、盐、蛋清搅上劲</li>
+                <li>加少许肥肉末增加油润感</li>
+                <li>韭菜切碎拌入鱼馅</li>
+            </ul>
+        </div>
+
+        <h2><span class="emoji">👩‍🍳</span> 和面与擀皮</h2>
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的面团秘诀</div>
+            <p>
+                面粉500g + 水250g左右（温水），边倒边搅成絮状，揉成光滑面团，盖上湿布醒30分钟。醒好后的面更软更好擀。擀皮要中间厚边缘薄，这样包的时候底不容易破。
+            </p>
+        </div>
+
+        <h2><span class="emoji">🍳</span> 包法与煮法</h2>
+        <div class="recipe-card">
+            <h3>✋ 妈妈教的包法</h3>
+            <ul class="steps">
+                <li>饺子皮放掌心，放入适量馅</li>
+                <li>对折捏紧中间</li>
+                <li>从一边开始捏褶子，一直捏到另一边</li>
+                <li>大拇指和食指用力捏紧封口</li>
+                <li>一个漂亮的月牙饺子就包好了</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🍲 煮饺子</h3>
+            <ul class="steps">
+                <li>大锅烧开水，水要宽</li>
+                <li>饺子下锅轻轻推散，防止粘底</li>
+                <li>水开后加半碗凉水，重复三次（点水三开）</li>
+                <li>饺子全部浮起、鼓起来就熟了</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 和面时加一个蛋清，饺子皮更筋道。<br>
+                ② 拌肉馅朝一个方向搅，肉馅才上劲不散。<br>
+                ③ 韭菜馅最后放盐，防出水。<br>
+                ④ 煮饺子水里加少许盐，饺子皮不粘连。<br>
+                <br>
+                <span style="color:var(--sage);">妈妈的话："饺子就酒，越喝越有。"</span>
+            </p>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>

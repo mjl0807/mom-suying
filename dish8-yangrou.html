@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的炖羊肉 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a; --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c; --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7); --shadow: 0 8px 32px rgba(0,0,0,0.06); --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", system-ui, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.9; padding-bottom: 60px; }
+        .top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: rgba(248,245,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138,154,122,0.12); position: sticky; top: 0; z-index: 100; }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .article ul li::before { content: '🐑'; position: absolute; left: -0.2em; top: -1px; font-size: 0.85rem; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🐑</span>
+    <span class="title">妈妈的厨房 · 炖羊肉</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🐑</div>
+    <h1>妈妈的炖羊肉</h1>
+    <p class="subtitle">冬天的一碗热羊肉，暖到骨头里</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            冬天的时候，妈妈总会炖一锅羊肉。羊肉炖得烂烂的，汤白白的，撒上葱花和香菜，喝一口浑身都暖和了。妈妈炖的羊肉没有膻味，只有肉香和药材的香气。
+        </p>
+
+        <h2><span class="emoji">🛒</span> 所需食材</h2>
+        <ul>
+            <li>羊腿肉或羊腩 1000g（带点肥的更好吃）</li>
+            <li>姜片、葱段</li>
+            <li>八角 2个、桂皮 1块、白芷 2片（去膻关键）</li>
+            <li>花椒 1小把、干辣椒 2个（可选）</li>
+            <li>料酒、盐、白胡椒粉</li>
+            <li>枸杞、红枣（可选）</li>
+            <li>香菜、葱花（出锅撒）</li>
+        </ul>
+
+        <h2><span class="emoji">👩‍🍳</span> 做法步骤</h2>
+        <div class="recipe-card">
+            <h3>🍲 清炖羊肉（原汁原味）</h3>
+            <ul class="steps">
+                <li>羊肉切成大块（约4-5cm见方）</li>
+                <li>冷水下锅，加姜片和料酒，大火烧开焯水</li>
+                <li>撇去浮沫，捞出羊肉用温水洗净</li>
+                <li>羊肉放入砂锅或炖锅，加足量热水</li>
+                <li>加姜片、葱段、八角、桂皮、白芷、花椒</li>
+                <li>大火烧开转小火，盖盖慢炖1.5小时</li>
+                <li>加盐、白胡椒粉调味，可放枸杞红枣</li>
+                <li>继续炖15分钟至入味</li>
+                <li>出锅撒上香菜和葱花</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🍖 红烧羊肉</h3>
+            <ul class="steps">
+                <li>羊肉切块焯水，洗净备用</li>
+                <li>锅中放少许油，下冰糖炒出糖色</li>
+                <li>下羊肉翻炒上色</li>
+                <li>加姜片、葱段、八角、桂皮、干辣椒</li>
+                <li>淋生抽2勺、老抽1勺、料酒2勺</li>
+                <li>加热水没过羊肉，大火烧开转小火炖1.5小时</li>
+                <li>加盐调味，转大火收汁</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🥕 羊肉炖萝卜</h3>
+            <ul class="steps">
+                <li>羊肉焯水后下锅炖1小时（清炖做法）</li>
+                <li>白萝卜去皮切滚刀块</li>
+                <li>羊肉炖1小时后下萝卜</li>
+                <li>继续炖20-30分钟至萝卜软烂</li>
+                <li>加盐、白胡椒粉调味</li>
+                <li>撒上香菜和葱花</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 去膻三件宝：白芷、花椒、料酒。白芷尤其关键。<br>
+                ② 羊肉焯水要冷水下锅，热水下锅血水出不来，膻味重。<br>
+                ③ 炖羊肉加热水，加冷水肉会收缩变柴。<br>
+                ④ 盐最后放，早放肉老。<br>
+                ⑤ 羊肉汤里放白萝卜，既能去膻又清甜。<br>
+                <br>
+                <span style="color:var(--sage);">妈妈的话："冬天吃羊肉，一冬不冷。"</span>
+            </p>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>
