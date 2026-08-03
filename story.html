@@ -408,6 +408,8 @@
         // ═══════════════════════════════════════════════════════════
 
         const STORAGE_KEY = 'momsuying_story_chapters';
+        const VERSION_KEY = 'momsuying_story_v';
+        const CONTENT_VERSION = 'v2-5chapters';
 
         // ─── 内置默认篇章（首次访问自动载入；用户编辑后以 localStorage 为准）───
         const DEFAULT_CHAPTERS = [
@@ -441,6 +443,17 @@
         function getChapters() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
+                // 内容版本：本地数据版本不匹配时，用默认篇章覆盖（解决老用户看不到新篇章的问题）
+                if (localStorage.getItem(VERSION_KEY) !== CONTENT_VERSION) {
+                    const defaults = DEFAULT_CHAPTERS.map((c, i) => ({
+                        ...c,
+                        createdAt: c.createdAt || (1783000000000 + i * 1000),
+                        updatedAt: Date.now()
+                    }));
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults));
+                    localStorage.setItem(VERSION_KEY, CONTENT_VERSION);
+                    return defaults;
+                }
                 if (raw) return JSON.parse(raw);
                 // 首次访问：没有本地数据则播种默认篇章
                 const defaults = DEFAULT_CHAPTERS.map((c, i) => ({
@@ -449,6 +462,7 @@
                     updatedAt: Date.now()
                 }));
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults));
+                localStorage.setItem(VERSION_KEY, CONTENT_VERSION);
                 return defaults;
             } catch(e) { return []; }
         }
