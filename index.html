@@ -1291,11 +1291,16 @@
             { icon: '🌻', name: '向日葵', desc: '院子角落里的向日葵，长到比人还高。妈妈仰着头看花盘，笑着。' },
             { icon: '🌿', name: '绿萝', desc: '窗台上的绿萝垂下来，绿帘子似的。妈妈偶尔浇浇水，它就不声不响地长。' },
             { icon: '🌸', name: '栀子花', desc: '妈妈最喜欢的栀子花，开了整个屋子都香。她摘一朵别在衣襟上。' },
+            { icon: '🌼', name: '茉莉', desc: '洁白的小花，一朵就香满屋。茉莉要晒足太阳才香。', link: 'jasmine.html' },
         ];
         const pGrid = document.getElementById('plant-grid');
         plants.forEach(p => {
             const div = document.createElement('div'); div.className = 'info-card';
-            div.innerHTML = `<div class="plant-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.desc}</p>`;
+            div.innerHTML = `<div class="plant-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.desc}</p>${p.link ? '<div class="tags"><span>点击看养护方法 →</span></div>' : ''}`;
+            if (p.link) {
+                div.style.cursor = 'pointer';
+                div.addEventListener('click', () => { window.location.href = p.link; });
+            }
             pGrid.appendChild(div);
         });
 

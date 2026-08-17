@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>茉莉养护 · 妈妈的花园 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.9;
+            padding-bottom: 60px;
+        }
+        /* Top bar */
+        .top-bar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 16px 24px;
+            background: rgba(248,245,240,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-bar a {
+            text-decoration: none; color: var(--sage-d);
+            font-size: 0.85rem; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title {
+            font-family: var(--serif);
+            font-size: 1rem; color: var(--sage); margin-left: auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 680px; margin: 0 auto; padding: 20px 24px 40px;
+        }
+
+        /* Hero icon */
+        .hero-icon {
+            text-align: center; font-size: 4rem; margin: 24px 0 12px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: 2rem; font-weight: 600;
+            color: var(--sage-d); text-align: center;
+            letter-spacing: 4px; margin-bottom: 4px;
+        }
+        .subtitle {
+            text-align: center; color: var(--sage);
+            font-size: 0.9rem; letter-spacing: 3px;
+            margin-bottom: 32px; font-weight: 300;
+        }
+        .divider {
+            width: 40px; height: 2px;
+            background: var(--sage);
+            margin: 16px auto 28px;
+            border-radius: 2px;
+        }
+
+        /* Article text */
+        .article {
+            font-family: var(--serif);
+            font-size: 1.02rem; line-height: 2;
+            color: #3d3d3d;
+        }
+        .article h2 {
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--sage-d);
+            margin: 32px 0 12px;
+            letter-spacing: 2px;
+        }
+        .article h2 .emoji { margin-right: 6px; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article ul {
+            margin: 12px 0 20px; padding-left: 1.2em;
+            list-style: none;
+        }
+        .article ul li {
+            margin-bottom: 10px; padding-left: 1.5em;
+            position: relative;
+            text-indent: 0;
+        }
+        .article ul li::before {
+            content: '🌿';
+            position: absolute; left: -0.2em; top: -1px;
+            font-size: 0.85rem;
+        }
+
+        /* Tip box */
+        .tip-box {
+            background: var(--card);
+            border: 1px solid rgba(138,154,122,0.2);
+            border-radius: 12px;
+            padding: 20px 22px; margin: 24px 0;
+        }
+        .tip-box .tip-title {
+            font-weight: 600; color: var(--sage-d);
+            font-size: 0.9rem; letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .tip-box p {
+            text-indent: 0;
+            font-size: 0.93rem; line-height: 1.8;
+            color: #555;
+        }
+
+        /* Footer */
+        .back-link {
+            display: block; text-align: center;
+            margin-top: 40px; padding-top: 24px;
+            border-top: 1px solid rgba(138,154,122,0.12);
+        }
+        .back-link a {
+            color: var(--sage-d); text-decoration: none;
+            font-size: 0.9rem; letter-spacing: 2px;
+        }
+        .back-link a:hover { color: var(--sage); }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.5rem; }
+            .container { padding: 16px 16px 30px; }
+            .article { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🌿</span>
+    <span class="title">妈妈的花园</span>
+</div>
+
+<div class="container">
+    <div class="hero-icon">🌼</div>
+    <h1>茉莉养护</h1>
+    <p class="subtitle">喜酸 · 喜光 · 喜肥，一朵茉莉香满屋</p>
+    <div class="divider"></div>
+
+    <div class="article">
+
+        <p>
+            茉莉的花不大，白白的，香起来却一点不客气。妈妈的花园里若是有一盆茉莉，
+            整个夏天风一吹，满屋子都是那种清清爽爽、又带着点甜的香，闻着就让人心安。
+        </p>
+        <p>
+            茉莉跟人一样，脾气也直——你把它放太阳底下，它开得又密又香；
+            你把它惯在阴凉处，它就只长叶子不开花。想把它养好，记住一句话就够了：
+            <strong>晒得、浇得、饿不得、冻不得。</strong>
+        </p>
+
+        <h2><span class="emoji">🌼</span> 认识茉莉</h2>
+        <ul>
+            <li><strong>常见品种：</strong>家里养的多是双瓣茉莉（Jasminum sambac），花瓣层层叠叠、香味浓；也有单瓣、虎头茉莉等</li>
+            <li><strong>花期：</strong>5 月开到 10 月，6–8 月最盛，一年能开好几茬</li>
+            <li><strong>开花习性：</strong>茉莉在<strong>新枝上开花</strong>——所以越修剪，新枝越多，花就越多</li>
+        </ul>
+
+        <h2><span class="emoji">☀️</span> 光照：晒得</h2>
+        <p>
+            茉莉是出了名的「晒不死的茉莉」，一定要给足太阳。
+            每天至少 4–6 小时直射光，朝南的阳台、窗台最好。
+            光照越足，开花越密、香味越浓；光照不够，就徒长、少花、香味淡。
+        </p>
+
+        <h2><span class="emoji">💧</span> 浇水：见干见湿</h2>
+        <ul>
+            <li><strong>原则：</strong>盆土表面干了再浇透，别天天浇成涝</li>
+            <li><strong>夏天：</strong>高温蒸发快，可以每天浇，最热时早晚各一次</li>
+            <li><strong>冬天：</strong>休眠期控水，盆土保持偏干</li>
+            <li><strong>注意：</strong>宁干勿涝，积水烂根是茉莉最常见的死法</li>
+        </ul>
+
+        <h2><span class="emoji">🌱</span> 土壤：喜酸</h2>
+        <ul>
+            <li><strong>酸碱：</strong>喜欢微酸性土壤，pH 5.5–6.5</li>
+            <li><strong>质地：</strong>疏松透气、肥沃、排水好</li>
+            <li><strong>配土参考：</strong>腐叶土（松针土）+ 园土 + 河沙/珍珠岩 ≈ 4:3:3</li>
+            <li><strong>北方水质：</strong>自来水偏碱，可每半个月用 0.1% 硫酸亚铁水浇一次，防叶片黄化</li>
+        </ul>
+
+        <h2><span class="emoji">🌾</span> 施肥：饿不得</h2>
+        <ul>
+            <li><strong>原则：</strong>薄肥勤施，别一次下重肥烧根</li>
+            <li><strong>生长期：</strong>春夏每 10–15 天一次稀薄液肥</li>
+            <li><strong>孕蕾开花期：</strong>增施磷钾肥（磷酸二氢钾按 1:1000 兑水，喷叶或灌根），促花、香味更浓</li>
+            <li><strong>冬季：</strong>休眠停肥</li>
+        </ul>
+
+        <h2><span class="emoji">✂️</span> 修剪：越剪越开</h2>
+        <ul>
+            <li><strong>花后及时剪：</strong>剪掉残花，花枝剪去 1/3，促发新枝</li>
+            <li><strong>整形：</strong>剪掉过密枝、弱枝、徒长枝、病虫枝</li>
+            <li><strong>春季：</strong>萌芽前可适当重剪整形，剪出一个饱满的株形</li>
+            <li><strong>道理：</strong>新枝才开花，剪得勤，花开得勤</li>
+        </ul>
+
+        <h2><span class="emoji">❄️</span> 越冬：冻不得</h2>
+        <ul>
+            <li><strong>温度：</strong>不耐寒，5℃ 以下要搬进室内有光处</li>
+            <li><strong>休眠：</strong>10℃ 左右进入休眠</li>
+            <li><strong>冬季管理：</strong>控水、停肥、保持通风</li>
+        </ul>
+
+        <h2><span class="emoji">🐛</span> 病虫害</h2>
+        <ul>
+            <li><strong>红蜘蛛：</strong>高温干燥时易发，叶背有细网——常喷水增湿，严重时用药剂（如阿维菌素）</li>
+            <li><strong>白粉病、煤污病：</strong>保持通风，及时清除病叶</li>
+            <li><strong>蚧壳虫：</strong>少量可人工刮除，多则用药剂</li>
+        </ul>
+
+        <h2><span class="emoji">❓</span> 常见问题</h2>
+        <ul>
+            <li><strong>黄叶：</strong>多是浇水过多烂根，或水质偏碱导致缺铁</li>
+            <li><strong>不开花、花少：</strong>光照不足，或氮肥过多（只长叶子不开花）</li>
+            <li><strong>掉花苞：</strong>水肥不当、频繁搬动、环境骤变</li>
+            <li><strong>徒长：</strong>光照不足，枝条细长叶子稀</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 催花小窍门</div>
+            <p>
+                花后剪一剪 + 磷钾肥 + 大太阳，三样一起上，一个月后又是一茬香喷喷的花。
+            </p>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🌼 妈妈的话</div>
+            <p>
+                "茉莉不难养。你把它放太阳底下，渴了浇水，饿了给点肥，
+                它就一年一年开给你看。花跟人一样，你对它好，它都知道。"
+            </p>
+        </div>
+
+    </div>
+
+    <div class="back-link">
+        <a href="/index.html#plants">← 返回妈妈的花园</a>
+    </div>
+</div>
+
+</body>
+</html>
