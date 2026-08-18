@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的北方红烧肉 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #f8f5f0; --cream: #f5efe8; --sage: #8a9a7a; --sage-l: #d4dfc8; --sage-d: #5d6d4e; --ink: #2c2c2c; --warm: #d4b8a0; --gold: #c9a96e; --card: rgba(255,255,255,0.7); --shadow: 0 8px 32px rgba(0,0,0,0.06); --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", system-ui, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.9; padding-bottom: 60px; }
+        .top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: rgba(248,245,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138,154,122,0.12); position: sticky; top: 0; z-index: 100; }
+        .top-bar a { text-decoration: none; color: var(--sage-d); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+        .top-bar a:hover { color: var(--sage); }
+        .top-bar .title { font-family: var(--serif); font-size: 1rem; color: var(--sage); margin-left: auto; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 24px 40px; }
+        .hero-icon { text-align: center; font-size: 4rem; margin: 24px 0 12px; }
+        h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--sage-d); text-align: center; letter-spacing: 4px; margin-bottom: 4px; }
+        .subtitle { text-align: center; color: var(--sage); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 8px; font-weight: 300; }
+        .divider { width: 40px; height: 2px; background: var(--sage); margin: 16px auto 28px; border-radius: 2px; }
+        .article { font-family: var(--serif); font-size: 1.02rem; line-height: 2; color: #3d3d3d; }
+        .article p { margin-bottom: 1.2em; text-indent: 2em; }
+        .article p:first-of-type { text-indent: 0; }
+        .article h2 { font-size: 1.2rem; font-weight: 600; color: var(--sage-d); margin: 32px 0 12px; letter-spacing: 2px; }
+        .article h2 .emoji { margin-right: 6px; }
+        .article ul { margin: 12px 0 20px; padding-left: 1.2em; list-style: none; }
+        .article ul li { margin-bottom: 10px; padding-left: 1.5em; position: relative; text-indent: 0; }
+        .article ul li::before { content: '🥩'; position: absolute; left: -0.2em; top: -1px; font-size: 0.85rem; }
+        .recipe-card { background: var(--card); border: 1px solid rgba(138,154,122,0.15); border-radius: 14px; padding: 22px 20px; margin: 16px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .recipe-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .recipe-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--sage-d); margin-bottom: 6px; letter-spacing: 1px; }
+        .recipe-card p { text-indent: 0; font-size: 0.92rem; line-height: 1.8; color: #555; }
+        .recipe-card .steps { margin-top: 8px; padding: 0; }
+        .recipe-card .steps li { list-style: none; padding: 4px 0 4px 1.6em; position: relative; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .recipe-card .steps li::before { content: '•'; position: absolute; left: 0.5em; color: var(--sage); font-weight: bold; }
+        .tip-box { background: var(--card); border: 1px solid rgba(138,154,122,0.2); border-radius: 12px; padding: 20px 22px; margin: 24px 0; }
+        .tip-box .tip-title { font-weight: 600; color: var(--sage-d); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 6px; }
+        .tip-box p { text-indent: 0; font-size: 0.93rem; line-height: 1.8; color: #555; }
+        .back-link { display: block; text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(138,154,122,0.12); }
+        .back-link a { color: var(--sage-d); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; }
+        .back-link a:hover { color: var(--sage); }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .container { padding: 16px 16px 30px; } .article { font-size: 0.95rem; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="/index.html">← 回到首页</a>
+    <span>🥩</span>
+    <span class="title">妈妈的厨房 · 北方红烧肉</span>
+</div>
+<div class="container">
+    <div class="hero-icon">🥩</div>
+    <h1>妈妈的北方红烧肉</h1>
+    <p class="subtitle">色泽红亮，肥而不腻，浓汁黏黏挂在肉块上</p>
+    <div class="divider"></div>
+    <div class="article">
+        <p>
+            妈妈的红烧肉，是北方的味道。五花肉切成方方正正的块，先下锅逼出油，再炒出琥珀色的糖色，肉块裹上酱汁，小火慢炖，最后大火收汁——浓汁油亮亮的，黏黏地挂在肉块上。端上桌，筷子夹起一块，颤颤巍巍，咬一口，肥而不腻，入口即化，满嘴都是酱香。
+        </p>
+
+        <h2><span class="emoji">🛒</span> 所需食材</h2>
+        <ul>
+            <li>带皮五花肉 750g（三层分明、肥瘦相间的最好）</li>
+            <li>冰糖 40g（炒糖色用，北方的关键）</li>
+            <li>姜片、葱段、蒜瓣</li>
+            <li>八角 2个、桂皮 1块、香叶 2片</li>
+            <li>花椒 少许、干辣椒 2个（可选，口重可加）</li>
+            <li>生抽 3勺、老抽 1勺、料酒 2勺</li>
+            <li>盐 少许</li>
+            <li>热水（炖肉一定要用热水）</li>
+        </ul>
+
+        <h2><span class="emoji">👩‍🍳</span> 做法步骤</h2>
+        <div class="recipe-card">
+            <h3>🥩 经典糖色版（北方正宗）</h3>
+            <ul class="steps">
+                <li>五花肉切约3cm见方的块，冷水下锅，加姜片、料酒，大火烧开焯水，撇去浮沫，捞出用温水洗净</li>
+                <li>锅烧热不放油，下五花肉块，中小火慢慢煸炒，逼出多余油脂，炒到肉块表面微黄、微微出油，盛出（这是北方红烧肉"肥而不腻"的诀窍）</li>
+                <li>锅中留少许底油，下冰糖，小火慢慢炒，不停搅动，炒到冰糖融化、变成琥珀色（枣红色）、冒细密小泡</li>
+                <li>立刻下五花肉块，快速翻炒，让每块肉都均匀裹上糖色</li>
+                <li>下姜片、葱段、蒜瓣、八角、桂皮、香叶、花椒（干辣椒），炒出香味</li>
+                <li>淋入生抽、老抽、料酒，翻炒均匀上色</li>
+                <li>加入没过肉块的热水，大火烧开，转小火，盖盖慢炖 1 小时（中途可翻动一次）</li>
+                <li>炖到肉块软烂、筷子能轻松扎透，加少许盐调味</li>
+                <li>转大火收汁，不停翻动，收到汤汁浓稠、油亮亮地挂在肉块上，即可出锅</li>
+            </ul>
+        </div>
+        <div class="recipe-card">
+            <h3>🍖 家常快手版（不炒糖色）</h3>
+            <ul class="steps">
+                <li>五花肉切块，冷水下锅焯水，撇浮沫捞出洗净</li>
+                <li>锅中少油，下姜片、葱段、八角、桂皮、香叶爆香</li>
+                <li>下五花肉翻炒至微黄，淋入生抽、老抽、料酒</li>
+                <li>加入没过肉块的热水，放冰糖，大火烧开转小火炖 1 小时</li>
+                <li>加盐调味，转大火收汁至浓稠油亮</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 妈妈的小窍门</div>
+            <p>
+                ① 北方红烧肉讲究"色如琥珀"，炒糖色是关键——冰糖小火慢炒，冒小泡变枣红色就下肉，炒过了会发苦。<br>
+                ② 先干煸逼油再炖，肉才肥而不腻；这一步北方做法从不省。<br>
+                ③ 炖肉一定加热水，加冷水肉会收缩变柴。<br>
+                ④ 盐最后放，早放肉老。<br>
+                ⑤ 大火收汁是精髓：收到"浓汁挂勺、油亮黏稠"，肉块裹满酱汁才叫正宗北方红烧肉。<br>
+                ⑥ 剩下的汤汁别倒，拌米饭、拌面条，一绝。<br>
+                <br>
+                <span style="color:var(--sage);">妈妈的话："北方红烧肉，要的就是那股油亮亮的酱香。"</span>
+            </p>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="/index.html#cooking">← 返回妈妈的厨房</a>
+    </div>
+</div>
+</body>
+</html>
