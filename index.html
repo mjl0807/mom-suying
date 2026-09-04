@@ -997,6 +997,7 @@
             <li><a href="#photos">照片</a></li>
             <li><a href="#letter">信笺</a></li>
             <li><a href="#kouyu">口头禅</a></li>
+            <li><a href="#memory">记忆</a></li>
             <li><a href="#hut">小屋</a></li>
             <li><a href="#guestbook">留言</a></li>
         </ul>
@@ -1131,6 +1132,59 @@ python GPT_SoVITS/inference_cli.py \
                 <p style="margin:10px 0 0;color:#8a8a8a;font-size:0.8rem;">要点：① 参考文案必须与参考音频实际内容一致；② 停顿放在意群边界（称呼后、整句后），别拆开黏连词组；③ 数据越多音色越像。</p>
             </div>
         </details>
+    </section>
+
+    <section id="memory">
+        <h2 class="section-title reveal"><span class="emoji">💭</span> 妈妈的记忆档案</h2>
+        <div class="section-divider reveal"></div>
+        <p class="section-sub reveal">— 填进去，让妈妈在 AI 里也记得你们的事 —</p>
+        <div class="reveal" style="max-width:680px;margin:0 auto;text-align:left;">
+            <div style="background:rgba(255,255,255,0.55);border:1px solid var(--sage-l);border-radius:12px;padding:22px 24px;">
+                <p style="margin:0 0 16px;color:#8a8a8a;font-size:0.8rem;line-height:1.7;">💡 填好会自动保存在本机浏览器，可随时回来继续改。全部填完后点「导出」，把文本发给小苗，就能写进「妈妈」的 AI 大脑。</p>
+
+                <div class="mem-group">
+                    <div class="mem-label">1️⃣ 基本身份</div>
+                    <input class="mem-input" id="mem-name" placeholder="名字 / 小名">
+                    <input class="mem-input" id="mem-birth" placeholder="出生年份 / 家乡">
+                    <input class="mem-input" id="mem-personality" placeholder="性格（温柔？爽朗？急性子？）">
+                    <input class="mem-input" id="mem-life" placeholder="职业 / 爱好 / 拿手菜">
+                </div>
+                <div class="mem-group">
+                    <div class="mem-label">2️⃣ 家人</div>
+                    <input class="mem-input" id="mem-dad" placeholder="爸爸（名字 / 性格）">
+                    <input class="mem-input" id="mem-call" placeholder="妈妈平时怎么称呼你？（小名？）">
+                    <textarea class="mem-input mem-area" id="mem-family" placeholder="其他重要家人（她的父母、兄弟姐妹…）"></textarea>
+                </div>
+                <div class="mem-group">
+                    <div class="mem-label">3️⃣ 你们的共同回忆 <span style="color:var(--warm);">· 灵魂</span></div>
+                    <textarea class="mem-input mem-area" id="mem-memories" placeholder="一起去过的地方、她的口头禅、让你记到现在的话、忘不了的事…"></textarea>
+                </div>
+                <div class="mem-group">
+                    <div class="mem-label">4️⃣ 你的近况</div>
+                    <textarea class="mem-input mem-area" id="mem-now" placeholder="你在找工作、想做 3D 全息…任何她「该知道」的、你现在的事"></textarea>
+                </div>
+                <div class="mem-group">
+                    <div class="mem-label">5️⃣ 说话风格</div>
+                    <textarea class="mem-input mem-area" id="mem-style" placeholder="温柔还是爽朗？爱用什么语气词？怎么跟你打招呼、怎么叮嘱你…"></textarea>
+                </div>
+
+                <div style="text-align:center;margin-top:18px;">
+                    <button class="mem-btn" onclick="exportMemory()">📤 导出记忆档案</button>
+                    <button class="mem-btn mem-btn-ghost" onclick="clearMemory()">清空</button>
+                </div>
+                <p id="mem-hint" style="text-align:center;color:var(--sage);font-size:0.78rem;margin:12px 0 0;min-height:1em;"></p>
+            </div>
+        </div>
+        <style>
+            .mem-group{margin-bottom:16px;}
+            .mem-label{font-size:0.9rem;color:var(--sage-d);letter-spacing:1px;margin-bottom:8px;font-weight:600;}
+            .mem-input{width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:8px;border:1px solid var(--sage-l);border-radius:8px;background:rgba(255,255,255,0.72);font-size:0.9rem;color:var(--ink);font-family:inherit;outline:none;transition:border-color .2s;display:block;}
+            .mem-input:focus{border-color:var(--sage);}
+            .mem-area{min-height:90px;resize:vertical;}
+            .mem-btn{padding:10px 24px;margin:0 6px;border:none;border-radius:8px;background:var(--sage);color:#fff;font-size:0.88rem;letter-spacing:1px;cursor:pointer;}
+            .mem-btn:hover{opacity:0.88;}
+            .mem-btn-ghost{background:transparent;color:#8a8a8a;border:1px solid #ddd;}
+        </style>
     </section>
 
     <section id="hut">
@@ -1522,6 +1576,55 @@ python GPT_SoVITS/inference_cli.py \
         }
 
         initAudioPlayer();
+
+        // ─── 妈妈的记忆档案（本地保存 + 导出）───
+        const MEM_KEY = 'mom_memory_archive_v1';
+        const memFields = ['mem-name','mem-birth','mem-personality','mem-life','mem-dad','mem-call','mem-family','mem-memories','mem-now','mem-style'];
+        function memSave(){ try{ const d={}; memFields.forEach(id=>{const el=document.getElementById(id); if(el)d[id]=el.value;}); localStorage.setItem(MEM_KEY, JSON.stringify(d)); }catch(e){} }
+        function memLoad(){ try{ const d=JSON.parse(localStorage.getItem(MEM_KEY)||'{}'); memFields.forEach(id=>{const el=document.getElementById(id); if(el && d[id]!=null) el.value=d[id];}); }catch(e){} }
+        function memGet(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
+        function memHint(msg){ const el=document.getElementById('mem-hint'); if(el) el.textContent=msg; }
+        function exportMemory(){
+            const md = [
+                '# 妈妈记忆档案', '',
+                '## 1. 基本身份',
+                '名字/小名：'+(memGet('mem-name')||'（待填）'),
+                '出生年份/家乡：'+(memGet('mem-birth')||'（待填）'),
+                '性格：'+(memGet('mem-personality')||'（待填）'),
+                '职业/爱好/拿手菜：'+(memGet('mem-life')||'（待填）'), '',
+                '## 2. 家人',
+                '爸爸：'+(memGet('mem-dad')||'（待填）'),
+                '对龙龙的称呼：'+(memGet('mem-call')||'（待填）'),
+                '其他家人：'+(memGet('mem-family')||'（待填）'), '',
+                '## 3. 共同回忆',
+                (memGet('mem-memories')||'（待填）'), '',
+                '## 4. 龙龙的近况',
+                (memGet('mem-now')||'（待填）'), '',
+                '## 5. 说话风格',
+                (memGet('mem-style')||'（待填）'),
+            ].join('\n');
+            if(navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(md).then(()=>memHint('✅ 已复制到剪贴板，粘贴发给小苗即可')).catch(()=>memDownload(md));
+            } else { memDownload(md); }
+        }
+        function memDownload(md){
+            try{
+                const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = '妈妈记忆档案.md';
+                document.body.appendChild(a); a.click(); a.remove();
+                memHint('✅ 已下载「妈妈记忆档案.md」，发给小苗即可');
+            }catch(e){ memHint('导出失败，请长按复制文本框内容'); }
+        }
+        function clearMemory(){
+            if(!confirm('确定清空所有已填内容吗？')) return;
+            memFields.forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});
+            localStorage.removeItem(MEM_KEY);
+            memHint('已清空');
+        }
+        memFields.forEach(id=>{const el=document.getElementById(id); if(el) el.addEventListener('input', memSave);});
+        memLoad();
 
         console.log('🌱 Mom Suying · 永远怀念');
     </script>
