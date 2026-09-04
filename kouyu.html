@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的口头禅 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --rose: #e0b4a4;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            background: linear-gradient(180deg, #e8f0e0 0%, #f0ede5 40%, #f5efe8 70%, #f0ebe2 100%);
+            background-attachment: fixed;
+            color: var(--ink);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        /* nav */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 16px 36px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            background: rgba(248,245,240,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+        }
+        nav .logo {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            color: var(--sage-d);
+            letter-spacing: 3px;
+        }
+        nav .logo span { color: var(--gold); }
+        nav ul { display: flex; gap: 24px; list-style: none; }
+        nav ul a {
+            text-decoration: none; color: var(--ink);
+            font-size: 0.85rem; letter-spacing: 1px;
+            transition: color 0.25s;
+        }
+        nav ul a:hover { color: var(--sage-d); }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 130px 24px 40px;
+        }
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 600;
+            color: var(--sage-d);
+            letter-spacing: 6px;
+        }
+        .hero .emoji { font-size: 1.1em; }
+        .hero p {
+            color: var(--sage);
+            margin-top: 12px;
+            letter-spacing: 3px;
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        /* sections */
+        section {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 24px 50px;
+        }
+        .group-title {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--sage-d);
+            letter-spacing: 3px;
+            margin: 34px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--sage-l);
+        }
+        .group-title .emoji { font-size: 1em; }
+        .phrase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+        .phrase-card {
+            background: var(--card);
+            border: 1px solid var(--sage-l);
+            border-radius: 12px;
+            padding: 16px 18px;
+            box-shadow: var(--shadow);
+        }
+        .phrase-card .say {
+            font-family: var(--serif);
+            font-size: 1.12rem;
+            color: var(--sage-d);
+            line-height: 1.6;
+        }
+        .phrase-card .say::before { content: '「'; color: var(--gold); }
+        .phrase-card .say::after { content: '」'; color: var(--gold); }
+        .phrase-card .note {
+            font-size: 0.78rem;
+            color: var(--sage);
+            margin-top: 7px;
+            letter-spacing: 1px;
+        }
+        .phrase-card .note::before { content: '· '; color: var(--warm); }
+
+        /* clone guide */
+        .guide {
+            max-width: 760px;
+            margin: 10px auto 0;
+            text-align: left;
+            background: rgba(255,255,255,0.55);
+            border: 1px solid var(--sage-l);
+            border-radius: 12px;
+            padding: 16px 22px;
+        }
+        .guide summary {
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--sage-d);
+            letter-spacing: 1px;
+        }
+        .guide .guide-body {
+            margin-top: 12px;
+            color: #444;
+            font-size: 0.86rem;
+            line-height: 1.8;
+        }
+        .guide pre {
+            background: rgba(0,0,0,0.04);
+            padding: 10px 12px;
+            border-radius: 8px;
+            overflow: auto;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin: 4px 0 10px;
+        }
+        .guide code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .back-home {
+            text-align: center;
+            padding: 10px 0 70px;
+        }
+        .back-home a {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--sage);
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.88rem;
+        }
+        .back-home a:hover { opacity: 0.88; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Mom<span>·</span>Suying</div>
+        <ul>
+            <li><a href="/">← 返回首页</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1><span class="emoji">💬</span> 妈妈的口头禅</h1>
+        <p>那些她常挂在嘴边的话</p>
+    </div>
+
+    <section>
+        <div class="group-title"><span class="emoji">💞</span> 她怎么叫人</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">龙儿子、宝贝儿子</div><div class="note">对我的称呼</div></div>
+            <div class="phrase-card"><div class="say">他姨、他叔、他爸</div><div class="note">对身边人的称呼</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">🤍</span> 关心与安慰</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">妈没事，你放心吧</div><div class="note">安慰我</div></div>
+            <div class="phrase-card"><div class="say">你不要惦记</div><div class="note">怕我担心</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">😊</span> 开心</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">可高兴了</div><div class="note">开心的语气</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">😔</span> 发愁</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">发愁死了</div><div class="note">犯愁的时候</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">😱</span> 惊吓与惊慌</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">哎呀我的妈呀</div><div class="note">惊吓的语气</div></div>
+            <div class="phrase-card"><div class="say">可吓死我了</div><div class="note">惊慌</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">😠</span> 生气与泄愤</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">他娘的</div><div class="note">生气</div></div>
+            <div class="phrase-card"><div class="say">操他祖宗</div><div class="note">生气</div></div>
+            <div class="phrase-card"><div class="say">兔崽子</div><div class="note">泄愤</div></div>
+            <div class="phrase-card"><div class="say">个泡</div><div class="note">内蒙话骂人</div></div>
+            <div class="phrase-card"><div class="say">咋人操的</div><div class="note">河北话骂人</div></div>
+        </div>
+
+        <div class="group-title"><span class="emoji">🗣️</span> 方言与日常</div>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="say">干甚了</div><div class="note">内蒙方言 · 干什么</div></div>
+            <div class="phrase-card"><div class="say">咋接了</div><div class="note">内蒙方言 · 怎么了</div></div>
+            <div class="phrase-card"><div class="say">咱们吃点啥</div><div class="note">询问吃什么</div></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="group-title"><span class="emoji">📖</span> 克隆妈妈的声音</div>
+        <details class="guide">
+            <summary>如何克隆妈妈的声音（技术说明 · 点击展开）</summary>
+            <div class="guide-body">
+                <p style="margin:0 0 8px;"><b>环境</b>：Mac · conda 环境 <code>GPTSoVITS</code> · 模型仓库 <code>~/.openclaw/workspace/gpt-sovits</code>（以下 python 命令均在激活该环境后运行）</p>
+                <p style="margin:0 0 4px;"><b>第 1 步 · 准备数据</b></p>
+                <pre>cd ~/voice-clone/mom
+python split_audio.py      # 长录音按静音切成 3~10 秒短句 → training/wavs/
+python transcribe.py       # 自动转写 → training/mom.list（wav路径|mom|zh|文案）</pre>
+                <p style="margin:0 0 4px;"><b>第 2 步 · 提取特征</b></p>
+                <pre>python prep_features.py   # BERT 文本 + hubert 音频 + 语义 token</pre>
+                <p style="margin:0 0 4px;"><b>第 3 步 · 训练模型（最耗时，CPU 约 5~6 小时）</b></p>
+                <pre>python train_mom.py       # GPT 15 轮 → SoVITS 30 轮
+# 产出：GPT_weights_v2/mom-e15.ckpt + SoVITS_weights_v2/mom_e30_s300.pth</pre>
+                <p style="margin:0 0 4px;"><b>第 4 步 · 生成克隆语音</b></p>
+                <pre>cd ~/.openclaw/workspace/gpt-sovits
+export PYTHONPATH="$PWD:$PWD/GPT_SoVITS"
+echo "跟我二哥说，我现在在西双版纳玩呢。" > /tmp/ref_text.txt
+echo "龙龙，妈妈想你了，记得按时吃饭。" > /tmp/target_text.txt
+python GPT_SoVITS/inference_cli.py \
+  --gpt_model GPT_weights_v2/mom-e15.ckpt \
+  --sovits_model SoVITS_weights_v2/mom_e30_s300.pth \
+  --ref_audio ~/voice-clone/mom/training/wavs/m4a_0008_00.wav \
+  --ref_text /tmp/ref_text.txt --ref_language 中文 \
+  --target_text /tmp/target_text.txt --target_language 中文 \
+  --output_path /tmp/out
+# 生成音频在 /tmp/out/output.wav</pre>
+                <p style="margin:10px 0 0;color:#8a8a8a;font-size:0.8rem;">要点：① 参考文案必须与参考音频实际内容一致；② 停顿放在意群边界（称呼后、整句后），别拆开黏连词组；③ 数据越多音色越像。</p>
+            </div>
+        </details>
+    </section>
+
+    <div class="back-home">
+        <a href="/">← 返回首页</a>
+    </div>
+</body>
+</html>
