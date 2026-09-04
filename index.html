@@ -996,6 +996,7 @@
             <li><a href="#chicks">小鸡</a></li>
             <li><a href="#photos">照片</a></li>
             <li><a href="#letter">信笺</a></li>
+            <li><a href="#kouyu">口头禅</a></li>
             <li><a href="#hut">小屋</a></li>
             <li><a href="#guestbook">留言</a></li>
         </ul>
@@ -1092,6 +1093,44 @@
                 <div class="sign">—— 爱你的龙龙</div>
             </div>
         </div>
+    </section>
+
+    <section id="kouyu">
+        <h2 class="section-title reveal"><span class="emoji">💬</span> 妈妈的口头禅</h2>
+        <div class="section-divider reveal"></div>
+        <p class="section-sub reveal">— 那些她常挂在嘴边的话 —</p>
+        <div class="reveal" style="text-align:center;padding:16px 0 4px;">
+            <p style="color:var(--sage);font-size:0.9rem;">妈妈的声音，会一直在这里。</p>
+        </div>
+        <details class="reveal" style="max-width:720px;margin:10px auto 0;text-align:left;background:rgba(255,255,255,0.55);border:1px solid var(--sage-l);border-radius:12px;padding:14px 20px;">
+            <summary style="cursor:pointer;font-size:0.95rem;color:var(--sage-d);letter-spacing:1px;">📖 如何克隆妈妈的声音（技术说明 · 点击展开）</summary>
+            <div style="margin-top:12px;color:#444;font-size:0.86rem;line-height:1.8;">
+                <p style="margin:0 0 8px;"><b>环境</b>：Mac · conda 环境 <code>GPTSoVITS</code> · 模型仓库 <code>~/.openclaw/workspace/gpt-sovits</code>（以下 python 命令均在激活该环境后运行）</p>
+                <p style="margin:0 0 4px;"><b>第 1 步 · 准备数据</b></p>
+                <pre style="background:rgba(0,0,0,0.04);padding:10px 12px;border-radius:8px;overflow:auto;font-size:0.8rem;line-height:1.6;">cd ~/voice-clone/mom
+python split_audio.py      # 长录音按静音切成 3~10 秒短句 → training/wavs/
+python transcribe.py       # 自动转写 → training/mom.list（wav路径|mom|zh|文案）</pre>
+                <p style="margin:0 0 4px;"><b>第 2 步 · 提取特征</b></p>
+                <pre style="background:rgba(0,0,0,0.04);padding:10px 12px;border-radius:8px;overflow:auto;font-size:0.8rem;line-height:1.6;">python prep_features.py   # BERT 文本 + hubert 音频 + 语义 token</pre>
+                <p style="margin:0 0 4px;"><b>第 3 步 · 训练模型（最耗时，CPU 约 5~6 小时）</b></p>
+                <pre style="background:rgba(0,0,0,0.04);padding:10px 12px;border-radius:8px;overflow:auto;font-size:0.8rem;line-height:1.6;">python train_mom.py       # GPT 15 轮 → SoVITS 30 轮
+# 产出：GPT_weights_v2/mom-e15.ckpt + SoVITS_weights_v2/mom_e30_s300.pth</pre>
+                <p style="margin:0 0 4px;"><b>第 4 步 · 生成克隆语音</b></p>
+                <pre style="background:rgba(0,0,0,0.04);padding:10px 12px;border-radius:8px;overflow:auto;font-size:0.8rem;line-height:1.6;">cd ~/.openclaw/workspace/gpt-sovits
+export PYTHONPATH="$PWD:$PWD/GPT_SoVITS"
+echo "跟我二哥说，我现在在西双版纳玩呢。" > /tmp/ref_text.txt
+echo "龙龙，妈妈想你了，记得按时吃饭。" > /tmp/target_text.txt
+python GPT_SoVITS/inference_cli.py \
+  --gpt_model GPT_weights_v2/mom-e15.ckpt \
+  --sovits_model SoVITS_weights_v2/mom_e30_s300.pth \
+  --ref_audio ~/voice-clone/mom/training/wavs/m4a_0008_00.wav \
+  --ref_text /tmp/ref_text.txt --ref_language 中文 \
+  --target_text /tmp/target_text.txt --target_language 中文 \
+  --output_path /tmp/out
+# 生成音频在 /tmp/out/output.wav</pre>
+                <p style="margin:10px 0 0;color:#8a8a8a;font-size:0.8rem;">要点：① 参考文案必须与参考音频实际内容一致；② 停顿放在意群边界（称呼后、整句后），别拆开黏连词组；③ 数据越多音色越像。</p>
+            </div>
+        </details>
     </section>
 
     <section id="hut">
