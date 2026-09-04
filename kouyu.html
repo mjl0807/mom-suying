@@ -36,7 +36,6 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
 
-        /* nav */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 16px 36px;
@@ -61,10 +60,9 @@
         }
         nav ul a:hover { color: var(--sage-d); }
 
-        /* hero */
         .hero {
             text-align: center;
-            padding: 130px 24px 40px;
+            padding: 130px 24px 36px;
         }
         .hero h1 {
             font-family: var(--serif);
@@ -82,7 +80,6 @@
             font-size: 0.9rem;
         }
 
-        /* sections */
         section {
             max-width: 860px;
             margin: 0 auto;
@@ -98,12 +95,19 @@
             border-bottom: 1px solid var(--sage-l);
         }
         .group-title .emoji { font-size: 1em; }
+        .group-tip {
+            font-size: 0.78rem;
+            color: var(--warm);
+            letter-spacing: 1px;
+            margin: -8px 0 16px;
+        }
         .phrase-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 14px;
         }
         .phrase-card {
+            position: relative;
             background: var(--card);
             border: 1px solid var(--sage-l);
             border-radius: 12px;
@@ -115,6 +119,7 @@
             font-size: 1.12rem;
             color: var(--sage-d);
             line-height: 1.6;
+            padding-right: 34px;
         }
         .phrase-card .say::before { content: '「'; color: var(--gold); }
         .phrase-card .say::after { content: '」'; color: var(--gold); }
@@ -125,8 +130,22 @@
             letter-spacing: 1px;
         }
         .phrase-card .note::before { content: '· '; color: var(--warm); }
+        .play-btn {
+            position: absolute; top: 14px; right: 14px;
+            width: 32px; height: 32px;
+            border: 1px solid var(--sage-l);
+            background: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--sage-d);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .play-btn:hover { background: var(--sage); color: #fff; border-color: var(--sage); }
+        .play-btn.playing { background: var(--warm); color: #fff; border-color: var(--warm); }
 
-        /* clone guide */
         .guide {
             max-width: 760px;
             margin: 10px auto 0;
@@ -185,52 +204,117 @@
 
     <div class="hero">
         <h1><span class="emoji">💬</span> 妈妈的口头禅</h1>
-        <p>那些她常挂在嘴边的话</p>
+        <p>那些她常挂在嘴边的话 · 点 🔊 听妈妈亲口说</p>
     </div>
 
     <section>
         <div class="group-title"><span class="emoji">💞</span> 她怎么叫人</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">龙儿子、宝贝儿子</div><div class="note">对我的称呼</div></div>
-            <div class="phrase-card"><div class="say">他姨、他叔、他爸</div><div class="note">对身边人的称呼</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/chenghu_long.mp3">
+                <div class="say">龙儿子、宝贝儿子</div>
+                <div class="note">对我的称呼</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/chenghu_tayi.mp3">
+                <div class="say">他姨、他叔、他爸</div>
+                <div class="note">对身边人的称呼</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">🤍</span> 关心与安慰</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">妈没事，你放心吧</div><div class="note">安慰我</div></div>
-            <div class="phrase-card"><div class="say">你不要惦记</div><div class="note">怕我担心</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/mama_meishi.mp3">
+                <div class="say">妈没事，你放心吧</div>
+                <div class="note">安慰我</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/ni_bie_dianji.mp3">
+                <div class="say">你不要惦记</div>
+                <div class="note">怕我担心</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">😊</span> 开心</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">可高兴了</div><div class="note">开心的语气</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/ke_gaoxing.mp3">
+                <div class="say">可高兴了</div>
+                <div class="note">开心的语气</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">😔</span> 发愁</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">发愁死了</div><div class="note">犯愁的时候</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/fachou_sile.mp3">
+                <div class="say">发愁死了</div>
+                <div class="note">犯愁的时候</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">😱</span> 惊吓与惊慌</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">哎呀我的妈呀</div><div class="note">惊吓的语气</div></div>
-            <div class="phrase-card"><div class="say">可吓死我了</div><div class="note">惊慌</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/aiya_wode_maya.mp3">
+                <div class="say">哎呀我的妈呀</div>
+                <div class="note">惊吓的语气</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/ke_xiashi_wole.mp3">
+                <div class="say">可吓死我了</div>
+                <div class="note">惊慌</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">😠</span> 生气与泄愤</div>
+        <div class="group-tip">妈妈骂起人来，也是她的烟火气</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">他娘的</div><div class="note">生气</div></div>
-            <div class="phrase-card"><div class="say">操他祖宗</div><div class="note">生气</div></div>
-            <div class="phrase-card"><div class="say">兔崽子</div><div class="note">泄愤</div></div>
-            <div class="phrase-card"><div class="say">个泡</div><div class="note">内蒙话骂人</div></div>
-            <div class="phrase-card"><div class="say">咋人操的</div><div class="note">河北话骂人</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/ta_niang_de.mp3">
+                <div class="say">他娘的</div>
+                <div class="note">生气</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/cao_ta_zuzong.mp3">
+                <div class="say">操他祖宗</div>
+                <div class="note">生气</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/tu_zaizi.mp3">
+                <div class="say">兔崽子</div>
+                <div class="note">泄愤</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/ge_pao.mp3">
+                <div class="say">个泡</div>
+                <div class="note">内蒙话骂人</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/za_ren_cao_de.mp3">
+                <div class="say">咋人操的</div>
+                <div class="note">河北话骂人</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
 
         <div class="group-title"><span class="emoji">🗣️</span> 方言与日常</div>
         <div class="phrase-grid">
-            <div class="phrase-card"><div class="say">干甚了</div><div class="note">内蒙方言 · 干什么</div></div>
-            <div class="phrase-card"><div class="say">咋接了</div><div class="note">内蒙方言 · 怎么了</div></div>
-            <div class="phrase-card"><div class="say">咱们吃点啥</div><div class="note">询问吃什么</div></div>
+            <div class="phrase-card" data-audio="/audio/kouyu/gan_shen_le.mp3">
+                <div class="say">干甚了</div>
+                <div class="note">内蒙方言 · 干什么</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/za_jie_le.mp3">
+                <div class="say">咋接了</div>
+                <div class="note">内蒙方言 · 怎么了</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
+            <div class="phrase-card" data-audio="/audio/kouyu/zanmen_chi_dian_sha.mp3">
+                <div class="say">咱们吃点啥</div>
+                <div class="note">询问吃什么</div>
+                <button class="play-btn" onclick="playPhrase(this)" aria-label="播放">🔊</button>
+            </div>
         </div>
     </section>
 
@@ -270,5 +354,48 @@ python GPT_SoVITS/inference_cli.py \
     <div class="back-home">
         <a href="/">← 返回首页</a>
     </div>
+
+    <script>
+        let currentAudio = null;
+        let currentBtn = null;
+        function playPhrase(btn) {
+            const card = btn.closest('.phrase-card');
+            const src = card ? card.dataset.audio : null;
+            if (!src) return;
+            // 停止上一个
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            if (currentBtn && currentBtn !== btn) {
+                currentBtn.classList.remove('playing');
+                currentBtn.textContent = '🔊';
+            }
+            if (currentBtn === btn) {
+                // 再点一次 = 停止
+                currentBtn.classList.remove('playing');
+                currentBtn.textContent = '🔊';
+                currentBtn = null;
+                return;
+            }
+            currentAudio = new Audio(src);
+            currentBtn = btn;
+            btn.classList.add('playing');
+            btn.textContent = '⏸';
+            currentAudio.play();
+            currentAudio.onended = function () {
+                btn.classList.remove('playing');
+                btn.textContent = '🔊';
+                if (currentBtn === btn) currentBtn = null;
+                currentAudio = null;
+            };
+            currentAudio.onerror = function () {
+                btn.classList.remove('playing');
+                btn.textContent = '🔊';
+                if (currentBtn === btn) currentBtn = null;
+                currentAudio = null;
+            };
+        }
+    </script>
 </body>
 </html>
