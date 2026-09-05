@@ -332,6 +332,16 @@
         }
         .reader-panel .reader-close:hover { color: var(--ink); }
 
+        /* ─── 妈妈记忆档案 ─── */
+        .profile-panel { max-width: 760px; }
+        .profile-intro { font-size: 0.8rem; color: var(--sage); margin-top: -4px; margin-bottom: 4px; }
+        .profile-section { margin-top: 18px; }
+        .profile-section .ps-title { font-family: var(--serif); font-size: 0.95rem; color: var(--sage-d); letter-spacing: 1px; font-weight: 600; }
+        .profile-section .ps-hint { font-size: 0.72rem; color: #b8a98f; margin-bottom: 6px; }
+        .profile-field { margin-bottom: 12px; }
+        .profile-field label { display: block; font-size: 0.78rem; color: var(--sage); letter-spacing: 1px; margin-bottom: 3px; }
+        .profile-field textarea { min-height: 46px !important; }
+
         /* ─── responsive ─── */
         @media (max-width: 600px) {
             nav { padding: 12px 16px; }
@@ -358,6 +368,7 @@
                 📝 <span id="chapter-count">0</span> 个篇章
             </div>
             <div class="right-btns">
+                <button class="btn btn-secondary btn-sm" onclick="openProfile()">🧠 妈妈记忆档案</button>
                 <button class="btn btn-primary btn-sm" onclick="openEditor()">✚ 新篇章</button>
             </div>
         </div>
@@ -399,6 +410,21 @@
             <div class="reader-title" id="reader-title"></div>
             <div class="reader-meta" id="reader-meta"></div>
             <div class="reader-content" id="reader-content"></div>
+        </div>
+    </div>
+
+    <!-- Memory profile overlay -->
+    <div class="editor-overlay" id="profile-overlay">
+        <div class="editor-panel profile-panel">
+            <button class="close-x" onclick="closeProfile()">✕</button>
+            <div class="editor-title">🧠 妈妈记忆档案</div>
+            <p class="profile-intro">照着填空，能填多少填多少，越多她越像妈妈。填完点「导出」，把档案发给小苗，写进「妈妈」的大脑。</p>
+            <div id="profile-fields"></div>
+            <div class="editor-btns">
+                <button class="btn btn-secondary btn-sm" onclick="closeProfile()">关闭</button>
+                <button class="btn btn-primary btn-sm" onclick="exportProfile()">📤 导出</button>
+            </div>
+            <div class="editor-status" id="profile-status"></div>
         </div>
     </div>
 
@@ -639,6 +665,7 @@
             if (e.key === 'Escape') {
                 closeEditor();
                 closeReader();
+                closeProfile();
             }
         });
 
@@ -647,6 +674,10 @@
         });
         document.getElementById('reader-overlay').addEventListener('click', function(e) {
             if (e.target === this) closeReader();
+        });
+
+        document.getElementById('profile-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeProfile();
         });
 
         // ─── 预置默认篇章 ───
@@ -683,6 +714,98 @@
 
             saveChapters(chapters);
         }
+
+        // ─── 妈妈记忆档案 ───
+        const PROFILE_KEY = 'momsuying_memory_profile';
+        const PROFILE_SECTIONS = [
+            { title: '1️⃣ 基本身份', hint: '她是谁——最基础的信息', fields: [
+                { key: 'name', label: '名字 / 小名', ph: '她叫什么？小名是什么？', rows: 1 },
+                { key: 'birth', label: '出生年份 + 家乡', ph: '比如：1954年，河北三河', rows: 1 },
+                { key: 'personality', label: '性格', ph: '温柔？爽朗？急性子？', rows: 1 },
+                { key: 'job', label: '职业 · 爱好 · 拿手菜', ph: '她做什么工作？有什么爱好？最拿手哪道菜？', rows: 2 },
+            ]},
+            { title: '2️⃣ 家人', hint: '她最在意的人', fields: [
+                { key: 'father', label: '爸爸', ph: '爸爸叫什么？什么性格？', rows: 1 },
+                { key: 'longlong', label: '龙龙（你）', ph: '她平时怎么称呼你？有没有小名？', rows: 1 },
+                { key: 'others', label: '其他重要家人', ph: '她的父母、兄弟姐妹……', rows: 2 },
+            ]},
+            { title: '3️⃣ 共同回忆', hint: '最关键的灵魂——你们的独家记忆', fields: [
+                { key: 'places', label: '她带你去过的地方', ph: '比如：西双版纳……', rows: 2 },
+                { key: 'kouyu', label: '她的口头禅', ph: '她常挂在嘴边的话（可参考「妈妈的口头禅」板块）', rows: 2 },
+                { key: 'words', label: '她说过、让你记到现在的话', ph: '某句话、某次叮嘱……', rows: 2 },
+                { key: 'deeds', label: '她做过的、你忘不了的事', ph: '某件事、某个瞬间……', rows: 2 },
+            ]},
+            { title: '4️⃣ 你的近况', hint: '让她能「关心」你', fields: [
+                { key: 'now', label: '你现在的事', ph: '比如：在找工作、想用她照片做3D全息……', rows: 2 },
+            ]},
+            { title: '5️⃣ 说话风格', hint: '她怎么说话', fields: [
+                { key: 'style', label: '温柔还是爽朗 · 语气词', ph: '她爱用什么语气词？', rows: 1 },
+                { key: 'greeting', label: '怎么打招呼、怎么叮嘱', ph: '她怎么跟你打招呼、怎么叮嘱你……', rows: 2 },
+            ]},
+        ];
+
+        let profile = loadProfile();
+        function loadProfile() {
+            try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; } catch(e) { return {}; }
+        }
+        function openProfile() {
+            const overlay = document.getElementById('profile-overlay');
+            const container = document.getElementById('profile-fields');
+            if (!container.dataset.rendered) {
+                container.innerHTML = PROFILE_SECTIONS.map(sec => `
+                    <div class="profile-section">
+                        <div class="ps-title">${sec.title}</div>
+                        <div class="ps-hint">${sec.hint}</div>
+                        ${sec.fields.map(f => `
+                            <div class="profile-field">
+                                <label>${f.label}</label>
+                                <textarea data-key="${f.key}" rows="${f.rows}" placeholder="${f.ph}">${esc(profile[f.key] || '')}</textarea>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+                container.dataset.rendered = '1';
+                container.querySelectorAll('textarea').forEach(ta => {
+                    ta.addEventListener('input', function() {
+                        profile[this.dataset.key] = this.value;
+                        localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+                        document.getElementById('profile-status').textContent = '✓ 已自动保存 ' + new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+                    });
+                });
+            } else {
+                container.querySelectorAll('textarea').forEach(ta => { ta.value = profile[ta.dataset.key] || ''; });
+            }
+            overlay.classList.add('active');
+        }
+        function closeProfile() {
+            document.getElementById('profile-overlay').classList.remove('active');
+        }
+        function exportProfile() {
+            const lines = ['# 妈妈记忆档案', ''];
+            PROFILE_SECTIONS.forEach(sec => {
+                lines.push('## ' + sec.title, '');
+                sec.fields.forEach(f => {
+                    const v = (profile[f.key] || '').trim();
+                    lines.push('- **' + f.label + '**：' + (v || '（待填）'));
+                });
+                lines.push('');
+            });
+            const md = lines.join(String.fromCharCode(10));
+            const blob = new Blob([md], { type: 'text/markdown' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = '妈妈记忆档案.md';
+            a.click();
+            const status = document.getElementById('profile-status');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(md).then(() => {
+                    status.textContent = '✅ 已导出下载 + 复制到剪贴板';
+                }).catch(() => { status.textContent = '✅ 已导出下载'; });
+            } else {
+                status.textContent = '✅ 已导出下载';
+            }
+        }
+
 
         // 初始化
         ensureDefaultChapters();
