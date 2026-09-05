@@ -115,24 +115,38 @@
         .strip::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
 
         .card {
+            position: relative;
             flex: 0 0 auto; scroll-snap-align: start;
             min-width: 150px; max-width: 210px;
             background: #fff; border: 1px solid rgba(138,154,122,0.18);
             border-radius: 12px; padding: 14px 16px;
-            text-decoration: none; color: #444;
             transition: transform .2s, box-shadow .2s, border-color .2s;
             display: flex; flex-direction: column; gap: 4px;
         }
         .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); border-color: var(--sage); }
+        .card .card-link {
+            position: absolute; inset: 0; z-index: 1; border-radius: 12px;
+        }
         .card .t { font-family: var(--serif); font-size: 0.92rem; color: var(--ink); line-height: 1.5; }
         .card .s { font-size: 0.75rem; color: var(--sage); }
         .card .y { font-size: 0.72rem; color: var(--gold); letter-spacing: 1px; }
         .card .go { font-size: 0.7rem; color: #c5b394; margin-top: 2px; }
 
+        /* heart favorite */
+        .card.film { padding-top: 30px; }
+        .heart {
+            position: absolute; top: 8px; right: 8px; z-index: 3;
+            background: none; border: none; cursor: pointer;
+            font-size: 1.15rem; line-height: 1; padding: 2px 4px;
+            color: #d8c9b4; transition: transform .15s, color .15s;
+        }
+        .heart:hover { transform: scale(1.25); }
+        .heart.on { color: var(--rose); }
+
         /* year cards for gala & news */
         .yr-card {
             flex: 0 0 auto; scroll-snap-align: start;
-            width: 240px;
+            width: 260px;
             background: #fff; border: 1px solid rgba(138,154,122,0.18);
             border-radius: 12px; padding: 14px 16px;
         }
@@ -155,7 +169,7 @@
             nav { padding: 12px 16px; }
             .era { padding: 20px 16px 16px; }
             .card { min-width: 132px; }
-            .yr-card { width: 220px; }
+            .yr-card { width: 230px; }
         }
     </style>
 </head>
@@ -189,7 +203,7 @@
             film:   t => 'https://search.bilibili.com/all?keyword=' + enc(t),
             song:   t => 'https://y.qq.com/n/ryqq/search?w=' + enc(t),
             mag:    t => 'https://www.baidu.com/s?wd=' + enc(t),
-            gala:   y => 'https://search.bilibili.com/all?keyword=' + enc(y + '年春晚'),
+            gala:   (y,t) => 'https://search.bilibili.com/all?keyword=' + enc(y + '年春晚 ' + t),
             news:   (y,t) => 'https://www.baidu.com/s?wd=' + enc(y + '年 ' + t)
         };
 
@@ -199,7 +213,13 @@
                 film: ['还珠格格','宰相刘罗锅','我爱我家','雍正王朝','水浒传','新白娘子传奇','泰坦尼克号','甲方乙方'],
                 song: [['渴望','毛阿敏'],['好汉歌','刘欢'],['心太软','任贤齐'],['爱如潮水','张信哲'],['红豆','王菲'],['征服','那英'],['吻别','张学友']],
                 mag: ['读者','知音','故事会','青年文摘','大众电影'],
-                gala: [[1995,'《如此包装》· 赵丽蓉 巩汉林'],[1996,'《打工奇遇》· 赵丽蓉 巩汉林'],[1997,'《春天的故事》· 董文华'],[1998,'《相约九八》· 王菲 那英'],[1999,'《常回家看看》· 陈红']],
+                gala: [
+                    [1995,['《风中有朵雨做的云》孟庭苇','《忘情水》刘德华','《如此包装》赵丽蓉 巩汉林']],
+                    [1996,['《打工奇遇》赵丽蓉 巩汉林','《机器人趣话》郭达 蔡明','《过河》潘长江']],
+                    [1997,['《春天的故事》董文华','《公元1997》孙国庆 彭羚','《柳暗花明》魏积安 高秀敏']],
+                    [1998,['《相约九八》王菲 那英','《健康歌》范晓萱','《好汉歌》刘欢','《大中国》刘德华 张信哲 毛宁']],
+                    [1999,['《常回家看看》陈红','《昨天今天明天》赵本山 宋丹丹 崔永元','《老将出马》赵丽蓉']]
+                ],
                 news: [[1995,['国家实行每周双休日']],[1996,['京九铁路全线通车']],[1997,['香港回归祖国']],[1998,['特大洪水·全民抗洪']],[1999,['澳门回归','国庆50周年大阅兵']]]
             },
             {
@@ -207,7 +227,13 @@
                 film: ['大宅门','康熙王朝','激情燃烧的岁月','流星花园','金粉世家','蓝色生死恋','英雄','无间道','天下无贼'],
                 song: [['2002年的第一场雪','刀郎'],['东风破','周杰伦'],['七里香','周杰伦'],['Super Star','S.H.E'],['遇见','孙燕姿'],['流星雨','F4'],['白桦林','朴树']],
                 mag: ['读者','意林','看电影'],
-                gala: [[2000,'《钟点工》· 赵本山 宋丹丹'],[2001,'《卖拐》· 赵本山 范伟'],[2002,'《卖车》· 赵本山 范伟'],[2003,'《心病》· 赵本山 高秀敏'],[2004,'《送水工》· 赵本山 范伟']],
+                gala: [
+                    [2000,['《钟点工》赵本山 宋丹丹','《旧曲新歌》冯巩','《今生永相伴》谢霆锋']],
+                    [2001,['《卖拐》赵本山 范伟','《家有老爸》黄宏 林永健','《踩脚》姜昆']],
+                    [2002,['《卖车》赵本山 范伟','《大家学英语》李阳']],
+                    [2003,['《让爱住我家》赵明一家','《心病》赵本山 高秀敏 范伟']],
+                    [2004,['《送水工》赵本山 范伟','《龙拳》周杰伦']]
+                ],
                 news: [[2000,['西部大开发启动','悉尼奥运中国夺28金']],[2001,['加入世贸组织','北京申奥成功']],[2002,['国足首次打进世界杯']],[2003,['非典疫情','神舟五号载人飞天']],[2004,['雅典奥运·刘翔110米栏夺金']]]
             },
             {
@@ -215,7 +241,13 @@
                 film: ['亮剑','士兵突击','潜伏','武林外传','奋斗','闯关东','蜗居','疯狂的石头','非诚勿扰','越狱'],
                 song: [['月亮之上','凤凰传奇'],['最炫民族风','凤凰传奇'],['青花瓷','周杰伦'],['千里之外','周杰伦'],['爱情转移','陈奕迅'],['突然好想你','五月天'],['老鼠爱大米','杨臣刚'],['两只蝴蝶','庞龙']],
                 mag: ['读者','青年文摘','南方人物周刊'],
-                gala: [[2005,'《千手观音》· 舞蹈'],[2006,'《吉祥三宝》· 布仁巴雅尔一家'],[2007,'《策划》· 赵本山 宋丹丹'],[2008,'《青花瓷》· 周杰伦'],[2009,'《不差钱》· 赵本山 小沈阳']],
+                gala: [
+                    [2005,['《千手观音》邰丽华 等','《装修》黄宏 巩汉林 林永健']],
+                    [2006,['《吉祥三宝》布仁巴雅尔 一家','《说事儿》赵本山 宋丹丹']],
+                    [2007,['《策划》赵本山 宋丹丹','诗朗诵《心里话》']],
+                    [2008,['诗朗诵《温暖2008》','开场歌舞《飞向春天》']],
+                    [2009,['《不差钱》赵本山 小沈阳','《吉祥三保》','《水下除夕夜》']]
+                ],
                 news: [[2005,['神舟六号飞天','超级女声现象']],[2006,['青藏铁路全线通车']],[2007,['嫦娥一号发射','中共十七大']],[2008,['汶川大地震','北京奥运会']],[2009,['国庆60周年阅兵']]]
             },
             {
@@ -223,7 +255,13 @@
                 film: ['甄嬛传','步步惊心','北京爱情故事','咱们结婚吧','父母爱情','让子弹飞','泰囧','致青春'],
                 song: [['小苹果','筷子兄弟'],['存在','汪峰'],['泡沫','邓紫棋'],['平凡之路','朴树'],['模特','李荣浩']],
                 mag: ['三联生活周刊','新周刊'],
-                gala: [[2010,'《传奇》· 王菲'],[2011,'《春天里》· 旭日阳刚'],[2012,'《因为爱情》· 王菲 陈奕迅'],[2013,'《春暖花开》· 那英'],[2014,'《时间都去哪儿了》· 王铮亮']],
+                gala: [
+                    [2010,['《传奇》王菲','小虎队《再聚首》','刘谦魔术《千变万化》','《捐助》赵本山']],
+                    [2011,['《春天里》旭日阳刚','《兰亭序》周杰伦 林志玲']],
+                    [2012,['《龙的传人》王力宏','《新贵妃醉酒》李玉刚','刘谦魔术']],
+                    [2013,['《春暖花开》那英']],
+                    [2014,['《时间都去哪儿了》王铮亮','《扶不扶》沈腾 马丽']]
+                ],
                 news: [[2010,['上海世博会','广州亚运会']],[2011,['京沪高铁通车','神舟八号对接']],[2012,['中共十八大','莫言获诺贝尔文学奖']],[2013,['嫦娥三号落月']],[2014,['APEC北京峰会']]]
             },
             {
@@ -231,7 +269,13 @@
                 film: ['琅琊榜','欢乐颂','人民的名义','都挺好','知否知否应是绿肥红瘦','大江大河','战狼2','流浪地球','我不是药神','哪吒之魔童降世'],
                 song: [['成都','赵雷'],['消愁','毛不易'],['告白气球','周杰伦'],['光年之外','邓紫棋'],['学猫叫','小潘潘 小峰峰']],
                 mag: ['读者','意林'],
-                gala: [[2015,'《回家的路》· 刘德华'],[2016,'《华阴老腔一声喊》· 谭维维'],[2017,'《满城烟花》· 那英 毛阿敏'],[2018,'《岁月》· 王菲 那英'],[2019,'《告白气球》· 周杰伦']],
+                gala: [
+                    [2015,['《回家的路》刘德华','《女神和女汉子》贾玲 瞿颖']],
+                    [2016,['《华阴老腔一声喊》谭维维']],
+                    [2017,['《满城烟花》那英 毛阿敏']],
+                    [2018,['《岁月》王菲 那英','《真假老师》贾玲']],
+                    [2019,['《告白气球》周杰伦']]
+                ],
                 news: [[2015,['抗战胜利70周年阅兵']],[2016,['G20杭州峰会']],[2017,['中共十九大']],[2018,['港珠澳大桥通车']],[2019,['国庆70周年阅兵','嫦娥四号月背着陆']]]
             },
             {
@@ -239,18 +283,49 @@
                 film: ['山海情','觉醒年代','人世间','狂飙','漫长的季节','繁花','长津湖','你好，李焕英','流浪地球2'],
                 song: [['孤勇者','陈奕迅'],['如愿','王菲'],['这世界那么多人','莫文蔚'],['万疆','李玉刚'],['乌梅子酱','李荣浩']],
                 mag: ['读者','三联生活周刊'],
-                gala: [[2020,null],[2021,'《灯火里的中国》· 张也 周深'],[2022,'《如愿》· 王菲'],[2023,'《坑》· 沈腾 马丽'],[2024,'刘谦魔术·尼格买提「穿帮」名场面'],[2025,null]],
+                gala: [
+                    [2020,null],
+                    [2021,['《灯火里的中国》张也 周深','《年三十的歌》岳云鹏 孙越']],
+                    [2022,['《如愿》王菲']],
+                    [2023,['《坑》沈腾 马丽']],
+                    [2024,['刘谦魔术·尼格买提「穿帮」','《上春山》白敬亭 魏大勋 魏晨']],
+                    [2025,null]
+                ],
                 news: [[2020,['新冠疫情·全国抗疫']],[2021,['建党100周年','神舟十二号']],[2022,['北京冬奥会','中共二十大']],[2023,['C919商业首飞']],[2024,['嫦娥六号月背采样']],[2025,null]]
             }
         ];
 
-        function card(t, s, href, extra) {
-            return `<a class="card" href="${href}" target="_blank" rel="noopener">
+        // ── 收藏（爱心）持久化 ──
+        const FAV_KEY = 'mom_fav_films_v1';
+        let favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
+        function toggleFav(btn) {
+            const key = btn.dataset.key;
+            if (favs.has(key)) { favs.delete(key); } else { favs.add(key); }
+            localStorage.setItem(FAV_KEY, JSON.stringify([...favs]));
+            paintHeart(btn);
+        }
+        function paintHeart(btn) {
+            const on = favs.has(btn.dataset.key);
+            btn.classList.toggle('on', on);
+            btn.textContent = on ? '♥' : '♡';
+        }
+
+        function filmCard(t) {
+            return `<div class="card film">
+                <a class="card-link" href="${L.film(t)}" target="_blank" rel="noopener"></a>
+                <button class="heart" data-key="${t}" onclick="toggleFav(this)" aria-label="收藏">♡</button>
+                <span class="t">${t}</span>
+                <span class="go">去看看 →</span>
+            </div>`;
+        }
+
+        function card(t, s, href) {
+            return `<div class="card">
+                <a class="card-link" href="${href}" target="_blank" rel="noopener"></a>
                 <span class="t">${t}</span>
                 ${s ? `<span class="s">${s}</span>` : ''}
-                ${extra ? `<span class="y">${extra}</span>` : ''}
                 <span class="go">去看看 →</span>
-            </a>`;
+            </div>`;
         }
 
         function yrCard(year, items, hrefBuilder) {
@@ -282,8 +357,8 @@
                     </div>
 
                     <div class="cat">
-                        <h3>📺 影视</h3>
-                        <div class="strip">${e.film.map(f => card(f, null, L.film(f))).join('')}</div>
+                        <h3>📺 影视<span class="note">点 ♥ 收藏你和妈妈都喜欢的</span></h3>
+                        <div class="strip">${e.film.map(f => filmCard(f)).join('')}</div>
                     </div>
 
                     <div class="cat">
@@ -298,7 +373,7 @@
 
                     <div class="cat">
                         <h3>🎊 春晚节目单</h3>
-                        <div class="strip">${e.gala.map(([y, t]) => yrCard(y, t ? [t] : null, (yy, tt) => L.gala(yy))).join('')}</div>
+                        <div class="strip">${e.gala.map(([y, items]) => yrCard(y, items, L.gala)).join('')}</div>
                     </div>
 
                     <div class="cat">
@@ -307,6 +382,9 @@
                     </div>
                 </section>
             `).join('');
+
+            // 恢复收藏状态
+            document.querySelectorAll('.heart').forEach(paintHeart);
         }
 
         // 高亮当前 era 导航
