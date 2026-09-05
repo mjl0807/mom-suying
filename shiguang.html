@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>那些年 · 1995—2025 · 素英</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --rose: #e0b4a4;
+            --card: rgba(255,255,255,0.72);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.8;
+        }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        /* ─── top bar ─── */
+        nav {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; gap: 18px;
+            padding: 14px 28px;
+            background: rgba(248,245,240,0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138,154,122,0.15);
+        }
+        nav .logo { font-family: var(--serif); letter-spacing: 1px; color: var(--ink); }
+        nav .logo span { color: var(--gold); }
+        nav a.back {
+            color: var(--sage-d); text-decoration: none; font-size: 0.85rem;
+            letter-spacing: 1px; display: inline-flex; align-items: center; gap: 4px;
+        }
+        nav a.back:hover { color: var(--gold); }
+
+        /* ─── hero ─── */
+        .hero { text-align: center; padding: 60px 20px 30px; }
+        .hero .eyebrow { color: var(--sage); letter-spacing: 4px; font-size: 0.78rem; }
+        .hero h1 {
+            font-family: var(--serif); font-weight: 600;
+            font-size: clamp(1.8rem, 5vw, 3rem); color: var(--sage-d);
+            letter-spacing: 6px; margin: 12px 0 8px;
+        }
+        .hero p { color: var(--sage); font-size: 0.9rem; }
+        .hero .divider { width: 46px; height: 1.5px; background: var(--gold); margin: 22px auto 0; }
+
+        /* ─── era quick nav ─── */
+        .era-nav {
+            position: sticky; top: 58px; z-index: 40;
+            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+            padding: 12px 16px;
+            background: rgba(248,245,240,0.92);
+            backdrop-filter: blur(10px);
+        }
+        .era-nav a {
+            text-decoration: none; color: var(--sage-d);
+            background: var(--card); border: 1px solid rgba(138,154,122,0.25);
+            padding: 6px 16px; border-radius: 999px; font-size: 0.8rem;
+            letter-spacing: 1px; transition: all .2s;
+        }
+        .era-nav a:hover, .era-nav a.on { background: var(--sage); color: #fff; border-color: var(--sage); }
+
+        /* ─── era sections ─── */
+        main { max-width: 1100px; margin: 0 auto; padding: 10px 20px 80px; }
+        .era {
+            background: var(--card); backdrop-filter: blur(6px);
+            border: 1px solid rgba(138,154,122,0.15);
+            border-radius: 16px; padding: 26px 24px 22px;
+            margin: 26px 0; box-shadow: var(--shadow);
+            scroll-margin-top: 130px;
+        }
+        .era-head {
+            display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+            margin-bottom: 6px; padding-bottom: 12px;
+            border-bottom: 1px solid var(--sage-l);
+        }
+        .era-year {
+            font-family: var(--serif); font-size: 1.4rem; color: var(--sage-d);
+            letter-spacing: 2px; font-weight: 600;
+        }
+        .era-tag { font-size: 0.78rem; color: var(--warm); letter-spacing: 2px; }
+
+        .cat { margin-top: 18px; }
+        .cat h3 {
+            font-family: var(--serif); font-size: 0.95rem; color: var(--sage-d);
+            letter-spacing: 2px; margin-bottom: 4px; font-weight: 600;
+        }
+        .cat .note { font-size: 0.72rem; color: #b8a98f; margin-left: 6px; letter-spacing: 0; font-weight: 400; }
+
+        /* horizontal scroll strip */
+        .strip {
+            display: flex; gap: 12px; overflow-x: auto;
+            padding: 8px 2px 16px; scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+        }
+        .strip::-webkit-scrollbar { height: 6px; }
+        .strip::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        .card {
+            flex: 0 0 auto; scroll-snap-align: start;
+            min-width: 150px; max-width: 210px;
+            background: #fff; border: 1px solid rgba(138,154,122,0.18);
+            border-radius: 12px; padding: 14px 16px;
+            text-decoration: none; color: #444;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); border-color: var(--sage); }
+        .card .t { font-family: var(--serif); font-size: 0.92rem; color: var(--ink); line-height: 1.5; }
+        .card .s { font-size: 0.75rem; color: var(--sage); }
+        .card .y { font-size: 0.72rem; color: var(--gold); letter-spacing: 1px; }
+        .card .go { font-size: 0.7rem; color: #c5b394; margin-top: 2px; }
+
+        /* year cards for gala & news */
+        .yr-card {
+            flex: 0 0 auto; scroll-snap-align: start;
+            width: 240px;
+            background: #fff; border: 1px solid rgba(138,154,122,0.18);
+            border-radius: 12px; padding: 14px 16px;
+        }
+        .yr-card .yr {
+            font-family: var(--serif); font-weight: 600; color: var(--gold);
+            font-size: 1.05rem; letter-spacing: 1px; margin-bottom: 6px;
+        }
+        .yr-card .item { font-size: 0.8rem; color: #555; line-height: 1.7; }
+        .yr-card .item a { color: #555; text-decoration: none; border-bottom: 1px dashed var(--sage-l); }
+        .yr-card .item a:hover { color: var(--sage-d); border-bottom-color: var(--sage-d); }
+        .yr-card .pending { color: #c5b394; font-size: 0.78rem; font-style: italic; }
+
+        footer {
+            text-align: center; padding: 30px 20px 50px; color: var(--sage);
+            font-size: 0.8rem;
+        }
+        footer a { color: var(--sage-d); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            nav { padding: 12px 16px; }
+            .era { padding: 20px 16px 16px; }
+            .card { min-width: 132px; }
+            .yr-card { width: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="back" href="/">← 回到首页</a>
+        <div class="logo">Mom<span>·</span>Suying</div>
+    </nav>
+
+    <header class="hero">
+        <div class="eyebrow">1995 — 2025</div>
+        <h1>那 些 年</h1>
+        <p>一起看过的电视，听过的歌，翻过的杂志，还有那些年的春晚与大事</p>
+        <div class="divider"></div>
+    </header>
+
+    <div class="era-nav" id="era-nav"></div>
+
+    <main id="content"></main>
+
+    <footer>
+        <a href="/">← 回到「素英」首页</a>
+        <p style="margin-top:6px;">每一段时光，都是妈妈陪我走过的路。</p>
+    </footer>
+
+    <script>
+        const enc = encodeURIComponent;
+
+        // 链接：影视→B站，歌曲→QQ音乐，杂志→百度，春晚→B站，大事→百度
+        const L = {
+            film:   t => 'https://search.bilibili.com/all?keyword=' + enc(t),
+            song:   t => 'https://y.qq.com/n/ryqq/search?w=' + enc(t),
+            mag:    t => 'https://www.baidu.com/s?wd=' + enc(t),
+            gala:   y => 'https://search.bilibili.com/all?keyword=' + enc(y + '年春晚'),
+            news:   (y,t) => 'https://www.baidu.com/s?wd=' + enc(y + '年 ' + t)
+        };
+
+        const ERAS = [
+            {
+                range: '1995 — 1999', tag: '千禧年前',
+                film: ['还珠格格','宰相刘罗锅','我爱我家','雍正王朝','水浒传','新白娘子传奇','泰坦尼克号','甲方乙方'],
+                song: [['渴望','毛阿敏'],['好汉歌','刘欢'],['心太软','任贤齐'],['爱如潮水','张信哲'],['红豆','王菲'],['征服','那英'],['吻别','张学友']],
+                mag: ['读者','知音','故事会','青年文摘','大众电影'],
+                gala: [[1995,'《如此包装》· 赵丽蓉 巩汉林'],[1996,'《打工奇遇》· 赵丽蓉 巩汉林'],[1997,'《春天的故事》· 董文华'],[1998,'《相约九八》· 王菲 那英'],[1999,'《常回家看看》· 陈红']],
+                news: [[1995,['国家实行每周双休日']],[1996,['京九铁路全线通车']],[1997,['香港回归祖国']],[1998,['特大洪水·全民抗洪']],[1999,['澳门回归','国庆50周年大阅兵']]]
+            },
+            {
+                range: '2000 — 2004', tag: '世纪初',
+                film: ['大宅门','康熙王朝','激情燃烧的岁月','流星花园','金粉世家','蓝色生死恋','英雄','无间道','天下无贼'],
+                song: [['2002年的第一场雪','刀郎'],['东风破','周杰伦'],['七里香','周杰伦'],['Super Star','S.H.E'],['遇见','孙燕姿'],['流星雨','F4'],['白桦林','朴树']],
+                mag: ['读者','意林','看电影'],
+                gala: [[2000,'《钟点工》· 赵本山 宋丹丹'],[2001,'《卖拐》· 赵本山 范伟'],[2002,'《卖车》· 赵本山 范伟'],[2003,'《心病》· 赵本山 高秀敏'],[2004,'《送水工》· 赵本山 范伟']],
+                news: [[2000,['西部大开发启动','悉尼奥运中国夺28金']],[2001,['加入世贸组织','北京申奥成功']],[2002,['国足首次打进世界杯']],[2003,['非典疫情','神舟五号载人飞天']],[2004,['雅典奥运·刘翔110米栏夺金']]]
+            },
+            {
+                range: '2005 — 2009', tag: '',
+                film: ['亮剑','士兵突击','潜伏','武林外传','奋斗','闯关东','蜗居','疯狂的石头','非诚勿扰','越狱'],
+                song: [['月亮之上','凤凰传奇'],['最炫民族风','凤凰传奇'],['青花瓷','周杰伦'],['千里之外','周杰伦'],['爱情转移','陈奕迅'],['突然好想你','五月天'],['老鼠爱大米','杨臣刚'],['两只蝴蝶','庞龙']],
+                mag: ['读者','青年文摘','南方人物周刊'],
+                gala: [[2005,'《千手观音》· 舞蹈'],[2006,'《吉祥三宝》· 布仁巴雅尔一家'],[2007,'《策划》· 赵本山 宋丹丹'],[2008,'《青花瓷》· 周杰伦'],[2009,'《不差钱》· 赵本山 小沈阳']],
+                news: [[2005,['神舟六号飞天','超级女声现象']],[2006,['青藏铁路全线通车']],[2007,['嫦娥一号发射','中共十七大']],[2008,['汶川大地震','北京奥运会']],[2009,['国庆60周年阅兵']]]
+            },
+            {
+                range: '2010 — 2014', tag: '',
+                film: ['甄嬛传','步步惊心','北京爱情故事','咱们结婚吧','父母爱情','让子弹飞','泰囧','致青春'],
+                song: [['小苹果','筷子兄弟'],['存在','汪峰'],['泡沫','邓紫棋'],['平凡之路','朴树'],['模特','李荣浩']],
+                mag: ['三联生活周刊','新周刊'],
+                gala: [[2010,'《传奇》· 王菲'],[2011,'《春天里》· 旭日阳刚'],[2012,'《因为爱情》· 王菲 陈奕迅'],[2013,'《春暖花开》· 那英'],[2014,'《时间都去哪儿了》· 王铮亮']],
+                news: [[2010,['上海世博会','广州亚运会']],[2011,['京沪高铁通车','神舟八号对接']],[2012,['中共十八大','莫言获诺贝尔文学奖']],[2013,['嫦娥三号落月']],[2014,['APEC北京峰会']]]
+            },
+            {
+                range: '2015 — 2019', tag: '',
+                film: ['琅琊榜','欢乐颂','人民的名义','都挺好','知否知否应是绿肥红瘦','大江大河','战狼2','流浪地球','我不是药神','哪吒之魔童降世'],
+                song: [['成都','赵雷'],['消愁','毛不易'],['告白气球','周杰伦'],['光年之外','邓紫棋'],['学猫叫','小潘潘 小峰峰']],
+                mag: ['读者','意林'],
+                gala: [[2015,'《回家的路》· 刘德华'],[2016,'《华阴老腔一声喊》· 谭维维'],[2017,'《满城烟花》· 那英 毛阿敏'],[2018,'《岁月》· 王菲 那英'],[2019,'《告白气球》· 周杰伦']],
+                news: [[2015,['抗战胜利70周年阅兵']],[2016,['G20杭州峰会']],[2017,['中共十九大']],[2018,['港珠澳大桥通车']],[2019,['国庆70周年阅兵','嫦娥四号月背着陆']]]
+            },
+            {
+                range: '2020 — 2025', tag: '这些年',
+                film: ['山海情','觉醒年代','人世间','狂飙','漫长的季节','繁花','长津湖','你好，李焕英','流浪地球2'],
+                song: [['孤勇者','陈奕迅'],['如愿','王菲'],['这世界那么多人','莫文蔚'],['万疆','李玉刚'],['乌梅子酱','李荣浩']],
+                mag: ['读者','三联生活周刊'],
+                gala: [[2020,null],[2021,'《灯火里的中国》· 张也 周深'],[2022,'《如愿》· 王菲'],[2023,'《坑》· 沈腾 马丽'],[2024,'刘谦魔术·尼格买提「穿帮」名场面'],[2025,null]],
+                news: [[2020,['新冠疫情·全国抗疫']],[2021,['建党100周年','神舟十二号']],[2022,['北京冬奥会','中共二十大']],[2023,['C919商业首飞']],[2024,['嫦娥六号月背采样']],[2025,null]]
+            }
+        ];
+
+        function card(t, s, href, extra) {
+            return `<a class="card" href="${href}" target="_blank" rel="noopener">
+                <span class="t">${t}</span>
+                ${s ? `<span class="s">${s}</span>` : ''}
+                ${extra ? `<span class="y">${extra}</span>` : ''}
+                <span class="go">去看看 →</span>
+            </a>`;
+        }
+
+        function yrCard(year, items, hrefBuilder) {
+            let body = '';
+            if (!items) {
+                body = `<span class="pending">（待补充）</span>`;
+            } else {
+                body = items.map(it =>
+                    `<div class="item"><a href="${hrefBuilder(year, it)}" target="_blank" rel="noopener">${it}</a></div>`
+                ).join('');
+            }
+            return `<div class="yr-card">
+                <div class="yr">${year}</div>
+                ${body}
+            </div>`;
+        }
+
+        function render() {
+            const nav = document.getElementById('era-nav');
+            const main = document.getElementById('content');
+            nav.innerHTML = ERAS.map((e, i) =>
+                `<a href="#era-${i}">${e.range.split(' — ')[0]}</a>`).join('');
+
+            main.innerHTML = ERAS.map((e, i) => `
+                <section class="era" id="era-${i}">
+                    <div class="era-head">
+                        <span class="era-year">${e.range}</span>
+                        ${e.tag ? `<span class="era-tag">${e.tag}</span>` : ''}
+                    </div>
+
+                    <div class="cat">
+                        <h3>📺 影视</h3>
+                        <div class="strip">${e.film.map(f => card(f, null, L.film(f))).join('')}</div>
+                    </div>
+
+                    <div class="cat">
+                        <h3>🎵 歌曲</h3>
+                        <div class="strip">${e.song.map(([t,s]) => card(t, s, L.song(t))).join('')}</div>
+                    </div>
+
+                    <div class="cat">
+                        <h3>📖 杂志</h3>
+                        <div class="strip">${e.mag.map(m => card(m, null, L.mag(m))).join('')}</div>
+                    </div>
+
+                    <div class="cat">
+                        <h3>🎊 春晚节目单</h3>
+                        <div class="strip">${e.gala.map(([y, t]) => yrCard(y, t ? [t] : null, (yy, tt) => L.gala(yy))).join('')}</div>
+                    </div>
+
+                    <div class="cat">
+                        <h3>📰 年度新闻</h3>
+                        <div class="strip">${e.news.map(([y, items]) => yrCard(y, items, L.news)).join('')}</div>
+                    </div>
+                </section>
+            `).join('');
+        }
+
+        // 高亮当前 era 导航
+        function highlightNav() {
+            const links = document.querySelectorAll('#era-nav a');
+            let cur = 0;
+            ERAS.forEach((e, i) => {
+                const el = document.getElementById('era-' + i);
+                if (el && el.getBoundingClientRect().top < 200) cur = i;
+            });
+            links.forEach((a, i) => a.classList.toggle('on', i === cur));
+        }
+
+        render();
+        window.addEventListener('scroll', highlightNav, { passive: true });
+        highlightNav();
+    </script>
+</body>
+</html>
