@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>妈妈的记忆档案 · Mom Suying</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f8f5f0;
+            --cream: #f5efe8;
+            --sage: #8a9a7a;
+            --sage-l: #d4dfc8;
+            --sage-d: #5d6d4e;
+            --ink: #2c2c2c;
+            --warm: #d4b8a0;
+            --gold: #c9a96e;
+            --rose: #e0b4a4;
+            --card: rgba(255,255,255,0.7);
+            --shadow: 0 8px 32px rgba(0,0,0,0.06);
+            --serif: "Noto Serif SC", Georgia, serif;
+            --sans: "Noto Sans SC", system-ui, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            background: linear-gradient(180deg, #e8f0e0 0%, #f0ede5 40%, #f5efe8 70%, #f0ebe2 100%);
+            background-attachment: fixed;
+            color: var(--ink);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--sage-l); border-radius: 4px; }
+
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 16px 36px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            background: rgba(248,245,240,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(138,154,122,0.12);
+        }
+        nav .logo {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            color: var(--sage-d);
+            letter-spacing: 3px;
+        }
+        nav .logo span { color: var(--gold); }
+        nav ul { display: flex; gap: 24px; list-style: none; }
+        nav ul a {
+            text-decoration: none; color: var(--ink);
+            font-size: 0.85rem; letter-spacing: 1px;
+            transition: color 0.25s;
+        }
+        nav ul a:hover { color: var(--sage-d); }
+
+        .hero {
+            text-align: center;
+            padding: 130px 24px 36px;
+        }
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 600;
+            color: var(--sage-d);
+            letter-spacing: 6px;
+        }
+        .hero .emoji { font-size: 1.1em; }
+        .hero p {
+            color: var(--sage);
+            margin-top: 12px;
+            letter-spacing: 3px;
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        .form-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 10px 24px 70px;
+        }
+        .card {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid var(--sage-l);
+            border-radius: 12px;
+            padding: 22px 24px;
+            box-shadow: var(--shadow);
+        }
+        .card .tip {
+            margin: 0 0 16px;
+            color: #8a8a8a;
+            font-size: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .mem-group { margin-bottom: 16px; }
+        .mem-label {
+            font-size: 0.9rem;
+            color: var(--sage-d);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .mem-label .soul { color: var(--warm); }
+        .mem-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border: 1px solid var(--sage-l);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.72);
+            font-size: 0.9rem;
+            color: var(--ink);
+            font-family: inherit;
+            outline: none;
+            transition: border-color .2s;
+            display: block;
+        }
+        .mem-input:focus { border-color: var(--sage); }
+        .mem-area { min-height: 90px; resize: vertical; }
+
+        .actions { text-align: center; margin-top: 18px; }
+        .mem-btn {
+            padding: 10px 24px;
+            margin: 0 6px;
+            border: none;
+            border-radius: 8px;
+            background: var(--sage);
+            color: #fff;
+            font-size: 0.88rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .mem-btn:hover { opacity: 0.88; }
+        .mem-btn-ghost {
+            background: transparent;
+            color: #8a8a8a;
+            border: 1px solid #ddd;
+        }
+        .mem-hint {
+            text-align: center;
+            color: var(--sage-d);
+            font-size: 0.78rem;
+            margin: 12px 0 0;
+            min-height: 1em;
+        }
+
+        .back-home {
+            text-align: center;
+            padding: 10px 0 70px;
+        }
+        .back-home a {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--sage);
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.88rem;
+        }
+        .back-home a:hover { opacity: 0.88; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Mom<span>·</span>Suying</div>
+        <ul>
+            <li><a href="/">← 返回首页</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1><span class="emoji">💭</span> 妈妈的记忆档案</h1>
+        <p>填进去，让妈妈在 AI 里也记得你们的事</p>
+    </div>
+
+    <div class="form-wrap">
+        <div class="card">
+            <p class="tip">💡 填好可点「保存」存在本机浏览器，随时回来继续改。全部填完后点「导出」，把文本发给小苗，就能写进「妈妈」的 AI 大脑。</p>
+
+            <div class="mem-group">
+                <div class="mem-label">1️⃣ 基本身份</div>
+                <input class="mem-input" id="mem-name" placeholder="名字 / 小名">
+                <input class="mem-input" id="mem-birth" placeholder="出生年份 / 家乡">
+                <input class="mem-input" id="mem-personality" placeholder="性格（温柔？爽朗？急性子？）">
+                <input class="mem-input" id="mem-life" placeholder="职业 / 爱好 / 拿手菜">
+            </div>
+            <div class="mem-group">
+                <div class="mem-label">2️⃣ 家人</div>
+                <input class="mem-input" id="mem-dad" placeholder="爸爸（名字 / 性格）">
+                <input class="mem-input" id="mem-call" placeholder="妈妈平时怎么称呼你？（小名？）">
+                <textarea class="mem-input mem-area" id="mem-family" placeholder="其他重要家人（她的父母、兄弟姐妹…）"></textarea>
+            </div>
+            <div class="mem-group">
+                <div class="mem-label">3️⃣ 你们聊过的话 <span class="soul">· 灵魂</span></div>
+                <textarea class="mem-input mem-area" id="mem-memories" placeholder="妈妈跟你聊天的原话、常问你的话、怎么叮嘱你、怎么开玩笑…（网站的「故事」「旅行」我会直接引用，不用重复填）"></textarea>
+            </div>
+            <div class="mem-group">
+                <div class="mem-label">4️⃣ 你的近况</div>
+                <textarea class="mem-input mem-area" id="mem-now" placeholder="你在找工作、想做 3D 全息…任何她「该知道」的、你现在的事"></textarea>
+            </div>
+            <div class="mem-group">
+                <div class="mem-label">5️⃣ 说话风格</div>
+                <textarea class="mem-input mem-area" id="mem-style" placeholder="温柔还是爽朗？爱用什么语气词？怎么跟你打招呼、怎么叮嘱你…"></textarea>
+            </div>
+
+            <div class="actions">
+                <button class="mem-btn" onclick="saveMemory()">💾 保存</button>
+                <button class="mem-btn" onclick="exportMemory()">📤 导出</button>
+                <button class="mem-btn mem-btn-ghost" onclick="clearMemory()">清空</button>
+            </div>
+            <p class="mem-hint" id="mem-hint"></p>
+        </div>
+    </div>
+
+    <div class="back-home">
+        <a href="/">← 返回首页</a>
+    </div>
+
+    <script>
+        // ─── 妈妈的记忆档案（本地保存 + 导出）───
+        const MEM_KEY = 'mom_memory_archive_v1';
+        const memFields = ['mem-name','mem-birth','mem-personality','mem-life','mem-dad','mem-call','mem-family','mem-memories','mem-now','mem-style'];
+        function memSave(){ try{ const d={}; memFields.forEach(id=>{const el=document.getElementById(id); if(el)d[id]=el.value;}); localStorage.setItem(MEM_KEY, JSON.stringify(d)); }catch(e){} }
+        function memLoad(){ try{ const d=JSON.parse(localStorage.getItem(MEM_KEY)||'{}'); memFields.forEach(id=>{const el=document.getElementById(id); if(el && d[id]!=null) el.value=d[id];}); }catch(e){} }
+        function memGet(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
+        function memHint(msg){ const el=document.getElementById('mem-hint'); if(el) el.textContent=msg; }
+        function saveMemory(){
+            memSave();
+            memHint('✅ 已保存到本机浏览器');
+        }
+        function exportMemory(){
+            memSave();
+            const md = [
+                '# 妈妈记忆档案', '',
+                '## 1. 基本身份',
+                '名字/小名：'+(memGet('mem-name')||'（待填）'),
+                '出生年份/家乡：'+(memGet('mem-birth')||'（待填）'),
+                '性格：'+(memGet('mem-personality')||'（待填）'),
+                '职业/爱好/拿手菜：'+(memGet('mem-life')||'（待填）'), '',
+                '## 2. 家人',
+                '爸爸：'+(memGet('mem-dad')||'（待填）'),
+                '对龙龙的称呼：'+(memGet('mem-call')||'（待填）'),
+                '其他家人：'+(memGet('mem-family')||'（待填）'), '',
+                '## 3. 共同回忆',
+                (memGet('mem-memories')||'（待填）'), '',
+                '## 4. 龙龙的近况',
+                (memGet('mem-now')||'（待填）'), '',
+                '## 5. 说话风格',
+                (memGet('mem-style')||'（待填）'),
+            ].join('\n');
+            if(navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(md).then(()=>memHint('✅ 已复制到剪贴板，粘贴发给小苗即可')).catch(()=>memDownload(md));
+            } else { memDownload(md); }
+        }
+        function memDownload(md){
+            try{
+                const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = '妈妈记忆档案.md';
+                document.body.appendChild(a); a.click(); a.remove();
+                memHint('✅ 已下载「妈妈记忆档案.md」，发给小苗即可');
+            }catch(e){ memHint('导出失败，请长按复制文本框内容'); }
+        }
+        function clearMemory(){
+            if(!confirm('确定清空所有已填内容吗？')) return;
+            memFields.forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});
+            localStorage.removeItem(MEM_KEY);
+            memHint('已清空');
+        }
+        memFields.forEach(id=>{const el=document.getElementById(id); if(el) el.addEventListener('input', memSave);});
+        memLoad();
+    </script>
+</body>
+</html>
